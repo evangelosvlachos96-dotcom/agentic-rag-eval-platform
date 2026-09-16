@@ -1,0 +1,13 @@
+# Normalise line endings to LF in the repository regardless of platform.
+* text=auto eol=lf
+
+# Windows-specific files keep CRLF.
+*.bat text eol=crlf
+*.ps1 text eol=crlf
+
+# Binary / model artifacts (should normally be gitignored anyway).
+*.safetensors binary
+*.bin binary
+*.pt binary
+*.onnx binary
+*.faiss binary

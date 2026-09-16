@@ -1,0 +1,62 @@
+# --- Python -------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.egg
+build/
+dist/
+.eggs/
+wheels/
+
+# --- Environments / uv ----------------------------------------------------------
+.venv/
+venv/
+env/
+.uv-cache/
+
+# --- Secrets ------------------------------------------------------------------
+.env
+.env.*
+!.env.example
+
+# --- Tooling caches -------------------------------------------------------------
+.ruff_cache/
+.mypy_cache/
+.pytest_cache/
+.hypothesis/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+
+# --- Data and experiment outputs ------------------------------------------------
+data/raw/*
+data/processed/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+experiments/*
+!experiments/README.md
+
+# --- Model / embedding caches -----------------------------------------------------
+.cache/
+models/
+*.safetensors
+*.bin
+*.pt
+*.onnx
+*.faiss
+*.index
+
+# --- Notebooks ----------------------------------------------------------------
+.ipynb_checkpoints/
+
+# --- Editors / OS -------------------------------------------------------------
+.vs/
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# --- Claude Code local settings ------------------------------------------------
+.claude/settings.local.json

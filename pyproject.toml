@@ -1,0 +1,129 @@
+[project]
+name = "agentic-rag-eval-platform"
+version = "0.1.0"
+description = "Production-style agentic RAG with hybrid retrieval, reranking, a tool-using agent, and a rigorous evaluation and data-quality layer."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.11"
+authors = [{ name = "Evangelos Vlachos" }]
+keywords = ["rag", "agents", "llm", "evaluation", "retrieval", "anthropic"]
+classifiers = [
+  "Development Status :: 2 - Pre-Alpha",
+  "Intended Audience :: Developers",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+  "Typing :: Typed",
+]
+
+# Base install stays light: data models, settings, the LLM SDK, and logging.
+dependencies = [
+  "anthropic>=1.0",
+  "pydantic>=2.7",
+  "pydantic-settings>=2.3",
+  "structlog>=24.1",
+]
+
+[project.optional-dependencies]
+# Heavy ML dependencies are opt-in so `uv sync` stays fast and API-key free.
+retrieval = [
+  "sentence-transformers>=3.0",
+  "rank-bm25>=0.2.2",
+  "numpy>=1.26",
+]
+eval = [
+  "numpy>=1.26",
+  "scipy>=1.13",
+]
+api = [
+  "fastapi>=0.111",
+  "uvicorn[standard]>=0.30",
+]
+all = [
+  "agentic-rag-eval-platform[retrieval,eval,api]",
+]
+
+[project.urls]
+Repository = "https://github.com/evangelosvlachos/agentic-rag-eval-platform"
+
+[dependency-groups]
+dev = [
+  "ruff>=0.14",
+  "mypy>=1.14",
+  "pytest>=8.3",
+  "pytest-asyncio>=0.25",
+  "pytest-cov>=6.0",
+  "pre-commit>=4.0",
+]
+
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/ragplatform"]
+
+# --------------------------------------------------------------------------- ruff
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+src = ["src", "tests"]
+extend-exclude = ["data", "experiments", ".venv"]
+
+[tool.ruff.lint]
+select = [
+  "E", "W",   # pycodestyle
+  "F",        # pyflakes
+  "I",        # isort
+  "N",        # pep8-naming
+  "UP",       # pyupgrade
+  "B",        # flake8-bugbear
+  "SIM",      # flake8-simplify
+  "ANN",      # flake8-annotations: type hints everywhere
+  "RUF",      # ruff-specific
+  "PT",       # flake8-pytest-style
+  "TC",       # type-checking imports
+  "S",        # flake8-bandit (no hard-coded secrets, no eval, ...)
+]
+ignore = [
+  "ANN401",   # Any is acceptable at explicit boundaries (metadata dicts)
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101"]   # asserts are the point of tests
+
+[tool.ruff.lint.isort]
+known-first-party = ["ragplatform"]
+
+[tool.ruff.format]
+docstring-code-format = true
+
+# --------------------------------------------------------------------------- mypy
+[tool.mypy]
+python_version = "3.11"
+files = ["src", "tests"]
+strict = true
+warn_unreachable = true
+show_error_codes = true
+pretty = true
+plugins = ["pydantic.mypy"]
+
+[tool.pydantic-mypy]
+init_forbid_extra = true
+init_typed = true
+warn_required_dynamic_aliases = true
+
+# --------------------------------------------------------------------------- pytest
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q --strict-markers --strict-config"
+asyncio_mode = "auto"
+filterwarnings = ["error::DeprecationWarning:ragplatform.*"]
+markers = [
+  "integration: tests that hit real external services (deselected by default in CI)",
+]
+
+[tool.coverage.run]
+source = ["ragplatform"]
+branch = true
