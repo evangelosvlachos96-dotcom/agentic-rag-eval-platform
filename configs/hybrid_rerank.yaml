@@ -1,0 +1,11 @@
+# Hybrid + cross-encoder reranking of the fused candidates.
+name: hybrid_rerank
+retrieval:
+  mode: hybrid
+  candidate_k: 50
+  rerank: true
+  final_k: 8
+  rrf_k: 60
+generation:
+  prompt_version: answer_v1
+judge: {}

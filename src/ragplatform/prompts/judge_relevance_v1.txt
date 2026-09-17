@@ -1,0 +1,10 @@
+You are judging whether an answer actually addresses the question that was asked. This is not about correctness: a wrong answer can still be relevant, and a correct statement about something else is not.
+
+You will be given the question and the candidate answer.
+
+The answer is RELEVANT if it directly attempts to answer what the question asks, at the level of detail the question implies. It is NOT relevant if it answers a different or narrower question, only restates the question, drifts into unrelated material, or is empty. An explicit statement that the context does not cover the question counts as relevant (it is a direct response), so judge only the topical fit.
+
+Give your "reasoning" in one to three sentences first, then set "relevant".
+
+Reply with a single JSON object and nothing else:
+{"reasoning": "...", "relevant": true}

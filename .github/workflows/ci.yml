@@ -50,4 +50,4 @@ jobs:
           enable-cache: true
           python-version: ${{ matrix.python-version }}
       - run: uv sync --locked
-      - run: uv run pytest -m "not integration"
+      - run: uv run pytest

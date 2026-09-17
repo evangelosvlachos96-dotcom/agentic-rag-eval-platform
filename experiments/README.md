@@ -1,17 +1,22 @@
 # experiments/
 
-Outputs of experiment runs live here: metrics, per-item results, trajectories
-and reports. Everything in this directory except this README is gitignored.
-
-Planned layout (Milestone 8 and 9):
+Outputs of `rag eval run` live here. Everything in this directory except this
+README is gitignored.
 
 ```
 experiments/
-  <run-id>/            # e.g. 2026-09-16T10-30_hybrid-rerank
-    config.json        # full resolved configuration + git revision
-    metrics.json       # aggregate metrics with confidence intervals
-    results.jsonl      # one line per eval item
-    report.md          # human-readable summary
+  runs/
+    <timestamp>_<config>/     # e.g. 20260917T085855Z_bm25_only
+      config.json             # RunConfig snapshot (retrieval, generation, judge)
+      results.jsonl           # one ItemResult per eval item: retrieved sections with
+                              # relevance flags, answer, checks, judge verdicts, metrics
+      summary.json            # provenance (git commit + dirty flag, dataset version,
+                              # eval set version, prompt versions, models, provider),
+                              # metrics with bootstrap CIs, per-category breakdown,
+                              # LLM calls, cache hits/misses, tokens, estimated cost
+      report.md               # the same plus the 10 worst failures
 ```
 
-Reports worth keeping should be copied into `docs/` and committed.
+`rag eval compare <run_a> <run_b>` prints per-metric deltas with paired
+bootstrap intervals. Runs made with `--mock-llm` are placeholders and say so in
+their report. Reports worth keeping should be copied into `docs/` and committed.

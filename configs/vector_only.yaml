@@ -1,0 +1,10 @@
+# Dense-only baseline: cosine search over sentence-transformers embeddings.
+name: vector_only
+retrieval:
+  mode: vector
+  candidate_k: 50
+  rerank: false
+  final_k: 8
+generation:
+  prompt_version: answer_v1
+judge: {}

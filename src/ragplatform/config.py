@@ -49,16 +49,21 @@ class Settings(BaseSettings):
         description="Model used for LLM-as-judge evaluation.",
     )
 
-    # --- Embeddings ---------------------------------------------------------
+    # --- Embeddings and reranking ------------------------------------------
     embedding_model: str = Field(
-        default="sentence-transformers/all-MiniLM-L6-v2",
+        default="BAAI/bge-small-en-v1.5",
         description="Local sentence-transformers model; no API key required.",
+    )
+    reranker_model: str = Field(
+        default="cross-encoder/ms-marco-MiniLM-L-6-v2",
+        description="Local cross-encoder used when a retrieval config enables reranking.",
     )
 
     # --- Paths --------------------------------------------------------------
     data_dir: Path = Field(default=Path("data"), description="Root for raw/processed data.")
     eval_sets_dir: Path = Field(default=Path("eval_sets"), description="Versioned test sets.")
     experiments_dir: Path = Field(default=Path("experiments"), description="Run outputs.")
+    configs_dir: Path = Field(default=Path("configs"), description="YAML run configs + pricing.")
 
     # --- Observability ------------------------------------------------------
     log_level: LogLevel = Field(default="INFO", description="Root log level.")
@@ -67,6 +72,19 @@ class Settings(BaseSettings):
     def has_anthropic_key(self) -> bool:
         """True when a non-empty API key is configured."""
         return bool(self.anthropic_api_key and self.anthropic_api_key.get_secret_value())
+
+    # Derived paths. Kept here so every command agrees on the layout.
+    @property
+    def raw_corpus_dir(self) -> Path:
+        return self.data_dir / "raw" / "peps"
+
+    @property
+    def processed_dir(self) -> Path:
+        return self.data_dir / "processed"
+
+    @property
+    def llm_cache_dir(self) -> Path:
+        return self.data_dir / "cache" / "llm"
 
 
 @lru_cache(maxsize=1)

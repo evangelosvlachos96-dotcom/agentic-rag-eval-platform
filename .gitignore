@@ -60,3 +60,6 @@ Thumbs.db
 
 # --- Claude Code local settings ------------------------------------------------
 .claude/settings.local.json
+
+# --- LLM response cache and review state ----------------------------------------
+data/cache/

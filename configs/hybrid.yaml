@@ -1,0 +1,11 @@
+# Hybrid: BM25 + vector candidates fused with Reciprocal Rank Fusion (k=60).
+name: hybrid
+retrieval:
+  mode: hybrid
+  candidate_k: 50
+  rerank: false
+  final_k: 8
+  rrf_k: 60
+generation:
+  prompt_version: answer_v1
+judge: {}

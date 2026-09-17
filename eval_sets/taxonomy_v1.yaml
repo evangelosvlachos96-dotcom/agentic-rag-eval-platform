@@ -1,0 +1,54 @@
+# Question taxonomy v1. Every eval item carries exactly one of these categories.
+# Categories are assigned by the LLM at candidate generation time and confirmed
+# or corrected by the human reviewer using the decision rules below.
+version: v1
+categories:
+  lookup:
+    definition: >-
+      A factual question whose answer is stated in one place in one PEP
+      (a value, a name, a date, a rule).
+    decision_rule: >-
+      If a single sentence or list entry in one section fully answers it and
+      no synthesis is needed, it is lookup.
+    example: "Which Python version first shipped PEP 572's assignment expressions?"
+  conceptual:
+    definition: >-
+      A why / how question that needs the rationale or design reasoning of a
+      PEP, usually spanning a few sentences or a whole section.
+    decision_rule: >-
+      If the answer explains motivation, trade-offs or semantics rather than
+      quoting a fact, it is conceptual.
+    example: "Why does PEP 484 say type hints must not affect runtime behaviour?"
+  exact_term:
+    definition: >-
+      A question anchored on a specific identifier, keyword, dunder name, flag
+      or error code that must be matched exactly to find the answer.
+    decision_rule: >-
+      If removing the identifier from the question makes it unanswerable, it is
+      exact_term (this is what lexical retrieval should win on).
+    example: "What does `__future__` import annotations change according to PEP 563?"
+  multi_hop:
+    definition: >-
+      A question that requires combining information from two or more sections
+      or PEPs before it can be answered.
+    decision_rule: >-
+      If no single section answers it but two sections together do, it is
+      multi_hop. Label every section needed as a relevant source.
+    example: "Which PEP superseded PEP 563, and what replaced its deferred evaluation?"
+  comparison:
+    definition: >-
+      A question asking how two things differ or relate (two PEPs, two
+      syntaxes, two mechanisms).
+    decision_rule: >-
+      If the question names two subjects and asks for a difference,
+      similarity or preference between them, it is comparison.
+    example: "How does PEP 634's match statement differ from a chain of isinstance checks?"
+  unanswerable:
+    definition: >-
+      A plausible-sounding question about a topic the corpus does not cover, or
+      whose premise is false. The correct behaviour is to abstain.
+    decision_rule: >-
+      If no section in the corpus supports an answer, it is unanswerable and
+      answerable must be false. Keep the reference answer as a short statement
+      that the corpus does not cover it.
+    example: "What is the default port used by the asyncio event loop debugger?"

@@ -15,7 +15,9 @@ def test_defaults_require_no_api_key(settings: Settings) -> None:
     assert settings.has_anthropic_key is False
     assert settings.anthropic_model == "claude-opus-5"
     assert settings.anthropic_judge_model == "claude-sonnet-5"
-    assert settings.embedding_model.startswith("sentence-transformers/")
+    assert settings.embedding_model == "BAAI/bge-small-en-v1.5"
+    assert settings.reranker_model == "cross-encoder/ms-marco-MiniLM-L-6-v2"
+    assert settings.raw_corpus_dir == Path("data") / "raw" / "peps"
     assert settings.log_level == "INFO"
     assert settings.data_dir == Path("data")
 

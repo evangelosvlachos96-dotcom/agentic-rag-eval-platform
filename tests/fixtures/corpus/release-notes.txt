@@ -1,0 +1,8 @@
+Release notes for the fixture corpus
+
+Version 2 adds a heartbeat frame to the protocol and clarifies that consumers
+must not retry 4xx failures. Version 1 was the initial release and contained
+only the handshake and framing rules.
+
+Known issues: the assembly guide still refers to twelve screws in one place
+where sixteen is correct for kits shipped after 2024.

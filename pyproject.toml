@@ -17,23 +17,27 @@ classifiers = [
   "Typing :: Typed",
 ]
 
-# Base install stays light: data models, settings, the LLM SDK, and logging.
+# Base install stays light enough to run lint, typecheck and the unit tests in
+# CI without downloading any model: data models, settings, the LLM SDK, logging,
+# the CLI, YAML configs, MinHash dedup, numpy (vector store, bootstrap) and BM25.
 dependencies = [
   "anthropic>=1.0",
   "pydantic>=2.7",
   "pydantic-settings>=2.3",
   "structlog>=24.1",
+  "typer>=0.12",
+  "pyyaml>=6.0",
+  "datasketch>=1.6",
+  "numpy>=1.26",
+  "rank-bm25>=0.2.2",
 ]
 
 [project.optional-dependencies]
 # Heavy ML dependencies are opt-in so `uv sync` stays fast and API-key free.
 retrieval = [
   "sentence-transformers>=3.0",
-  "rank-bm25>=0.2.2",
-  "numpy>=1.26",
 ]
 eval = [
-  "numpy>=1.26",
   "scipy>=1.13",
 ]
 api = [
@@ -43,6 +47,9 @@ api = [
 all = [
   "agentic-rag-eval-platform[retrieval,eval,api]",
 ]
+
+[project.scripts]
+rag = "ragplatform.cli:app"
 
 [project.urls]
 Repository = "https://github.com/evangelosvlachos/agentic-rag-eval-platform"
@@ -55,6 +62,7 @@ dev = [
   "pytest-asyncio>=0.25",
   "pytest-cov>=6.0",
   "pre-commit>=4.0",
+  "types-PyYAML>=6.0",
 ]
 
 [build-system]
@@ -93,6 +101,10 @@ ignore = [
 [tool.ruff.lint.per-file-ignores]
 "tests/**" = ["S101"]   # asserts are the point of tests
 
+[tool.ruff.lint.flake8-type-checking]
+# pydantic evaluates annotations at runtime, so their imports must stay real imports.
+runtime-evaluated-base-classes = ["pydantic.BaseModel", "pydantic_settings.BaseSettings"]
+
 [tool.ruff.lint.isort]
 known-first-party = ["ragplatform"]
 
@@ -101,13 +113,19 @@ docstring-code-format = true
 
 # --------------------------------------------------------------------------- mypy
 [tool.mypy]
-python_version = "3.11"
+python_version = "3.12"  # numpy 2.5 stubs use PEP 695 syntax; CI still tests 3.11
 files = ["src", "tests"]
 strict = true
 warn_unreachable = true
 show_error_codes = true
 pretty = true
 plugins = ["pydantic.mypy"]
+
+[[tool.mypy.overrides]]
+# Third-party libraries without type stubs. Each is wrapped by a small typed
+# module in ragplatform so the untyped surface never leaks further.
+module = ["rank_bm25", "rank_bm25.*", "datasketch", "datasketch.*", "sentence_transformers", "sentence_transformers.*"]
+ignore_missing_imports = true
 
 [tool.pydantic-mypy]
 init_forbid_extra = true
@@ -117,11 +135,14 @@ warn_required_dynamic_aliases = true
 # --------------------------------------------------------------------------- pytest
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-addopts = "-q --strict-markers --strict-config"
+# Slow (model-downloading) and integration (network) tests are excluded by
+# default; run them explicitly with `uv run pytest -m slow`.
+addopts = "-q --strict-markers --strict-config -m 'not slow and not integration'"
 asyncio_mode = "auto"
 filterwarnings = ["error::DeprecationWarning:ragplatform.*"]
 markers = [
-  "integration: tests that hit real external services (deselected by default in CI)",
+  "integration: tests that hit real external services (deselected by default)",
+  "slow: tests that download ML models (deselected by default)",
 ]
 
 [tool.coverage.run]

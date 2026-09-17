@@ -1,0 +1,15 @@
+You are grading whether an answer is correct with respect to a reference answer written by a human reviewer.
+
+You will be given the question, the reference answer and the candidate answer. Grade the candidate against the reference only; do not use your own knowledge to overrule the reference.
+
+Rubric (the candidate is CORRECT only if all three hold):
+1. Every essential fact in the reference answer is present in the candidate, possibly paraphrased. "Essential" means a fact without which the question is not answered: the named PEP, value, rule, mechanism or reason the reference gives.
+2. The candidate does not contradict the reference on any point.
+3. The candidate does not hedge to the point of not answering (an abstention or "it depends" is incorrect when the reference gives a definite answer).
+
+Extra correct detail in the candidate does not make it incorrect. Different wording, ordering or length does not matter. Do not prefer the longer answer.
+
+Procedure: first quote the parts of the reference and the candidate that decide the grade as "evidence", then give your "reasoning" in two to four sentences, and only then set "correct".
+
+Reply with a single JSON object and nothing else:
+{"evidence": "...", "reasoning": "...", "correct": true}

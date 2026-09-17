@@ -41,6 +41,13 @@ class Chunk(_FrozenModel):
     metadata: dict[str, Any] = Field(default_factory=dict, description="Inherited + chunk-level.")
 
 
+class StageScore(_FrozenModel):
+    """Score and rank a chunk received from one retrieval stage (bm25, vector, ...)."""
+
+    score: float
+    rank: int = Field(ge=1, description="1-based rank within that stage's result list.")
+
+
 class RetrievedChunk(_FrozenModel):
     """A chunk returned by a retriever, with its score and provenance."""
 
@@ -48,6 +55,10 @@ class RetrievedChunk(_FrozenModel):
     score: float = Field(description="Retriever-specific relevance score (higher is better).")
     rank: int = Field(ge=1, description="1-based rank in the result list.")
     retriever: str = Field(min_length=1, description="Retriever that produced it, e.g. 'bm25'.")
+    stages: dict[str, StageScore] = Field(
+        default_factory=dict,
+        description="Per-stage score and rank (bm25, vector, fused, rerank) for debugging.",
+    )
 
 
 class Citation(_FrozenModel):
@@ -55,6 +66,19 @@ class Citation(_FrozenModel):
 
     chunk_id: str = Field(min_length=1)
     quote: str | None = Field(default=None, description="Verbatim supporting span, if known.")
+
+
+class TokenUsage(_FrozenModel):
+    """Token counts reported by an LLM call."""
+
+    input_tokens: int = Field(ge=0)
+    output_tokens: int = Field(ge=0)
+
+    def __add__(self, other: TokenUsage) -> TokenUsage:
+        return TokenUsage(
+            input_tokens=self.input_tokens + other.input_tokens,
+            output_tokens=self.output_tokens + other.output_tokens,
+        )
 
 
 class Answer(_FrozenModel):
@@ -65,4 +89,12 @@ class Answer(_FrozenModel):
     citations: list[Citation] = Field(default_factory=list)
     abstained: bool = Field(default=False, description="True when the system declined to answer.")
     model: str | None = Field(default=None, description="Model id that produced the answer.")
+    prompt_version: str | None = Field(
+        default=None, description="Prompt file used, e.g. answer_v1."
+    )
+    usage: TokenUsage | None = Field(default=None, description="Tokens over all LLM calls made.")
+    invalid_citations: list[str] = Field(
+        default_factory=list,
+        description="Chunk ids the model cited that were not in the provided context.",
+    )
     metadata: dict[str, Any] = Field(default_factory=dict, description="Latency, tokens, etc.")

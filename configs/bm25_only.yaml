@@ -1,0 +1,10 @@
+# Lexical-only baseline: BM25 over chunk index text, no vectors, no reranking.
+name: bm25_only
+retrieval:
+  mode: bm25
+  candidate_k: 50
+  rerank: false
+  final_k: 8
+generation:
+  prompt_version: answer_v1
+judge: {}
