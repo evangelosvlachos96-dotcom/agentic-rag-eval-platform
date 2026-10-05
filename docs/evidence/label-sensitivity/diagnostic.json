@@ -1,0 +1,1220 @@
+{
+  "status": "Exploratory assistant-proposed label sensitivity; not approved evaluation",
+  "scope": "One confirmed label gap; not an exhaustive relevance review",
+  "eval_sha256": "1f48f2e04ef7ca49ac9fc99af4123817d354355ebe4392ae1e77e969044377f1",
+  "dataset_version": "27b46e65f45d",
+  "llm_calls": 0,
+  "proposals": [
+    {
+      "item_id": "pilot-003",
+      "doc_id": "96c61294f2cd86dd",
+      "section_path": "Specification",
+      "evidence": "The ``typing.Required`` type qualifier is used to indicate that a\nvariable declared in a TypedDict definition is a required key:\n\n::\n\n   class Movie(TypedDict, total=False):\n       title: Required[str]\n       year: int\n\nAdditionally the ``typing.NotRequired`` type qualifier is used to\nindicate that a variable declared in a TypedDict definition is a\npotentially-missing key:\n\n::\n\n   class Movie(TypedDict):  # implicitly total=True\n       title: str\n       year: NotRequired[int]\n\nIt is an error to use ``Required[]`` or ``NotRequired[]`` in any\nlocation that is not an item of a TypedDict.\nType checkers must enforce this restriction.\n\nIt is valid to use ``Required[]`` and ``NotRequired[]`` even for\nitems where it is redundant, to enable additional explicitness if desired:\n\n::\n\n   class Movie(TypedDict):\n       title: Required[str]  # redundant\n       year: NotRequired[int]\n\nIt is an error to use both ``Required[]`` and ``NotRequired[]`` at the\nsame time:\n\n::\n\n   class Movie(TypedDict):\n       title: str\n       year: NotRequired[Required[int]]  # ERROR\n\nType checkers must enforce this restriction.\nThe runtime implementations of ``Required[]`` and ``NotRequired[]``\nmay also enforce this restriction.\n\nThe :pep:`alternative functional syntax <589#alternative-syntax>`\nfor TypedDict also supports\n``Required[]`` and ``NotRequired[]``:\n\n::\n\n   Movie = TypedDict('Movie', {'name': str, 'year': NotRequired[int]})",
+      "rationale": "This section explicitly defines both required and potentially-missing keys.",
+      "status": "assistant_proposed"
+    }
+  ],
+  "runs": {
+    "bm25_only": {
+      "run_id": "20261005T030406Z_bm25_only",
+      "results_sha256": "24cda9ddb0fc2cfe3e73ee1c1a2159d0b11ba044a314507ab69e29d4f36165ae",
+      "averages": {
+        "original": {
+          "hit@1": 0.25,
+          "hit@8": 0.7,
+          "mrr": 0.41964285714285715
+        },
+        "proposed": {
+          "hit@1": 0.25,
+          "hit@8": 0.75,
+          "mrr": 0.4446428571428571
+        }
+      },
+      "items": [
+        {
+          "item_id": "pilot-001",
+          "original": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.14285714285714285
+          },
+          "proposed": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.14285714285714285
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-002",
+          "original": {
+            "hit@1": 0.0,
+            "hit@8": 0.0,
+            "mrr": 0.0
+          },
+          "proposed": {
+            "hit@1": 0.0,
+            "hit@8": 0.0,
+            "mrr": 0.0
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-003",
+          "original": {
+            "hit@1": 0.0,
+            "hit@8": 0.0,
+            "mrr": 0.0
+          },
+          "proposed": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.5
+          },
+          "newly_relevant_chunks": [
+            "96c61294f2cd86dd-0004"
+          ]
+        },
+        {
+          "item_id": "pilot-004",
+          "original": {
+            "hit@1": 0.0,
+            "hit@8": 0.0,
+            "mrr": 0.0
+          },
+          "proposed": {
+            "hit@1": 0.0,
+            "hit@8": 0.0,
+            "mrr": 0.0
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-005",
+          "original": {
+            "hit@1": 1.0,
+            "hit@8": 1.0,
+            "mrr": 1.0
+          },
+          "proposed": {
+            "hit@1": 1.0,
+            "hit@8": 1.0,
+            "mrr": 1.0
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-006",
+          "original": {
+            "hit@1": 0.0,
+            "hit@8": 0.0,
+            "mrr": 0.0
+          },
+          "proposed": {
+            "hit@1": 0.0,
+            "hit@8": 0.0,
+            "mrr": 0.0
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-007",
+          "original": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.5
+          },
+          "proposed": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.5
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-008",
+          "original": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.25
+          },
+          "proposed": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.25
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-009",
+          "original": {
+            "hit@1": 1.0,
+            "hit@8": 1.0,
+            "mrr": 1.0
+          },
+          "proposed": {
+            "hit@1": 1.0,
+            "hit@8": 1.0,
+            "mrr": 1.0
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-010",
+          "original": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.5
+          },
+          "proposed": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.5
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-011",
+          "original": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.5
+          },
+          "proposed": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.5
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-012",
+          "original": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.5
+          },
+          "proposed": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.5
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-013",
+          "original": {
+            "hit@1": 0.0,
+            "hit@8": 0.0,
+            "mrr": 0.0
+          },
+          "proposed": {
+            "hit@1": 0.0,
+            "hit@8": 0.0,
+            "mrr": 0.0
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-014",
+          "original": {
+            "hit@1": 1.0,
+            "hit@8": 1.0,
+            "mrr": 1.0
+          },
+          "proposed": {
+            "hit@1": 1.0,
+            "hit@8": 1.0,
+            "mrr": 1.0
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-015",
+          "original": {
+            "hit@1": 0.0,
+            "hit@8": 0.0,
+            "mrr": 0.0
+          },
+          "proposed": {
+            "hit@1": 0.0,
+            "hit@8": 0.0,
+            "mrr": 0.0
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-016",
+          "original": {
+            "hit@1": 1.0,
+            "hit@8": 1.0,
+            "mrr": 1.0
+          },
+          "proposed": {
+            "hit@1": 1.0,
+            "hit@8": 1.0,
+            "mrr": 1.0
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-017",
+          "original": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.3333333333333333
+          },
+          "proposed": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.3333333333333333
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-018",
+          "original": {
+            "hit@1": 1.0,
+            "hit@8": 1.0,
+            "mrr": 1.0
+          },
+          "proposed": {
+            "hit@1": 1.0,
+            "hit@8": 1.0,
+            "mrr": 1.0
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-019",
+          "original": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.3333333333333333
+          },
+          "proposed": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.3333333333333333
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-020",
+          "original": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.3333333333333333
+          },
+          "proposed": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.3333333333333333
+          },
+          "newly_relevant_chunks": []
+        }
+      ]
+    },
+    "vector_only": {
+      "run_id": "20261005T033932Z_vector_only",
+      "results_sha256": "e7efd47aba835abd0ec47d4ae131f5ad0bdc474e28ba96cec3d8ee915474b221",
+      "averages": {
+        "original": {
+          "hit@1": 0.25,
+          "hit@8": 0.75,
+          "mrr": 0.42964285714285716
+        },
+        "proposed": {
+          "hit@1": 0.25,
+          "hit@8": 0.75,
+          "mrr": 0.42964285714285716
+        }
+      },
+      "items": [
+        {
+          "item_id": "pilot-001",
+          "original": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.2
+          },
+          "proposed": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.2
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-002",
+          "original": {
+            "hit@1": 0.0,
+            "hit@8": 0.0,
+            "mrr": 0.0
+          },
+          "proposed": {
+            "hit@1": 0.0,
+            "hit@8": 0.0,
+            "mrr": 0.0
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-003",
+          "original": {
+            "hit@1": 1.0,
+            "hit@8": 1.0,
+            "mrr": 1.0
+          },
+          "proposed": {
+            "hit@1": 1.0,
+            "hit@8": 1.0,
+            "mrr": 1.0
+          },
+          "newly_relevant_chunks": [
+            "96c61294f2cd86dd-0004"
+          ]
+        },
+        {
+          "item_id": "pilot-004",
+          "original": {
+            "hit@1": 1.0,
+            "hit@8": 1.0,
+            "mrr": 1.0
+          },
+          "proposed": {
+            "hit@1": 1.0,
+            "hit@8": 1.0,
+            "mrr": 1.0
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-005",
+          "original": {
+            "hit@1": 1.0,
+            "hit@8": 1.0,
+            "mrr": 1.0
+          },
+          "proposed": {
+            "hit@1": 1.0,
+            "hit@8": 1.0,
+            "mrr": 1.0
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-006",
+          "original": {
+            "hit@1": 0.0,
+            "hit@8": 0.0,
+            "mrr": 0.0
+          },
+          "proposed": {
+            "hit@1": 0.0,
+            "hit@8": 0.0,
+            "mrr": 0.0
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-007",
+          "original": {
+            "hit@1": 0.0,
+            "hit@8": 0.0,
+            "mrr": 0.0
+          },
+          "proposed": {
+            "hit@1": 0.0,
+            "hit@8": 0.0,
+            "mrr": 0.0
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-008",
+          "original": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.25
+          },
+          "proposed": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.25
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-009",
+          "original": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.5
+          },
+          "proposed": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.5
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-010",
+          "original": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.5
+          },
+          "proposed": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.5
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-011",
+          "original": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.5
+          },
+          "proposed": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.5
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-012",
+          "original": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.14285714285714285
+          },
+          "proposed": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.14285714285714285
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-013",
+          "original": {
+            "hit@1": 0.0,
+            "hit@8": 0.0,
+            "mrr": 0.0
+          },
+          "proposed": {
+            "hit@1": 0.0,
+            "hit@8": 0.0,
+            "mrr": 0.0
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-014",
+          "original": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.25
+          },
+          "proposed": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.25
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-015",
+          "original": {
+            "hit@1": 0.0,
+            "hit@8": 0.0,
+            "mrr": 0.0
+          },
+          "proposed": {
+            "hit@1": 0.0,
+            "hit@8": 0.0,
+            "mrr": 0.0
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-016",
+          "original": {
+            "hit@1": 1.0,
+            "hit@8": 1.0,
+            "mrr": 1.0
+          },
+          "proposed": {
+            "hit@1": 1.0,
+            "hit@8": 1.0,
+            "mrr": 1.0
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-017",
+          "original": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.25
+          },
+          "proposed": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.25
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-018",
+          "original": {
+            "hit@1": 1.0,
+            "hit@8": 1.0,
+            "mrr": 1.0
+          },
+          "proposed": {
+            "hit@1": 1.0,
+            "hit@8": 1.0,
+            "mrr": 1.0
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-019",
+          "original": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.5
+          },
+          "proposed": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.5
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-020",
+          "original": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.5
+          },
+          "proposed": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.5
+          },
+          "newly_relevant_chunks": []
+        }
+      ]
+    },
+    "hybrid": {
+      "run_id": "20261005T033936Z_hybrid",
+      "results_sha256": "313f7cadce78f19cf3c138c62a728d70854d31bdaee7ebcb297c2166d49b8419",
+      "averages": {
+        "original": {
+          "hit@1": 0.4,
+          "hit@8": 0.8,
+          "mrr": 0.5625
+        },
+        "proposed": {
+          "hit@1": 0.4,
+          "hit@8": 0.8,
+          "mrr": 0.575
+        }
+      },
+      "items": [
+        {
+          "item_id": "pilot-001",
+          "original": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.5
+          },
+          "proposed": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.5
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-002",
+          "original": {
+            "hit@1": 0.0,
+            "hit@8": 0.0,
+            "mrr": 0.0
+          },
+          "proposed": {
+            "hit@1": 0.0,
+            "hit@8": 0.0,
+            "mrr": 0.0
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-003",
+          "original": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.25
+          },
+          "proposed": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.5
+          },
+          "newly_relevant_chunks": [
+            "96c61294f2cd86dd-0004"
+          ]
+        },
+        {
+          "item_id": "pilot-004",
+          "original": {
+            "hit@1": 1.0,
+            "hit@8": 1.0,
+            "mrr": 1.0
+          },
+          "proposed": {
+            "hit@1": 1.0,
+            "hit@8": 1.0,
+            "mrr": 1.0
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-005",
+          "original": {
+            "hit@1": 1.0,
+            "hit@8": 1.0,
+            "mrr": 1.0
+          },
+          "proposed": {
+            "hit@1": 1.0,
+            "hit@8": 1.0,
+            "mrr": 1.0
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-006",
+          "original": {
+            "hit@1": 0.0,
+            "hit@8": 0.0,
+            "mrr": 0.0
+          },
+          "proposed": {
+            "hit@1": 0.0,
+            "hit@8": 0.0,
+            "mrr": 0.0
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-007",
+          "original": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.3333333333333333
+          },
+          "proposed": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.3333333333333333
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-008",
+          "original": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.5
+          },
+          "proposed": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.5
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-009",
+          "original": {
+            "hit@1": 1.0,
+            "hit@8": 1.0,
+            "mrr": 1.0
+          },
+          "proposed": {
+            "hit@1": 1.0,
+            "hit@8": 1.0,
+            "mrr": 1.0
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-010",
+          "original": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.5
+          },
+          "proposed": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.5
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-011",
+          "original": {
+            "hit@1": 1.0,
+            "hit@8": 1.0,
+            "mrr": 1.0
+          },
+          "proposed": {
+            "hit@1": 1.0,
+            "hit@8": 1.0,
+            "mrr": 1.0
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-012",
+          "original": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.5
+          },
+          "proposed": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.5
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-013",
+          "original": {
+            "hit@1": 0.0,
+            "hit@8": 0.0,
+            "mrr": 0.0
+          },
+          "proposed": {
+            "hit@1": 0.0,
+            "hit@8": 0.0,
+            "mrr": 0.0
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-014",
+          "original": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.3333333333333333
+          },
+          "proposed": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.3333333333333333
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-015",
+          "original": {
+            "hit@1": 0.0,
+            "hit@8": 0.0,
+            "mrr": 0.0
+          },
+          "proposed": {
+            "hit@1": 0.0,
+            "hit@8": 0.0,
+            "mrr": 0.0
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-016",
+          "original": {
+            "hit@1": 1.0,
+            "hit@8": 1.0,
+            "mrr": 1.0
+          },
+          "proposed": {
+            "hit@1": 1.0,
+            "hit@8": 1.0,
+            "mrr": 1.0
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-017",
+          "original": {
+            "hit@1": 1.0,
+            "hit@8": 1.0,
+            "mrr": 1.0
+          },
+          "proposed": {
+            "hit@1": 1.0,
+            "hit@8": 1.0,
+            "mrr": 1.0
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-018",
+          "original": {
+            "hit@1": 1.0,
+            "hit@8": 1.0,
+            "mrr": 1.0
+          },
+          "proposed": {
+            "hit@1": 1.0,
+            "hit@8": 1.0,
+            "mrr": 1.0
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-019",
+          "original": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.3333333333333333
+          },
+          "proposed": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.3333333333333333
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-020",
+          "original": {
+            "hit@1": 1.0,
+            "hit@8": 1.0,
+            "mrr": 1.0
+          },
+          "proposed": {
+            "hit@1": 1.0,
+            "hit@8": 1.0,
+            "mrr": 1.0
+          },
+          "newly_relevant_chunks": []
+        }
+      ]
+    },
+    "hybrid_rerank": {
+      "run_id": "20261005T033941Z_hybrid_rerank",
+      "results_sha256": "42caef2025225e2c163eb013e9cfd68af4e61e0ea48095191b7dd86f9530e098",
+      "averages": {
+        "original": {
+          "hit@1": 0.35,
+          "hit@8": 0.7,
+          "mrr": 0.5016666666666667
+        },
+        "proposed": {
+          "hit@1": 0.35,
+          "hit@8": 0.7,
+          "mrr": 0.5016666666666667
+        }
+      },
+      "items": [
+        {
+          "item_id": "pilot-001",
+          "original": {
+            "hit@1": 0.0,
+            "hit@8": 0.0,
+            "mrr": 0.0
+          },
+          "proposed": {
+            "hit@1": 0.0,
+            "hit@8": 0.0,
+            "mrr": 0.0
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-002",
+          "original": {
+            "hit@1": 0.0,
+            "hit@8": 0.0,
+            "mrr": 0.0
+          },
+          "proposed": {
+            "hit@1": 0.0,
+            "hit@8": 0.0,
+            "mrr": 0.0
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-003",
+          "original": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.5
+          },
+          "proposed": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.5
+          },
+          "newly_relevant_chunks": [
+            "96c61294f2cd86dd-0004"
+          ]
+        },
+        {
+          "item_id": "pilot-004",
+          "original": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.5
+          },
+          "proposed": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.5
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-005",
+          "original": {
+            "hit@1": 1.0,
+            "hit@8": 1.0,
+            "mrr": 1.0
+          },
+          "proposed": {
+            "hit@1": 1.0,
+            "hit@8": 1.0,
+            "mrr": 1.0
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-006",
+          "original": {
+            "hit@1": 0.0,
+            "hit@8": 0.0,
+            "mrr": 0.0
+          },
+          "proposed": {
+            "hit@1": 0.0,
+            "hit@8": 0.0,
+            "mrr": 0.0
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-007",
+          "original": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.3333333333333333
+          },
+          "proposed": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.3333333333333333
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-008",
+          "original": {
+            "hit@1": 1.0,
+            "hit@8": 1.0,
+            "mrr": 1.0
+          },
+          "proposed": {
+            "hit@1": 1.0,
+            "hit@8": 1.0,
+            "mrr": 1.0
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-009",
+          "original": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.5
+          },
+          "proposed": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.5
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-010",
+          "original": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.5
+          },
+          "proposed": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.5
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-011",
+          "original": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.5
+          },
+          "proposed": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.5
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-012",
+          "original": {
+            "hit@1": 0.0,
+            "hit@8": 0.0,
+            "mrr": 0.0
+          },
+          "proposed": {
+            "hit@1": 0.0,
+            "hit@8": 0.0,
+            "mrr": 0.0
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-013",
+          "original": {
+            "hit@1": 0.0,
+            "hit@8": 0.0,
+            "mrr": 0.0
+          },
+          "proposed": {
+            "hit@1": 0.0,
+            "hit@8": 0.0,
+            "mrr": 0.0
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-014",
+          "original": {
+            "hit@1": 1.0,
+            "hit@8": 1.0,
+            "mrr": 1.0
+          },
+          "proposed": {
+            "hit@1": 1.0,
+            "hit@8": 1.0,
+            "mrr": 1.0
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-015",
+          "original": {
+            "hit@1": 0.0,
+            "hit@8": 0.0,
+            "mrr": 0.0
+          },
+          "proposed": {
+            "hit@1": 0.0,
+            "hit@8": 0.0,
+            "mrr": 0.0
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-016",
+          "original": {
+            "hit@1": 1.0,
+            "hit@8": 1.0,
+            "mrr": 1.0
+          },
+          "proposed": {
+            "hit@1": 1.0,
+            "hit@8": 1.0,
+            "mrr": 1.0
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-017",
+          "original": {
+            "hit@1": 1.0,
+            "hit@8": 1.0,
+            "mrr": 1.0
+          },
+          "proposed": {
+            "hit@1": 1.0,
+            "hit@8": 1.0,
+            "mrr": 1.0
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-018",
+          "original": {
+            "hit@1": 1.0,
+            "hit@8": 1.0,
+            "mrr": 1.0
+          },
+          "proposed": {
+            "hit@1": 1.0,
+            "hit@8": 1.0,
+            "mrr": 1.0
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-019",
+          "original": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.2
+          },
+          "proposed": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "mrr": 0.2
+          },
+          "newly_relevant_chunks": []
+        },
+        {
+          "item_id": "pilot-020",
+          "original": {
+            "hit@1": 1.0,
+            "hit@8": 1.0,
+            "mrr": 1.0
+          },
+          "proposed": {
+            "hit@1": 1.0,
+            "hit@8": 1.0,
+            "mrr": 1.0
+          },
+          "newly_relevant_chunks": []
+        }
+      ]
+    }
+  },
+  "pooled_passages": 425
+}

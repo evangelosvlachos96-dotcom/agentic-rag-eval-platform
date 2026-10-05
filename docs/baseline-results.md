@@ -143,3 +143,5 @@ Labels were frozen before baseline execution; no labels were changed to improve 
 ![Pilot findings](images/pilot-baseline-findings.png)
 
 Screenshots of the local report; not a deployed application.
+
+Follow-up: [offline label sensitivity diagnostic](label-sensitivity.md) preserves these baseline scores and measures one proposed annotation change.
