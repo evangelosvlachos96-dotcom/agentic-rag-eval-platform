@@ -1,0 +1,8 @@
+{
+  "command": ".venv/Scripts/python.exe -m pytest tests/retrieval/test_models_slow.py -m slow",
+  "environment": {"HF_HUB_OFFLINE": "1", "TRANSFORMERS_OFFLINE": "1", "OMP_NUM_THREADS": "4", "MKL_NUM_THREADS": "4"},
+  "passed": 2,
+  "duration_seconds": 57.49,
+  "scope": "Real cached embedding normalization/ranking and cross-encoder relevance checks",
+  "anthropic_api_calls": 0
+}

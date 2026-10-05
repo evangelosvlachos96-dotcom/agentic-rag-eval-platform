@@ -1,10 +1,10 @@
 # Evaluation methodology
 
 This document explains how the harness in `ragplatform.evals` measures the
-system and why it is built the way it is. No numbers appear here on purpose:
-the real eval set (`eval_sets/v1`) has not been generated or reviewed yet, and
-every figure in `experiments/runs/` so far comes from the fixture corpus with a
-placeholder LLM.
+system and why it is built the way it is. The project owner has accepted the
+24-question PEP pilot in `eval_sets/v1`. Measured retrieval results and their
+limitations are in [the baseline report](baseline-results.md). Generation and
+judge calibration have not been evaluated on this pilot.
 
 ## 1. Retrieval and generation are scored separately
 
@@ -129,9 +129,9 @@ and no synthetic question enters the set without a human decision.
 
 ## 7. Current limitations
 
-- **No real eval set yet.** `eval_sets/v1` does not exist; `eval_sets/fixture`
-  is five hand-written items over the three-document test corpus and exists
-  only to exercise the pipeline.
+- **Small pilot only.** `eval_sets/v1` has 24 owner-approved questions, of which
+  20 are answerable. Topics overlap, and relevance labels are not exhaustive.
+  `eval_sets/fixture` remains a separate five-item workflow test, not a benchmark.
 - **Candidates come from single chunks.** Multi-hop and comparison questions
   need the reviewer to add the second source by hand.
 - **Chunk-level recall can undercount.** A long labeled section spans several

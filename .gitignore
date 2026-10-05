@@ -32,6 +32,7 @@ htmlcov/
 # --- Data and experiment outputs ------------------------------------------------
 data/raw/*
 data/processed/*
+data/smoke/
 !data/raw/.gitkeep
 !data/processed/.gitkeep
 experiments/*

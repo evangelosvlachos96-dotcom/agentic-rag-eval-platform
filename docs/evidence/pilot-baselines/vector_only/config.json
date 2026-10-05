@@ -1,0 +1,24 @@
+{
+  "name": "vector_only",
+  "retrieval": {
+    "mode": "vector",
+    "candidate_k": 50,
+    "rerank": false,
+    "final_k": 8,
+    "rrf_k": 60,
+    "embedding_model": null,
+    "reranker_model": null
+  },
+  "generation": {
+    "prompt_version": "answer_v1",
+    "model": null,
+    "max_tokens": 4096
+  },
+  "judge": {
+    "model": null,
+    "faithfulness_prompt": "judge_faithfulness_v1",
+    "correctness_prompt": "judge_correctness_v1",
+    "relevance_prompt": "judge_relevance_v1",
+    "max_tokens": 4096
+  }
+}

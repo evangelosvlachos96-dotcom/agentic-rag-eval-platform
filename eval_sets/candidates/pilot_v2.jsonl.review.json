@@ -1,0 +1,149 @@
+{
+  "candidates_file": "pilot_v2.jsonl",
+  "decisions": {
+    "pilot-001": {
+      "candidate_id": "pilot-001",
+      "action": "accept",
+      "item_id": "pilot-001",
+      "decided_at": "2026-10-05T03:02:18+00:00"
+    },
+    "pilot-002": {
+      "candidate_id": "pilot-002",
+      "action": "accept",
+      "item_id": "pilot-002",
+      "decided_at": "2026-10-05T03:02:18+00:00"
+    },
+    "pilot-003": {
+      "candidate_id": "pilot-003",
+      "action": "accept",
+      "item_id": "pilot-003",
+      "decided_at": "2026-10-05T03:02:18+00:00"
+    },
+    "pilot-004": {
+      "candidate_id": "pilot-004",
+      "action": "accept",
+      "item_id": "pilot-004",
+      "decided_at": "2026-10-05T03:02:18+00:00"
+    },
+    "pilot-005": {
+      "candidate_id": "pilot-005",
+      "action": "accept",
+      "item_id": "pilot-005",
+      "decided_at": "2026-10-05T03:02:18+00:00"
+    },
+    "pilot-006": {
+      "candidate_id": "pilot-006",
+      "action": "accept",
+      "item_id": "pilot-006",
+      "decided_at": "2026-10-05T03:02:18+00:00"
+    },
+    "pilot-007": {
+      "candidate_id": "pilot-007",
+      "action": "accept",
+      "item_id": "pilot-007",
+      "decided_at": "2026-10-05T03:02:18+00:00"
+    },
+    "pilot-008": {
+      "candidate_id": "pilot-008",
+      "action": "accept",
+      "item_id": "pilot-008",
+      "decided_at": "2026-10-05T03:02:18+00:00"
+    },
+    "pilot-009": {
+      "candidate_id": "pilot-009",
+      "action": "accept",
+      "item_id": "pilot-009",
+      "decided_at": "2026-10-05T03:02:18+00:00"
+    },
+    "pilot-010": {
+      "candidate_id": "pilot-010",
+      "action": "accept",
+      "item_id": "pilot-010",
+      "decided_at": "2026-10-05T03:02:18+00:00"
+    },
+    "pilot-011": {
+      "candidate_id": "pilot-011",
+      "action": "accept",
+      "item_id": "pilot-011",
+      "decided_at": "2026-10-05T03:02:18+00:00"
+    },
+    "pilot-012": {
+      "candidate_id": "pilot-012",
+      "action": "accept",
+      "item_id": "pilot-012",
+      "decided_at": "2026-10-05T03:02:18+00:00"
+    },
+    "pilot-013": {
+      "candidate_id": "pilot-013",
+      "action": "accept",
+      "item_id": "pilot-013",
+      "decided_at": "2026-10-05T03:02:18+00:00"
+    },
+    "pilot-014": {
+      "candidate_id": "pilot-014",
+      "action": "accept",
+      "item_id": "pilot-014",
+      "decided_at": "2026-10-05T03:02:18+00:00"
+    },
+    "pilot-015": {
+      "candidate_id": "pilot-015",
+      "action": "accept",
+      "item_id": "pilot-015",
+      "decided_at": "2026-10-05T03:02:18+00:00"
+    },
+    "pilot-016": {
+      "candidate_id": "pilot-016",
+      "action": "accept",
+      "item_id": "pilot-016",
+      "decided_at": "2026-10-05T03:02:18+00:00"
+    },
+    "pilot-017": {
+      "candidate_id": "pilot-017",
+      "action": "accept",
+      "item_id": "pilot-017",
+      "decided_at": "2026-10-05T03:02:18+00:00"
+    },
+    "pilot-018": {
+      "candidate_id": "pilot-018",
+      "action": "accept",
+      "item_id": "pilot-018",
+      "decided_at": "2026-10-05T03:02:18+00:00"
+    },
+    "pilot-019": {
+      "candidate_id": "pilot-019",
+      "action": "accept",
+      "item_id": "pilot-019",
+      "decided_at": "2026-10-05T03:02:18+00:00"
+    },
+    "pilot-020": {
+      "candidate_id": "pilot-020",
+      "action": "accept",
+      "item_id": "pilot-020",
+      "decided_at": "2026-10-05T03:02:18+00:00"
+    },
+    "pilot-021": {
+      "candidate_id": "pilot-021",
+      "action": "accept",
+      "item_id": "pilot-021",
+      "decided_at": "2026-10-05T03:02:18+00:00"
+    },
+    "pilot-022": {
+      "candidate_id": "pilot-022",
+      "action": "accept",
+      "item_id": "pilot-022",
+      "decided_at": "2026-10-05T03:02:18+00:00"
+    },
+    "pilot-023": {
+      "candidate_id": "pilot-023",
+      "action": "accept",
+      "item_id": "pilot-023",
+      "decided_at": "2026-10-05T03:02:18+00:00"
+    },
+    "pilot-024": {
+      "candidate_id": "pilot-024",
+      "action": "accept",
+      "item_id": "pilot-024",
+      "decided_at": "2026-10-05T03:02:18+00:00"
+    }
+  }
+}

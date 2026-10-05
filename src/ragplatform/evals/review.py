@@ -112,12 +112,12 @@ class ReviewSession:
         final_category: Category = category or candidate.category
         answerable = final_category != "unanswerable"
         if sources is None:
+            locations = dict.fromkeys(
+                (source.doc_id, source.section_path)
+                for source in [candidate.source, *candidate.additional_sources]
+            )
             sources = (
-                [
-                    SourceRef(
-                        doc_id=candidate.source.doc_id, section_path=candidate.source.section_path
-                    )
-                ]
+                [SourceRef(doc_id=doc_id, section_path=section) for doc_id, section in locations]
                 if answerable
                 else []
             )

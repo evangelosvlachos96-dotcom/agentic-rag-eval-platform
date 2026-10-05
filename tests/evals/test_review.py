@@ -59,6 +59,19 @@ def test_accept_appends_item_with_default_source(session: ReviewSession) -> None
     assert progress.category_counts == {"lookup": 1}
 
 
+def test_accept_preserves_multiple_documents_and_deduplicates_sections(
+    session: ReviewSession,
+) -> None:
+    candidate = session.pending()[0]
+    extra = candidate.source.model_copy(update={"doc_id": "other", "chunk_id": "other-1"})
+    candidate = candidate.model_copy(update={"additional_sources": [candidate.source, extra]})
+    item = session.accept(candidate)
+    assert item.relevant_sources == [
+        SourceRef(doc_id="doc", section_path="Spec > A"),
+        SourceRef(doc_id="other", section_path="Spec > A"),
+    ]
+
+
 def test_accept_with_edits_overrides_fields(session: ReviewSession) -> None:
     candidate = session.pending()[0]
     item = session.accept(

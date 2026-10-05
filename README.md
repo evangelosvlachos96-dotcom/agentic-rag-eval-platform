@@ -273,14 +273,31 @@ LLM calls are cached on disk by model, prompt and parameters, and generation run
 
 ### Results
 
-Evaluation results will be published here once eval set v1 review is complete. Numbers are only reported from actual runs on the reviewed set.
+The owner-approved pilot has 24 questions; the 20 answerable items contribute to retrieval
+metrics. All four configurations ran with local models and **zero Anthropic API calls**.
+
+| Configuration | Hit@8 | MRR |
+|---|---:|---:|
+| BM25 | 70% | 0.420 |
+| Vector only | 75% | 0.430 |
+| Hybrid | 80% | 0.562 |
+| Hybrid + reranking | 70% | 0.502 |
+
+These measure retrieval of **labeled** passages, not answer accuracy. Hybrid leads the observed
+scores, but the paired hit@8/MRR differences from BM25 remain inconclusive on this small pilot.
+A confirmed missing alternative source label also affects interpretation. Generation and
+abstention were not evaluated. See the [full report, confidence intervals and raw runs](docs/baseline-results.md).
+
+![Reviewed pilot retrieval baselines](docs/images/pilot-baseline-results.png)
+
+The [earlier preparation checkpoint](docs/evaluation-phase.md) records the offline tooling work.
 
 ---
 
 ## Engineering practices
 
 - **Typed throughout:** strict mypy, Pydantic models at every boundary.
-- **Tested:** 148 fast tests run offline with mocked LLM calls; slow tests that download models are marked and run separately.
+- **Tested:** 153 fast tests run offline with mocked LLM calls. Both real-model checks also passed using the cached local models; they remain separate from default CI.
 - **Reproducible:** pinned corpus commit, content-hashed dataset versions, versioned prompts and eval sets, and full run metadata.
 - **Pluggable components:** loaders, embedders, vector stores, rerankers and LLM providers sit behind protocols.
 - **Cost aware:** disk caching of LLM calls, cost estimates from a pricing config, and `--limit` for small trial runs.

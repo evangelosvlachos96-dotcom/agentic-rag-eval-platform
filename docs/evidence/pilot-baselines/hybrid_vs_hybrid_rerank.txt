@@ -1,0 +1,11 @@
+A = 20261005T033936Z_hybrid
+B = 20261005T033941Z_hybrid_rerank
+common items: 24
+
+metric                       A       B  delta (B-A)             95% CI  verdict
+hit@1                    0.400   0.350       -0.050 [ -0.250,  +0.150]  not distinguishable from noise
+hit@8                    0.800   0.700       -0.100 [ -0.250,  +0.000]  not distinguishable from noise
+mrr                      0.562   0.502       -0.061 [ -0.198,  +0.068]  not distinguishable from noise
+ndcg@8                   0.515   0.444       -0.071 [ -0.189,  +0.039]  not distinguishable from noise
+precision@8              0.138   0.113       -0.025 [ -0.062,  +0.006]  not distinguishable from noise
+recall@8                 0.639   0.557       -0.082 [ -0.242,  +0.042]  not distinguishable from noise

@@ -1,0 +1,32 @@
+// Screenshot the measured pilot report. Optional dependency: playwright; default browser: Edge.
+const fs=require('node:fs'),path=require('node:path');
+const {pathToFileURL}=require('node:url');
+const {chromium}=require('playwright');
+const root=path.resolve(__dirname,'..');
+const data=JSON.parse(fs.readFileSync(path.join(root,'docs/evidence/pilot-baselines/comparison.json'),'utf8'));
+const names={bm25_only:'BM25',vector_only:'Vector only',hybrid:'Hybrid',hybrid_rerank:'Hybrid + reranking'};
+const esc=s=>String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
+const pct=n=>(n*100).toFixed(0)+'%';
+const fixed=n=>new Intl.NumberFormat('en-US',{minimumFractionDigits:3,maximumFractionDigits:3,roundingMode:'halfEven',useGrouping:false}).format(n);
+const metric=(s,m)=>s.metrics[m];
+const rows=Object.entries(data.summaries).map(([name,s])=>{
+  const h=metric(s,'hit@8'),r=metric(s,'mrr');
+  return `<tr><td>${names[name]}</td><td>${pct(metric(s,'hit@1').mean)}</td><td><b>${pct(h.mean)}</b><small>95% CI ${pct(h.ci_lower)}–${pct(h.ci_upper)}</small></td><td>${fixed(r.mean)}<small>95% CI ${fixed(r.ci_lower)}–${fixed(r.ci_upper)}</small></td><td>${fixed(metric(s,'ndcg@8').mean)}</td></tr>`;
+}).join('');
+const diagnosticRows=Object.entries(data.source_coverage).map(([name,items])=>{
+  const count=c=>items.filter(i=>i.category===c&&i.all_labeled_sources).length;
+  return `<tr><td>${names[name]}</td><td>${count('multi_hop')} / 4</td><td>${count('comparison')} / 4</td></tr>`;
+}).join('');
+const css=`*{box-sizing:border-box}body{margin:0;background:#101b2b;color:#edf2f6;font:20px/1.5 Arial,sans-serif}.wrap{width:1400px;padding:48px 64px;min-height:940px}.eyebrow{color:#79dbc7;font-size:15px;letter-spacing:3px;font-weight:700;text-transform:uppercase}h1{font-size:48px;line-height:1.13;letter-spacing:-1.5px;margin:20px 0}h2{font-size:25px;margin:0 0 12px}p{color:#b6c3d1}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin:27px 0}.card,.panel{background:#19283b;border:1px solid #304156;border-radius:15px;padding:23px}.value{font-size:36px;font-weight:bold}.label,small{font-size:16px;color:#aebed0}table{width:100%;border-collapse:collapse;margin-top:18px}th{text-align:left;font-size:16px;color:#aebed0;padding:12px 16px;border-bottom:1px solid #496076}td{padding:17px 16px;border-bottom:1px solid #304156;font-size:21px}td:first-child{font-weight:bold}small{display:block;margin-top:3px}.note{border-left:4px solid #f8bf79;background:#26303c;padding:16px 22px;margin-top:25px;font-size:18px}.foot{font-size:14px;color:#8da0b5;display:flex;justify-content:space-between;margin-top:23px}.split{display:grid;grid-template-columns:1fr 1fr;gap:24px}.green{color:#79dbc7}.amber{color:#f8bf79}`;
+const wrap=content=>`<!doctype html><html lang="en"><meta charset="utf-8"><title>Reviewed PEP pilot results</title><style>${css}</style><main class="wrap">${content}</main></html>`;
+const summary=wrap(`<div class="eyebrow">Agentic RAG / Reviewed PEP pilot / Retrieval only</div><h1>Four configurations.<br>One frozen evaluation set.</h1><p>Measured against owner-approved source labels. No generated answers or LLM judges.</p><div class="cards"><div class="card"><div class="value">24</div><div class="label">accepted questions</div></div><div class="card"><div class="value">20</div><div class="label">answerable items scored</div></div><div class="card"><div class="value">2,111</div><div class="label">chunks across 56 PEPs</div></div><div class="card"><div class="value green">$0</div><div class="label">Anthropic API spend</div></div></div><section class="panel"><table><thead><tr><th>Configuration</th><th>Hit@1</th><th>Hit@8</th><th>MRR</th><th>nDCG@8</th></tr></thead><tbody>${rows}</tbody></table></section><div class="note"><b class="amber">Pilot evidence, not answer accuracy.</b> Hit@8 measures retrieval of at least one labeled passage. Other useful passages may be unlabeled. Four unanswerable items are excluded.</div><div class="foot"><span>Eval ${data.eval_version} · dataset ${data.dataset_version}</span><span>1,000 bootstrap resamples · seed 0 · n=20</span></div>`);
+const paired=data.comparisons.hybrid_vs_hybrid_rerank.metrics['mrr'];
+const detail=wrap(`<div class="eyebrow">Agentic RAG / What the pilot reveals</div><h1>Finding one source<br>does not mean finding them all.</h1><p>For questions with multiple labeled sources, inspect complete source coverage in the top eight.</p><section class="panel"><table><thead><tr><th>Configuration</th><th>Multi-hop: every source</th><th>Comparison: every source</th></tr></thead><tbody>${diagnosticRows}</tbody></table><small>Four questions per category. These counts measure labeled source coverage, not answer correctness.</small></section><div class="split" style="margin-top:24px"><section class="panel"><h2>Does reranking improve MRR?</h2><p>Paired change from hybrid to hybrid + reranking:</p><div class="value">${paired.delta>=0?'+':''}${fixed(paired.delta)}</div><p>95% CI [${fixed(paired.lower)}, ${fixed(paired.upper)}]</p><small>${paired.distinguishable?'Interval excludes zero on this pilot.':'Interval includes zero: no clear difference on this pilot.'} Exploratory comparison; no multiplicity correction.</small></section><section class="panel"><h2>Interpretation limits</h2><p>Small sample, overlapping topics and non-exhaustive labels. A labeled miss can still contain useful evidence.</p><p>Generation quality, abstention and production latency remain unmeasured.</p></section></div><div class="note">Preserve these baseline runs. Review missing source coverage and broaden the evaluation set before making production claims.</div><div class="foot"><span>Source: docs/evidence/pilot-baselines/comparison.json</span><span>Local models · zero Anthropic calls</span></div>`);
+(async()=>{
+ const browser=await chromium.launch({headless:true,channel:process.env.SHOWCASE_BROWSER||'msedge'});
+ try{const page=await browser.newPage({viewport:{width:1400,height:960},deviceScaleFactor:1});
+ for(const [name,html] of [['pilot-baseline-results',summary],['pilot-baseline-findings',detail]]){
+ const file=path.join(root,'docs/showcase',name+'.html');fs.writeFileSync(file,html);
+ await page.goto(pathToFileURL(file).href);await page.screenshot({path:path.join(root,'docs/images',name+'.png'),fullPage:true});console.log('Saved '+name+'.png');
+ }}finally{await browser.close();}
+})().catch(e=>{console.error(e);process.exitCode=1;});

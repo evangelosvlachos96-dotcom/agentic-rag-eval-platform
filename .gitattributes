@@ -1,6 +1,9 @@
 # Normalise line endings to LF in the repository regardless of platform.
 * text=auto eol=lf
 
+# Evaluation versions hash file bytes; preserve the exact reviewed artifacts.
+eval_sets/**/items.jsonl -text
+
 # Windows-specific files keep CRLF.
 *.bat text eol=crlf
 *.ps1 text eol=crlf

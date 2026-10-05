@@ -68,6 +68,7 @@ class Candidate(BaseModel):
     answerable: bool
     target_category: str = Field(description="Category the prompt asked for.")
     source: CandidateSource
+    additional_sources: list[CandidateSource] = Field(default_factory=list)
     model: str
     prompt_version: str
     created_at: str

@@ -1,0 +1,2206 @@
+{
+  "scope": "Owner-approved pilot; retrieval only, not generation quality",
+  "eval_version": "1f48f2e04ef7",
+  "dataset_version": "27b46e65f45d",
+  "n_items": 24,
+  "n_answerable": 20,
+  "summaries": {
+    "bm25_only": {
+      "run_id": "20261005T030406Z_bm25_only",
+      "config_name": "bm25_only",
+      "created_at": "2026-10-05T03:04:09+00:00",
+      "git_commit": "0285de60ada9e8a66dc5dcabe834736f09710702",
+      "git_dirty": true,
+      "dataset_version": "27b46e65f45d",
+      "eval_set_name": "v1",
+      "eval_set_version": "1f48f2e04ef7",
+      "prompt_versions": {
+        "answer": "answer_v1",
+        "judge_faithfulness": "judge_faithfulness_v1",
+        "judge_correctness": "judge_correctness_v1",
+        "judge_relevance": "judge_relevance_v1"
+      },
+      "generator_model": null,
+      "judge_model": null,
+      "llm_provider": null,
+      "retrieval_only": true,
+      "n_items": 24,
+      "n_errors": 0,
+      "n_unmatched_labels": 0,
+      "metrics": {
+        "hit@1": {
+          "mean": 0.25,
+          "ci_lower": 0.1,
+          "ci_upper": 0.45,
+          "n": 20
+        },
+        "hit@8": {
+          "mean": 0.7,
+          "ci_lower": 0.5,
+          "ci_upper": 0.9,
+          "n": 20
+        },
+        "recall@8": {
+          "mean": 0.4904761904761905,
+          "ci_lower": 0.3154761904761905,
+          "ci_upper": 0.6571726190476191,
+          "n": 20
+        },
+        "precision@8": {
+          "mean": 0.10625,
+          "ci_lower": 0.075,
+          "ci_upper": 0.14375,
+          "n": 20
+        },
+        "mrr": {
+          "mean": 0.4196428571428571,
+          "ci_lower": 0.2571428571428571,
+          "ci_upper": 0.5916666666666666,
+          "n": 20
+        },
+        "ndcg@8": {
+          "mean": 0.37956946040163647,
+          "ci_lower": 0.23133807741628887,
+          "ci_upper": 0.5228823978024942,
+          "n": 20
+        }
+      },
+      "by_category": {
+        "comparison": {
+          "hit@1": {
+            "mean": 0.5,
+            "ci_lower": 0.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "hit@8": {
+            "mean": 0.5,
+            "ci_lower": 0.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "recall@8": {
+            "mean": 0.375,
+            "ci_lower": 0.0,
+            "ci_upper": 0.75,
+            "n": 4
+          },
+          "precision@8": {
+            "mean": 0.09375,
+            "ci_lower": 0.0,
+            "ci_upper": 0.1875,
+            "n": 4
+          },
+          "mrr": {
+            "mean": 0.5,
+            "ci_lower": 0.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "ndcg@8": {
+            "mean": 0.4032867981913646,
+            "ci_lower": 0.0,
+            "ci_upper": 0.8065735963827292,
+            "n": 4
+          }
+        },
+        "conceptual": {
+          "hit@1": {
+            "mean": 0.25,
+            "ci_lower": 0.0,
+            "ci_upper": 0.75,
+            "n": 4
+          },
+          "hit@8": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "recall@8": {
+            "mean": 0.875,
+            "ci_lower": 0.625,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "precision@8": {
+            "mean": 0.15625,
+            "ci_lower": 0.125,
+            "ci_upper": 0.21875,
+            "n": 4
+          },
+          "mrr": {
+            "mean": 0.625,
+            "ci_lower": 0.5,
+            "ci_upper": 0.875,
+            "n": 4
+          },
+          "ndcg@8": {
+            "mean": 0.6200667359902698,
+            "ci_lower": 0.4478720438187706,
+            "ci_upper": 0.73124219157754,
+            "n": 4
+          }
+        },
+        "exact_term": {
+          "hit@1": {
+            "mean": 0.0,
+            "ci_lower": 0.0,
+            "ci_upper": 0.0,
+            "n": 4
+          },
+          "hit@8": {
+            "mean": 0.25,
+            "ci_lower": 0.0,
+            "ci_upper": 0.75,
+            "n": 4
+          },
+          "recall@8": {
+            "mean": 0.125,
+            "ci_lower": 0.0,
+            "ci_upper": 0.375,
+            "n": 4
+          },
+          "precision@8": {
+            "mean": 0.03125,
+            "ci_lower": 0.0,
+            "ci_upper": 0.09375,
+            "n": 4
+          },
+          "mrr": {
+            "mean": 0.03571428571428571,
+            "ci_lower": 0.0,
+            "ci_upper": 0.10714285714285714,
+            "n": 4
+          },
+          "ndcg@8": {
+            "mean": 0.05109559939712153,
+            "ci_lower": 0.0,
+            "ci_upper": 0.1532867981913646,
+            "n": 4
+          }
+        },
+        "lookup": {
+          "hit@1": {
+            "mean": 0.25,
+            "ci_lower": 0.0,
+            "ci_upper": 0.75,
+            "n": 4
+          },
+          "hit@8": {
+            "mean": 0.75,
+            "ci_lower": 0.25,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "recall@8": {
+            "mean": 0.75,
+            "ci_lower": 0.25,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "precision@8": {
+            "mean": 0.09375,
+            "ci_lower": 0.03125,
+            "ci_upper": 0.125,
+            "n": 4
+          },
+          "mrr": {
+            "mean": 0.4375,
+            "ci_lower": 0.125,
+            "ci_upper": 0.75,
+            "n": 4
+          },
+          "ndcg@8": {
+            "mean": 0.5154015779112127,
+            "ci_lower": 0.15773243839286438,
+            "ci_upper": 0.8154648767857289,
+            "n": 4
+          }
+        },
+        "multi_hop": {
+          "hit@1": {
+            "mean": 0.25,
+            "ci_lower": 0.0,
+            "ci_upper": 0.75,
+            "n": 4
+          },
+          "hit@8": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "recall@8": {
+            "mean": 0.32738095238095233,
+            "ci_lower": 0.2321428571428571,
+            "ci_upper": 0.4583333333333333,
+            "n": 4
+          },
+          "precision@8": {
+            "mean": 0.15625,
+            "ci_lower": 0.125,
+            "ci_upper": 0.21875,
+            "n": 4
+          },
+          "mrr": {
+            "mean": 0.49999999999999994,
+            "ci_lower": 0.3333333333333333,
+            "ci_upper": 0.8333333333333334,
+            "n": 4
+          },
+          "ndcg@8": {
+            "mean": 0.30799659051821404,
+            "ci_lower": 0.1860387647342618,
+            "ci_upper": 0.5185202353269384,
+            "n": 4
+          }
+        },
+        "unanswerable": {}
+      },
+      "llm_calls": 0,
+      "cache_hits": 0,
+      "cache_misses": 0,
+      "total_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "estimated_cost_usd": null,
+      "bootstrap_seed": 0,
+      "bootstrap_resamples": 1000
+    },
+    "vector_only": {
+      "run_id": "20261005T033932Z_vector_only",
+      "config_name": "vector_only",
+      "created_at": "2026-10-05T03:39:36+00:00",
+      "git_commit": "0285de60ada9e8a66dc5dcabe834736f09710702",
+      "git_dirty": true,
+      "dataset_version": "27b46e65f45d",
+      "eval_set_name": "v1",
+      "eval_set_version": "1f48f2e04ef7",
+      "prompt_versions": {
+        "answer": "answer_v1",
+        "judge_faithfulness": "judge_faithfulness_v1",
+        "judge_correctness": "judge_correctness_v1",
+        "judge_relevance": "judge_relevance_v1"
+      },
+      "generator_model": null,
+      "judge_model": null,
+      "llm_provider": null,
+      "retrieval_only": true,
+      "n_items": 24,
+      "n_errors": 0,
+      "n_unmatched_labels": 0,
+      "metrics": {
+        "hit@1": {
+          "mean": 0.25,
+          "ci_lower": 0.05,
+          "ci_upper": 0.45,
+          "n": 20
+        },
+        "hit@8": {
+          "mean": 0.75,
+          "ci_lower": 0.55,
+          "ci_upper": 0.95,
+          "n": 20
+        },
+        "recall@8": {
+          "mean": 0.6059523809523809,
+          "ci_lower": 0.41428571428571426,
+          "ci_upper": 0.7916666666666666,
+          "n": 20
+        },
+        "precision@8": {
+          "mean": 0.13125,
+          "ci_lower": 0.09375,
+          "ci_upper": 0.16875,
+          "n": 20
+        },
+        "mrr": {
+          "mean": 0.4296428571428571,
+          "ci_lower": 0.2642053571428572,
+          "ci_upper": 0.5893571428571427,
+          "n": 20
+        },
+        "ndcg@8": {
+          "mean": 0.4428437716180749,
+          "ci_lower": 0.2810465750040102,
+          "ci_upper": 0.6035719751032307,
+          "n": 20
+        }
+      },
+      "by_category": {
+        "comparison": {
+          "hit@1": {
+            "mean": 0.25,
+            "ci_lower": 0.0,
+            "ci_upper": 0.75,
+            "n": 4
+          },
+          "hit@8": {
+            "mean": 0.5,
+            "ci_lower": 0.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "recall@8": {
+            "mean": 0.5,
+            "ci_lower": 0.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "precision@8": {
+            "mean": 0.125,
+            "ci_lower": 0.0,
+            "ci_upper": 0.25,
+            "n": 4
+          },
+          "mrr": {
+            "mean": 0.3125,
+            "ci_lower": 0.0,
+            "ci_upper": 0.75,
+            "n": 4
+          },
+          "ndcg@8": {
+            "mean": 0.3671126300402692,
+            "ci_lower": 0.0,
+            "ci_upper": 0.75,
+            "n": 4
+          }
+        },
+        "conceptual": {
+          "hit@1": {
+            "mean": 0.0,
+            "ci_lower": 0.0,
+            "ci_upper": 0.0,
+            "n": 4
+          },
+          "hit@8": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "recall@8": {
+            "mean": 0.875,
+            "ci_lower": 0.625,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "precision@8": {
+            "mean": 0.15625,
+            "ci_lower": 0.125,
+            "ci_upper": 0.21875,
+            "n": 4
+          },
+          "mrr": {
+            "mean": 0.4107142857142857,
+            "ci_lower": 0.2321428571428571,
+            "ci_upper": 0.5,
+            "n": 4
+          },
+          "ndcg@8": {
+            "mean": 0.48909403454800954,
+            "ci_lower": 0.36009307028393744,
+            "ci_upper": 0.6180949988120816,
+            "n": 4
+          }
+        },
+        "exact_term": {
+          "hit@1": {
+            "mean": 0.5,
+            "ci_lower": 0.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "hit@8": {
+            "mean": 0.75,
+            "ci_lower": 0.25,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "recall@8": {
+            "mean": 0.625,
+            "ci_lower": 0.25,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "precision@8": {
+            "mean": 0.09375,
+            "ci_lower": 0.03125,
+            "ci_upper": 0.125,
+            "n": 4
+          },
+          "mrr": {
+            "mean": 0.55,
+            "ci_lower": 0.1,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "ndcg@8": {
+            "mean": 0.559299428192324,
+            "ci_lower": 0.11859885638464811,
+            "ci_upper": 1.0,
+            "n": 4
+          }
+        },
+        "lookup": {
+          "hit@1": {
+            "mean": 0.25,
+            "ci_lower": 0.0,
+            "ci_upper": 0.75,
+            "n": 4
+          },
+          "hit@8": {
+            "mean": 0.5,
+            "ci_lower": 0.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "recall@8": {
+            "mean": 0.5,
+            "ci_lower": 0.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "precision@8": {
+            "mean": 0.0625,
+            "ci_lower": 0.0,
+            "ci_upper": 0.125,
+            "n": 4
+          },
+          "mrr": {
+            "mean": 0.3125,
+            "ci_lower": 0.0,
+            "ci_upper": 0.75,
+            "n": 4
+          },
+          "ndcg@8": {
+            "mean": 0.3576691395183483,
+            "ci_lower": 0.0,
+            "ci_upper": 0.75,
+            "n": 4
+          }
+        },
+        "multi_hop": {
+          "hit@1": {
+            "mean": 0.25,
+            "ci_lower": 0.0,
+            "ci_upper": 0.75,
+            "n": 4
+          },
+          "hit@8": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "recall@8": {
+            "mean": 0.5297619047619048,
+            "ci_lower": 0.22619047619047616,
+            "ci_upper": 0.8333333333333333,
+            "n": 4
+          },
+          "precision@8": {
+            "mean": 0.21875,
+            "ci_lower": 0.15625,
+            "ci_upper": 0.25,
+            "n": 4
+          },
+          "mrr": {
+            "mean": 0.5625,
+            "ci_lower": 0.375,
+            "ci_upper": 0.875,
+            "n": 4
+          },
+          "ndcg@8": {
+            "mean": 0.44104362579142375,
+            "ci_lower": 0.20782017008226375,
+            "ci_upper": 0.6939385476474642,
+            "n": 4
+          }
+        },
+        "unanswerable": {}
+      },
+      "llm_calls": 0,
+      "cache_hits": 0,
+      "cache_misses": 0,
+      "total_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "estimated_cost_usd": null,
+      "bootstrap_seed": 0,
+      "bootstrap_resamples": 1000
+    },
+    "hybrid": {
+      "run_id": "20261005T033936Z_hybrid",
+      "config_name": "hybrid",
+      "created_at": "2026-10-05T03:39:40+00:00",
+      "git_commit": "0285de60ada9e8a66dc5dcabe834736f09710702",
+      "git_dirty": true,
+      "dataset_version": "27b46e65f45d",
+      "eval_set_name": "v1",
+      "eval_set_version": "1f48f2e04ef7",
+      "prompt_versions": {
+        "answer": "answer_v1",
+        "judge_faithfulness": "judge_faithfulness_v1",
+        "judge_correctness": "judge_correctness_v1",
+        "judge_relevance": "judge_relevance_v1"
+      },
+      "generator_model": null,
+      "judge_model": null,
+      "llm_provider": null,
+      "retrieval_only": true,
+      "n_items": 24,
+      "n_errors": 0,
+      "n_unmatched_labels": 0,
+      "metrics": {
+        "hit@1": {
+          "mean": 0.4,
+          "ci_lower": 0.2,
+          "ci_upper": 0.6,
+          "n": 20
+        },
+        "hit@8": {
+          "mean": 0.8,
+          "ci_lower": 0.6,
+          "ci_upper": 0.95,
+          "n": 20
+        },
+        "recall@8": {
+          "mean": 0.6392857142857143,
+          "ci_lower": 0.4499404761904763,
+          "ci_upper": 0.8036309523809523,
+          "n": 20
+        },
+        "precision@8": {
+          "mean": 0.1375,
+          "ci_lower": 0.1,
+          "ci_upper": 0.175,
+          "n": 20
+        },
+        "mrr": {
+          "mean": 0.5625,
+          "ci_lower": 0.39166666666666666,
+          "ci_upper": 0.7333333333333333,
+          "n": 20
+        },
+        "ndcg@8": {
+          "mean": 0.5146632399424829,
+          "ci_lower": 0.35712103310543364,
+          "ci_upper": 0.6652994079273309,
+          "n": 20
+        }
+      },
+      "by_category": {
+        "comparison": {
+          "hit@1": {
+            "mean": 0.25,
+            "ci_lower": 0.0,
+            "ci_upper": 0.75,
+            "n": 4
+          },
+          "hit@8": {
+            "mean": 0.5,
+            "ci_lower": 0.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "recall@8": {
+            "mean": 0.5,
+            "ci_lower": 0.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "precision@8": {
+            "mean": 0.125,
+            "ci_lower": 0.0,
+            "ci_upper": 0.25,
+            "n": 4
+          },
+          "mrr": {
+            "mean": 0.3333333333333333,
+            "ci_lower": 0.0,
+            "ci_upper": 0.75,
+            "n": 4
+          },
+          "ndcg@8": {
+            "mean": 0.3777389984928038,
+            "ci_lower": 0.0,
+            "ci_upper": 0.7554779969856076,
+            "n": 4
+          }
+        },
+        "conceptual": {
+          "hit@1": {
+            "mean": 0.5,
+            "ci_lower": 0.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "hit@8": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "recall@8": {
+            "mean": 0.875,
+            "ci_lower": 0.625,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "precision@8": {
+            "mean": 0.15625,
+            "ci_lower": 0.125,
+            "ci_upper": 0.21875,
+            "n": 4
+          },
+          "mrr": {
+            "mean": 0.75,
+            "ci_lower": 0.5,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "ndcg@8": {
+            "mean": 0.7237494690360122,
+            "ci_lower": 0.5088912804029996,
+            "ci_upper": 0.9386076576690248,
+            "n": 4
+          }
+        },
+        "exact_term": {
+          "hit@1": {
+            "mean": 0.25,
+            "ci_lower": 0.0,
+            "ci_upper": 0.75,
+            "n": 4
+          },
+          "hit@8": {
+            "mean": 0.75,
+            "ci_lower": 0.25,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "recall@8": {
+            "mean": 0.625,
+            "ci_lower": 0.25,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "precision@8": {
+            "mean": 0.09375,
+            "ci_lower": 0.03125,
+            "ci_upper": 0.125,
+            "n": 4
+          },
+          "mrr": {
+            "mean": 0.4375,
+            "ci_lower": 0.125,
+            "ci_upper": 0.8125,
+            "n": 4
+          },
+          "ndcg@8": {
+            "mean": 0.4543823413269837,
+            "ci_lower": 0.10766913951834826,
+            "ci_upper": 0.8467132018086354,
+            "n": 4
+          }
+        },
+        "lookup": {
+          "hit@1": {
+            "mean": 0.25,
+            "ci_lower": 0.0,
+            "ci_upper": 0.75,
+            "n": 4
+          },
+          "hit@8": {
+            "mean": 0.75,
+            "ci_lower": 0.25,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "recall@8": {
+            "mean": 0.75,
+            "ci_lower": 0.25,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "precision@8": {
+            "mean": 0.09375,
+            "ci_lower": 0.03125,
+            "ci_upper": 0.125,
+            "n": 4
+          },
+          "mrr": {
+            "mean": 0.4583333333333333,
+            "ci_lower": 0.125,
+            "ci_upper": 0.75,
+            "n": 4
+          },
+          "ndcg@8": {
+            "mean": 0.5327324383928644,
+            "ci_lower": 0.15773243839286438,
+            "ci_upper": 0.8154648767857289,
+            "n": 4
+          }
+        },
+        "multi_hop": {
+          "hit@1": {
+            "mean": 0.75,
+            "ci_lower": 0.25,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "hit@8": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "recall@8": {
+            "mean": 0.4464285714285714,
+            "ci_lower": 0.30952380952380953,
+            "ci_upper": 0.5833333333333333,
+            "n": 4
+          },
+          "precision@8": {
+            "mean": 0.21875,
+            "ci_lower": 0.15625,
+            "ci_upper": 0.25,
+            "n": 4
+          },
+          "mrr": {
+            "mean": 0.8333333333333334,
+            "ci_lower": 0.49999999999999994,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "ndcg@8": {
+            "mean": 0.4847129524637497,
+            "ci_lower": 0.33744204926471566,
+            "ci_upper": 0.6319838556627837,
+            "n": 4
+          }
+        },
+        "unanswerable": {}
+      },
+      "llm_calls": 0,
+      "cache_hits": 0,
+      "cache_misses": 0,
+      "total_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "estimated_cost_usd": null,
+      "bootstrap_seed": 0,
+      "bootstrap_resamples": 1000
+    },
+    "hybrid_rerank": {
+      "run_id": "20261005T033941Z_hybrid_rerank",
+      "config_name": "hybrid_rerank",
+      "created_at": "2026-10-05T03:44:53+00:00",
+      "git_commit": "0285de60ada9e8a66dc5dcabe834736f09710702",
+      "git_dirty": true,
+      "dataset_version": "27b46e65f45d",
+      "eval_set_name": "v1",
+      "eval_set_version": "1f48f2e04ef7",
+      "prompt_versions": {
+        "answer": "answer_v1",
+        "judge_faithfulness": "judge_faithfulness_v1",
+        "judge_correctness": "judge_correctness_v1",
+        "judge_relevance": "judge_relevance_v1"
+      },
+      "generator_model": null,
+      "judge_model": null,
+      "llm_provider": null,
+      "retrieval_only": true,
+      "n_items": 24,
+      "n_errors": 0,
+      "n_unmatched_labels": 0,
+      "metrics": {
+        "hit@1": {
+          "mean": 0.35,
+          "ci_lower": 0.15,
+          "ci_upper": 0.55,
+          "n": 20
+        },
+        "hit@8": {
+          "mean": 0.7,
+          "ci_lower": 0.5,
+          "ci_upper": 0.9,
+          "n": 20
+        },
+        "recall@8": {
+          "mean": 0.5571428571428572,
+          "ci_lower": 0.3475595238095239,
+          "ci_upper": 0.75,
+          "n": 20
+        },
+        "precision@8": {
+          "mean": 0.1125,
+          "ci_lower": 0.075,
+          "ci_upper": 0.15,
+          "n": 20
+        },
+        "mrr": {
+          "mean": 0.5016666666666667,
+          "ci_lower": 0.32666666666666666,
+          "ci_upper": 0.675,
+          "n": 20
+        },
+        "ndcg@8": {
+          "mean": 0.4440589572392259,
+          "ci_lower": 0.2835790890546502,
+          "ci_upper": 0.6009454981919131,
+          "n": 20
+        }
+      },
+      "by_category": {
+        "comparison": {
+          "hit@1": {
+            "mean": 0.5,
+            "ci_lower": 0.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "hit@8": {
+            "mean": 0.5,
+            "ci_lower": 0.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "recall@8": {
+            "mean": 0.5,
+            "ci_lower": 0.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "precision@8": {
+            "mean": 0.125,
+            "ci_lower": 0.0,
+            "ci_upper": 0.25,
+            "n": 4
+          },
+          "mrr": {
+            "mean": 0.5,
+            "ci_lower": 0.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "ndcg@8": {
+            "mean": 0.4543823975884861,
+            "ci_lower": 0.0,
+            "ci_upper": 0.9087647951769722,
+            "n": 4
+          }
+        },
+        "conceptual": {
+          "hit@1": {
+            "mean": 0.0,
+            "ci_lower": 0.0,
+            "ci_upper": 0.0,
+            "n": 4
+          },
+          "hit@8": {
+            "mean": 0.75,
+            "ci_lower": 0.25,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "recall@8": {
+            "mean": 0.625,
+            "ci_lower": 0.25,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "precision@8": {
+            "mean": 0.125,
+            "ci_lower": 0.03125,
+            "ci_upper": 0.21875,
+            "n": 4
+          },
+          "mrr": {
+            "mean": 0.375,
+            "ci_lower": 0.125,
+            "ci_upper": 0.5,
+            "n": 4
+          },
+          "ndcg@8": {
+            "mean": 0.4057607012146762,
+            "ci_lower": 0.15131506101317643,
+            "ci_upper": 0.6180949988120816,
+            "n": 4
+          }
+        },
+        "exact_term": {
+          "hit@1": {
+            "mean": 0.0,
+            "ci_lower": 0.0,
+            "ci_upper": 0.0,
+            "n": 4
+          },
+          "hit@8": {
+            "mean": 0.5,
+            "ci_lower": 0.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "recall@8": {
+            "mean": 0.5,
+            "ci_lower": 0.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "precision@8": {
+            "mean": 0.0625,
+            "ci_lower": 0.0,
+            "ci_upper": 0.125,
+            "n": 4
+          },
+          "mrr": {
+            "mean": 0.25,
+            "ci_lower": 0.0,
+            "ci_upper": 0.5,
+            "n": 4
+          },
+          "ndcg@8": {
+            "mean": 0.31546487678572877,
+            "ci_lower": 0.0,
+            "ci_upper": 0.6309297535714575,
+            "n": 4
+          }
+        },
+        "lookup": {
+          "hit@1": {
+            "mean": 0.5,
+            "ci_lower": 0.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "hit@8": {
+            "mean": 0.75,
+            "ci_lower": 0.25,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "recall@8": {
+            "mean": 0.75,
+            "ci_lower": 0.25,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "precision@8": {
+            "mean": 0.09375,
+            "ci_lower": 0.03125,
+            "ci_upper": 0.125,
+            "n": 4
+          },
+          "mrr": {
+            "mean": 0.5833333333333333,
+            "ci_lower": 0.16666666666666666,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "ndcg@8": {
+            "mean": 0.625,
+            "ci_lower": 0.25,
+            "ci_upper": 1.0,
+            "n": 4
+          }
+        },
+        "multi_hop": {
+          "hit@1": {
+            "mean": 0.75,
+            "ci_lower": 0.25,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "hit@8": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "recall@8": {
+            "mean": 0.4107142857142857,
+            "ci_lower": 0.15476190476190477,
+            "ci_upper": 0.7916666666666667,
+            "n": 4
+          },
+          "precision@8": {
+            "mean": 0.15625,
+            "ci_lower": 0.125,
+            "ci_upper": 0.21875,
+            "n": 4
+          },
+          "mrr": {
+            "mean": 0.8,
+            "ci_lower": 0.39999999999999997,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "ndcg@8": {
+            "mean": 0.41968681060723884,
+            "ci_lower": 0.1959694630261272,
+            "ci_upper": 0.681866275994031,
+            "n": 4
+          }
+        },
+        "unanswerable": {}
+      },
+      "llm_calls": 0,
+      "cache_hits": 0,
+      "cache_misses": 0,
+      "total_usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "estimated_cost_usd": null,
+      "bootstrap_seed": 0,
+      "bootstrap_resamples": 1000
+    }
+  },
+  "comparisons": {
+    "bm25_only_vs_vector_only": {
+      "run_a": "20261005T030406Z_bm25_only",
+      "run_b": "20261005T033932Z_vector_only",
+      "eval_set_version_a": "1f48f2e04ef7",
+      "eval_set_version_b": "1f48f2e04ef7",
+      "n_common_items": 24,
+      "metrics": {
+        "hit@1": {
+          "mean_a": 0.25,
+          "mean_b": 0.25,
+          "delta": 0.0,
+          "lower": -0.2,
+          "upper": 0.2,
+          "n": 20,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        },
+        "hit@8": {
+          "mean_a": 0.7,
+          "mean_b": 0.75,
+          "delta": 0.05,
+          "lower": -0.1,
+          "upper": 0.2,
+          "n": 20,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        },
+        "mrr": {
+          "mean_a": 0.4196428571428571,
+          "mean_b": 0.4296428571428571,
+          "delta": 0.01,
+          "lower": -0.15833333333333333,
+          "upper": 0.20010416666666658,
+          "n": 20,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        },
+        "ndcg@8": {
+          "mean_a": 0.37956946040163647,
+          "mean_b": 0.4428437716180749,
+          "delta": 0.06327431121643845,
+          "lower": -0.08950623745445097,
+          "upper": 0.23522212371066897,
+          "n": 20,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        },
+        "precision@8": {
+          "mean_a": 0.10625,
+          "mean_b": 0.13125,
+          "delta": 0.025,
+          "lower": -0.0125,
+          "upper": 0.0625,
+          "n": 20,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        },
+        "recall@8": {
+          "mean_a": 0.4904761904761905,
+          "mean_b": 0.6059523809523809,
+          "delta": 0.11547619047619047,
+          "lower": -0.07502976190476189,
+          "upper": 0.30598214285714276,
+          "n": 20,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        }
+      },
+      "skipped_metrics": []
+    },
+    "bm25_only_vs_hybrid": {
+      "run_a": "20261005T030406Z_bm25_only",
+      "run_b": "20261005T033936Z_hybrid",
+      "eval_set_version_a": "1f48f2e04ef7",
+      "eval_set_version_b": "1f48f2e04ef7",
+      "n_common_items": 24,
+      "metrics": {
+        "hit@1": {
+          "mean_a": 0.25,
+          "mean_b": 0.4,
+          "delta": 0.15,
+          "lower": -0.05,
+          "upper": 0.35,
+          "n": 20,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        },
+        "hit@8": {
+          "mean_a": 0.7,
+          "mean_b": 0.8,
+          "delta": 0.1,
+          "lower": 0.0,
+          "upper": 0.25,
+          "n": 20,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        },
+        "mrr": {
+          "mean_a": 0.4196428571428571,
+          "mean_b": 0.5625,
+          "delta": 0.14285714285714288,
+          "lower": -0.011309523809523814,
+          "upper": 0.3053571428571428,
+          "n": 20,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        },
+        "ndcg@8": {
+          "mean_a": 0.37956946040163647,
+          "mean_b": 0.5146632399424829,
+          "delta": 0.13509377954084623,
+          "lower": 0.03587725341044505,
+          "upper": 0.2622528978781256,
+          "n": 20,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": true
+        },
+        "precision@8": {
+          "mean_a": 0.10625,
+          "mean_b": 0.1375,
+          "delta": 0.03125,
+          "lower": 0.0125,
+          "upper": 0.05625,
+          "n": 20,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": true
+        },
+        "recall@8": {
+          "mean_a": 0.4904761904761905,
+          "mean_b": 0.6392857142857143,
+          "delta": 0.1488095238095238,
+          "lower": 0.03330357142857145,
+          "upper": 0.2917857142857142,
+          "n": 20,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": true
+        }
+      },
+      "skipped_metrics": []
+    },
+    "bm25_only_vs_hybrid_rerank": {
+      "run_a": "20261005T030406Z_bm25_only",
+      "run_b": "20261005T033941Z_hybrid_rerank",
+      "eval_set_version_a": "1f48f2e04ef7",
+      "eval_set_version_b": "1f48f2e04ef7",
+      "n_common_items": 24,
+      "metrics": {
+        "hit@1": {
+          "mean_a": 0.25,
+          "mean_b": 0.35,
+          "delta": 0.1,
+          "lower": -0.1,
+          "upper": 0.3,
+          "n": 20,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        },
+        "hit@8": {
+          "mean_a": 0.7,
+          "mean_b": 0.7,
+          "delta": 0.0,
+          "lower": -0.2,
+          "upper": 0.2,
+          "n": 20,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        },
+        "mrr": {
+          "mean_a": 0.4196428571428571,
+          "mean_b": 0.5016666666666667,
+          "delta": 0.08202380952380953,
+          "lower": -0.0721547619047619,
+          "upper": 0.23752678571428573,
+          "n": 20,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        },
+        "ndcg@8": {
+          "mean_a": 0.37956946040163647,
+          "mean_b": 0.4440589572392259,
+          "delta": 0.06448949683758946,
+          "lower": -0.06988000448745749,
+          "upper": 0.19374750099874022,
+          "n": 20,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        },
+        "precision@8": {
+          "mean_a": 0.10625,
+          "mean_b": 0.1125,
+          "delta": 0.00625,
+          "lower": -0.03125,
+          "upper": 0.0375,
+          "n": 20,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        },
+        "recall@8": {
+          "mean_a": 0.4904761904761905,
+          "mean_b": 0.5571428571428572,
+          "delta": 0.06666666666666667,
+          "lower": -0.13333333333333333,
+          "upper": 0.25,
+          "n": 20,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        }
+      },
+      "skipped_metrics": []
+    },
+    "hybrid_vs_hybrid_rerank": {
+      "run_a": "20261005T033936Z_hybrid",
+      "run_b": "20261005T033941Z_hybrid_rerank",
+      "eval_set_version_a": "1f48f2e04ef7",
+      "eval_set_version_b": "1f48f2e04ef7",
+      "n_common_items": 24,
+      "metrics": {
+        "hit@1": {
+          "mean_a": 0.4,
+          "mean_b": 0.35,
+          "delta": -0.05,
+          "lower": -0.25,
+          "upper": 0.15,
+          "n": 20,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        },
+        "hit@8": {
+          "mean_a": 0.8,
+          "mean_b": 0.7,
+          "delta": -0.1,
+          "lower": -0.25,
+          "upper": 0.0,
+          "n": 20,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        },
+        "mrr": {
+          "mean_a": 0.5625,
+          "mean_b": 0.5016666666666667,
+          "delta": -0.06083333333333333,
+          "lower": -0.1983333333333333,
+          "upper": 0.06843749999999992,
+          "n": 20,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        },
+        "ndcg@8": {
+          "mean_a": 0.5146632399424829,
+          "mean_b": 0.4440589572392259,
+          "delta": -0.07060428270325673,
+          "lower": -0.1889241118339164,
+          "upper": 0.03858778399937168,
+          "n": 20,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        },
+        "precision@8": {
+          "mean_a": 0.1375,
+          "mean_b": 0.1125,
+          "delta": -0.025,
+          "lower": -0.0625,
+          "upper": 0.00625,
+          "n": 20,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        },
+        "recall@8": {
+          "mean_a": 0.6392857142857143,
+          "mean_b": 0.5571428571428572,
+          "delta": -0.08214285714285714,
+          "lower": -0.24166666666666664,
+          "upper": 0.04169642857142855,
+          "n": 20,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        }
+      },
+      "skipped_metrics": []
+    }
+  },
+  "source_coverage": {
+    "bm25_only": [
+      {
+        "id": "pilot-001",
+        "category": "exact_term",
+        "question": "Does PEP 484 require Python to enforce type hints at runtime?",
+        "hit_at_8": 1.0,
+        "labeled_sources": 1,
+        "covered_sources": 1,
+        "all_labeled_sources": true,
+        "top_result": "Allow writing union types as ``X | Y`` > Motivation"
+      },
+      {
+        "id": "pilot-002",
+        "category": "exact_term",
+        "question": "According to PEP 604, what does X | Y mean in a type annotation?",
+        "hit_at_8": 0.0,
+        "labeled_sources": 1,
+        "covered_sources": 0,
+        "all_labeled_sources": false,
+        "top_result": "Syntax for Variable Annotations > Rejected/Postponed Proposals"
+      },
+      {
+        "id": "pilot-003",
+        "category": "exact_term",
+        "question": "According to PEP 655, what do Required[] and NotRequired[] mean for a TypedDict key?",
+        "hit_at_8": 0.0,
+        "labeled_sources": 1,
+        "covered_sources": 0,
+        "all_labeled_sources": false,
+        "top_result": "Using TypedDict for more precise \\*\\*kwargs typing > Specification > Required and non-required keys"
+      },
+      {
+        "id": "pilot-004",
+        "category": "exact_term",
+        "question": "What syntax does PEP 572 introduce for assigning a value within an expression?",
+        "hit_at_8": 0.0,
+        "labeled_sources": 1,
+        "covered_sources": 0,
+        "all_labeled_sources": false,
+        "top_result": "Structural Pattern Matching: Specification > Syntax and Semantics > Patterns > Capture Patterns"
+      },
+      {
+        "id": "pilot-005",
+        "category": "lookup",
+        "question": "What file extension and archive format does a Python wheel use?",
+        "hit_at_8": 1.0,
+        "labeled_sources": 1,
+        "covered_sources": 1,
+        "all_labeled_sources": true,
+        "top_result": "The Wheel Binary Package Format 1.0 > Abstract"
+      },
+      {
+        "id": "pilot-006",
+        "category": "lookup",
+        "question": "Which methods form the context-manager protocol described by PEP 343?",
+        "hit_at_8": 0.0,
+        "labeled_sources": 1,
+        "covered_sources": 0,
+        "all_labeled_sources": false,
+        "top_result": "The \"with\" Statement > Standard Terminology"
+      },
+      {
+        "id": "pilot-007",
+        "category": "lookup",
+        "question": "Which file does PEP 621 use for project core metadata?",
+        "hit_at_8": 1.0,
+        "labeled_sources": 1,
+        "covered_sources": 1,
+        "all_labeled_sources": true,
+        "top_result": "Storing project metadata in pyproject.toml > Specification > Details > ``license``"
+      },
+      {
+        "id": "pilot-008",
+        "category": "lookup",
+        "question": "Which asynchronous expression forms does PEP 530 add?",
+        "hit_at_8": 1.0,
+        "labeled_sources": 1,
+        "covered_sources": 1,
+        "all_labeled_sources": true,
+        "top_result": "Asynchronous Comprehensions > Acceptance"
+      },
+      {
+        "id": "pilot-009",
+        "category": "conceptual",
+        "question": "Why does PEP 526 favor annotation syntax over type comments for parsing?",
+        "hit_at_8": 1.0,
+        "labeled_sources": 1,
+        "covered_sources": 1,
+        "all_labeled_sources": true,
+        "top_result": "Syntax for Variable Annotations > Rationale"
+      },
+      {
+        "id": "pilot-010",
+        "category": "conceptual",
+        "question": "Why does PEP 621 require dynamic metadata to be declared explicitly?",
+        "hit_at_8": 1.0,
+        "labeled_sources": 1,
+        "covered_sources": 1,
+        "all_labeled_sources": true,
+        "top_result": "Storing project metadata in pyproject.toml > Specification > Details > ``dynamic``"
+      },
+      {
+        "id": "pilot-011",
+        "category": "conceptual",
+        "question": "According to PEP 380, why is a simple loop that re-yields values insufficient for full generator delegation?",
+        "hit_at_8": 1.0,
+        "labeled_sources": 1,
+        "covered_sources": 1,
+        "all_labeled_sources": true,
+        "top_result": "Syntax for Delegating to a Subgenerator > Abstract"
+      },
+      {
+        "id": "pilot-012",
+        "category": "conceptual",
+        "question": "Why does PEP 723 propose metadata inside standalone scripts?",
+        "hit_at_8": 1.0,
+        "labeled_sources": 1,
+        "covered_sources": 1,
+        "all_labeled_sources": true,
+        "top_result": "Inline script metadata > Footnotes"
+      },
+      {
+        "id": "pilot-013",
+        "category": "comparison",
+        "question": "What type-annotation features do PEP 585 and PEP 604 add?",
+        "hit_at_8": 0.0,
+        "labeled_sources": 2,
+        "covered_sources": 0,
+        "all_labeled_sources": false,
+        "top_result": "Allow writing union types as ``X | Y`` > Motivation"
+      },
+      {
+        "id": "pilot-014",
+        "category": "comparison",
+        "question": "What asynchronous features do PEP 525 and PEP 530 add?",
+        "hit_at_8": 1.0,
+        "labeled_sources": 2,
+        "covered_sources": 1,
+        "all_labeled_sources": false,
+        "top_result": "Asynchronous Comprehensions > Abstract"
+      },
+      {
+        "id": "pilot-015",
+        "category": "comparison",
+        "question": "Where do PEP 621 and PEP 723 place metadata?",
+        "hit_at_8": 0.0,
+        "labeled_sources": 2,
+        "covered_sources": 0,
+        "all_labeled_sources": false,
+        "top_result": "Storing project metadata in pyproject.toml > "
+      },
+      {
+        "id": "pilot-016",
+        "category": "comparison",
+        "question": "Which is the pattern-matching specification and which is the tutorial: PEP 634 or PEP 636?",
+        "hit_at_8": 1.0,
+        "labeled_sources": 2,
+        "covered_sources": 2,
+        "all_labeled_sources": true,
+        "top_result": "Structural Pattern Matching: Tutorial > Abstract"
+      },
+      {
+        "id": "pilot-017",
+        "category": "multi_hop",
+        "question": "Which PEP defines the field-annotation syntax used by data classes, and what limitation does it identify for type comments on uninitialized variables?",
+        "hit_at_8": 1.0,
+        "labeled_sources": 2,
+        "covered_sources": 1,
+        "all_labeled_sources": false,
+        "top_result": "Syntax for Variable Annotations > Rejected/Postponed Proposals"
+      },
+      {
+        "id": "pilot-018",
+        "category": "multi_hop",
+        "question": "Which native-coroutine PEP does PEP 525 build on, and does that earlier proposal require a specific event-loop implementation?",
+        "hit_at_8": 1.0,
+        "labeled_sources": 2,
+        "covered_sources": 1,
+        "all_labeled_sources": false,
+        "top_result": "Coroutines with async and await syntax > Abstract"
+      },
+      {
+        "id": "pilot-019",
+        "category": "multi_hop",
+        "question": "Which rationale PEP does PEP 636 point to, and what type-or-shape checking idiom does its Motivation section show match replacing?",
+        "hit_at_8": 1.0,
+        "labeled_sources": 2,
+        "covered_sources": 2,
+        "all_labeled_sources": true,
+        "top_result": "Structural Pattern Matching: Specification > Abstract"
+      },
+      {
+        "id": "pilot-020",
+        "category": "multi_hop",
+        "question": "Which type-hinting PEP does PEP 544 extend, and does that earlier proposal require runtime type checking?",
+        "hit_at_8": 1.0,
+        "labeled_sources": 2,
+        "covered_sources": 1,
+        "all_labeled_sources": false,
+        "top_result": "Syntax for Variable Annotations > Rationale > Non-goals"
+      }
+    ],
+    "vector_only": [
+      {
+        "id": "pilot-001",
+        "category": "exact_term",
+        "question": "Does PEP 484 require Python to enforce type hints at runtime?",
+        "hit_at_8": 1.0,
+        "labeled_sources": 1,
+        "covered_sources": 1,
+        "all_labeled_sources": true,
+        "top_result": "Postponed Evaluation of Annotations > Rationale and Goals > Non-goals"
+      },
+      {
+        "id": "pilot-002",
+        "category": "exact_term",
+        "question": "According to PEP 604, what does X | Y mean in a type annotation?",
+        "hit_at_8": 0.0,
+        "labeled_sources": 1,
+        "covered_sources": 0,
+        "all_labeled_sources": false,
+        "top_result": "Flexible function and variable annotations > Motivation"
+      },
+      {
+        "id": "pilot-003",
+        "category": "exact_term",
+        "question": "According to PEP 655, what do Required[] and NotRequired[] mean for a TypedDict key?",
+        "hit_at_8": 1.0,
+        "labeled_sources": 1,
+        "covered_sources": 1,
+        "all_labeled_sources": true,
+        "top_result": "Marking individual TypedDict items as required or potentially-missing > Abstract"
+      },
+      {
+        "id": "pilot-004",
+        "category": "exact_term",
+        "question": "What syntax does PEP 572 introduce for assigning a value within an expression?",
+        "hit_at_8": 1.0,
+        "labeled_sources": 1,
+        "covered_sources": 1,
+        "all_labeled_sources": true,
+        "top_result": "Assignment Expressions > Abstract"
+      },
+      {
+        "id": "pilot-005",
+        "category": "lookup",
+        "question": "What file extension and archive format does a Python wheel use?",
+        "hit_at_8": 1.0,
+        "labeled_sources": 1,
+        "covered_sources": 1,
+        "all_labeled_sources": true,
+        "top_result": "The Wheel Binary Package Format 1.0 > Abstract"
+      },
+      {
+        "id": "pilot-006",
+        "category": "lookup",
+        "question": "Which methods form the context-manager protocol described by PEP 343?",
+        "hit_at_8": 0.0,
+        "labeled_sources": 1,
+        "covered_sources": 0,
+        "all_labeled_sources": false,
+        "top_result": "Coroutines with async and await syntax > Specification > Asynchronous Context Managers and \"async with\""
+      },
+      {
+        "id": "pilot-007",
+        "category": "lookup",
+        "question": "Which file does PEP 621 use for project core metadata?",
+        "hit_at_8": 0.0,
+        "labeled_sources": 1,
+        "covered_sources": 0,
+        "all_labeled_sources": false,
+        "top_result": "Inline script metadata > Rejected Ideas > Why not reuse core metadata fields?"
+      },
+      {
+        "id": "pilot-008",
+        "category": "lookup",
+        "question": "Which asynchronous expression forms does PEP 530 add?",
+        "hit_at_8": 1.0,
+        "labeled_sources": 1,
+        "covered_sources": 1,
+        "all_labeled_sources": true,
+        "top_result": "Asynchronous Comprehensions > Acceptance"
+      },
+      {
+        "id": "pilot-009",
+        "category": "conceptual",
+        "question": "Why does PEP 526 favor annotation syntax over type comments for parsing?",
+        "hit_at_8": 1.0,
+        "labeled_sources": 1,
+        "covered_sources": 1,
+        "all_labeled_sources": true,
+        "top_result": "Implementing PEP 649 > How to Teach This"
+      },
+      {
+        "id": "pilot-010",
+        "category": "conceptual",
+        "question": "Why does PEP 621 require dynamic metadata to be declared explicitly?",
+        "hit_at_8": 1.0,
+        "labeled_sources": 1,
+        "covered_sources": 1,
+        "all_labeled_sources": true,
+        "top_result": "Storing project metadata in pyproject.toml > Specification > Details > ``dynamic``"
+      },
+      {
+        "id": "pilot-011",
+        "category": "conceptual",
+        "question": "According to PEP 380, why is a simple loop that re-yields values insufficient for full generator delegation?",
+        "hit_at_8": 1.0,
+        "labeled_sources": 1,
+        "covered_sources": 1,
+        "all_labeled_sources": true,
+        "top_result": "Syntax for Delegating to a Subgenerator > Rationale > Optimisations"
+      },
+      {
+        "id": "pilot-012",
+        "category": "conceptual",
+        "question": "Why does PEP 723 propose metadata inside standalone scripts?",
+        "hit_at_8": 1.0,
+        "labeled_sources": 1,
+        "covered_sources": 1,
+        "all_labeled_sources": true,
+        "top_result": "Inline script metadata > Rationale"
+      },
+      {
+        "id": "pilot-013",
+        "category": "comparison",
+        "question": "What type-annotation features do PEP 585 and PEP 604 add?",
+        "hit_at_8": 0.0,
+        "labeled_sources": 2,
+        "covered_sources": 0,
+        "all_labeled_sources": false,
+        "top_result": "Flexible function and variable annotations > Motivation"
+      },
+      {
+        "id": "pilot-014",
+        "category": "comparison",
+        "question": "What asynchronous features do PEP 525 and PEP 530 add?",
+        "hit_at_8": 1.0,
+        "labeled_sources": 2,
+        "covered_sources": 2,
+        "all_labeled_sources": true,
+        "top_result": "Asynchronous Generators > Acceptance"
+      },
+      {
+        "id": "pilot-015",
+        "category": "comparison",
+        "question": "Where do PEP 621 and PEP 723 place metadata?",
+        "hit_at_8": 0.0,
+        "labeled_sources": 2,
+        "covered_sources": 0,
+        "all_labeled_sources": false,
+        "top_result": "Inline script metadata > "
+      },
+      {
+        "id": "pilot-016",
+        "category": "comparison",
+        "question": "Which is the pattern-matching specification and which is the tutorial: PEP 634 or PEP 636?",
+        "hit_at_8": 1.0,
+        "labeled_sources": 2,
+        "covered_sources": 2,
+        "all_labeled_sources": true,
+        "top_result": "Structural Pattern Matching: Tutorial > Abstract"
+      },
+      {
+        "id": "pilot-017",
+        "category": "multi_hop",
+        "question": "Which PEP defines the field-annotation syntax used by data classes, and what limitation does it identify for type comments on uninitialized variables?",
+        "hit_at_8": 1.0,
+        "labeled_sources": 2,
+        "covered_sources": 1,
+        "all_labeled_sources": false,
+        "top_result": "Syntax for Variable Annotations > Abstract"
+      },
+      {
+        "id": "pilot-018",
+        "category": "multi_hop",
+        "question": "Which native-coroutine PEP does PEP 525 build on, and does that earlier proposal require a specific event-loop implementation?",
+        "hit_at_8": 1.0,
+        "labeled_sources": 2,
+        "covered_sources": 2,
+        "all_labeled_sources": true,
+        "top_result": "Coroutines with async and await syntax > Abstract"
+      },
+      {
+        "id": "pilot-019",
+        "category": "multi_hop",
+        "question": "Which rationale PEP does PEP 636 point to, and what type-or-shape checking idiom does its Motivation section show match replacing?",
+        "hit_at_8": 1.0,
+        "labeled_sources": 2,
+        "covered_sources": 1,
+        "all_labeled_sources": false,
+        "top_result": "Structural Pattern Matching: Motivation and Rationale > Abstract"
+      },
+      {
+        "id": "pilot-020",
+        "category": "multi_hop",
+        "question": "Which type-hinting PEP does PEP 544 extend, and does that earlier proposal require runtime type checking?",
+        "hit_at_8": 1.0,
+        "labeled_sources": 2,
+        "covered_sources": 2,
+        "all_labeled_sources": true,
+        "top_result": "Type Hints > Rationale and Goals"
+      }
+    ],
+    "hybrid": [
+      {
+        "id": "pilot-001",
+        "category": "exact_term",
+        "question": "Does PEP 484 require Python to enforce type hints at runtime?",
+        "hit_at_8": 1.0,
+        "labeled_sources": 1,
+        "covered_sources": 1,
+        "all_labeled_sources": true,
+        "top_result": "Postponed Evaluation of Annotations > Rationale and Goals > Non-goals"
+      },
+      {
+        "id": "pilot-002",
+        "category": "exact_term",
+        "question": "According to PEP 604, what does X | Y mean in a type annotation?",
+        "hit_at_8": 0.0,
+        "labeled_sources": 1,
+        "covered_sources": 0,
+        "all_labeled_sources": false,
+        "top_result": "Syntax for Variable Annotations > Rejected/Postponed Proposals"
+      },
+      {
+        "id": "pilot-003",
+        "category": "exact_term",
+        "question": "According to PEP 655, what do Required[] and NotRequired[] mean for a TypedDict key?",
+        "hit_at_8": 1.0,
+        "labeled_sources": 1,
+        "covered_sources": 1,
+        "all_labeled_sources": true,
+        "top_result": "Using TypedDict for more precise \\*\\*kwargs typing > Specification > Required and non-required keys"
+      },
+      {
+        "id": "pilot-004",
+        "category": "exact_term",
+        "question": "What syntax does PEP 572 introduce for assigning a value within an expression?",
+        "hit_at_8": 1.0,
+        "labeled_sources": 1,
+        "covered_sources": 1,
+        "all_labeled_sources": true,
+        "top_result": "Assignment Expressions > Abstract"
+      },
+      {
+        "id": "pilot-005",
+        "category": "lookup",
+        "question": "What file extension and archive format does a Python wheel use?",
+        "hit_at_8": 1.0,
+        "labeled_sources": 1,
+        "covered_sources": 1,
+        "all_labeled_sources": true,
+        "top_result": "The Wheel Binary Package Format 1.0 > Abstract"
+      },
+      {
+        "id": "pilot-006",
+        "category": "lookup",
+        "question": "Which methods form the context-manager protocol described by PEP 343?",
+        "hit_at_8": 0.0,
+        "labeled_sources": 1,
+        "covered_sources": 0,
+        "all_labeled_sources": false,
+        "top_result": "Coroutines with async and await syntax > Specification > Asynchronous Context Managers and \"async with\""
+      },
+      {
+        "id": "pilot-007",
+        "category": "lookup",
+        "question": "Which file does PEP 621 use for project core metadata?",
+        "hit_at_8": 1.0,
+        "labeled_sources": 1,
+        "covered_sources": 1,
+        "all_labeled_sources": true,
+        "top_result": "Storing project metadata in pyproject.toml > "
+      },
+      {
+        "id": "pilot-008",
+        "category": "lookup",
+        "question": "Which asynchronous expression forms does PEP 530 add?",
+        "hit_at_8": 1.0,
+        "labeled_sources": 1,
+        "covered_sources": 1,
+        "all_labeled_sources": true,
+        "top_result": "Asynchronous Comprehensions > Acceptance"
+      },
+      {
+        "id": "pilot-009",
+        "category": "conceptual",
+        "question": "Why does PEP 526 favor annotation syntax over type comments for parsing?",
+        "hit_at_8": 1.0,
+        "labeled_sources": 1,
+        "covered_sources": 1,
+        "all_labeled_sources": true,
+        "top_result": "Syntax for Variable Annotations > Rationale"
+      },
+      {
+        "id": "pilot-010",
+        "category": "conceptual",
+        "question": "Why does PEP 621 require dynamic metadata to be declared explicitly?",
+        "hit_at_8": 1.0,
+        "labeled_sources": 1,
+        "covered_sources": 1,
+        "all_labeled_sources": true,
+        "top_result": "Storing project metadata in pyproject.toml > Specification > Details > ``dynamic``"
+      },
+      {
+        "id": "pilot-011",
+        "category": "conceptual",
+        "question": "According to PEP 380, why is a simple loop that re-yields values insufficient for full generator delegation?",
+        "hit_at_8": 1.0,
+        "labeled_sources": 1,
+        "covered_sources": 1,
+        "all_labeled_sources": true,
+        "top_result": "Syntax for Delegating to a Subgenerator > Motivation"
+      },
+      {
+        "id": "pilot-012",
+        "category": "conceptual",
+        "question": "Why does PEP 723 propose metadata inside standalone scripts?",
+        "hit_at_8": 1.0,
+        "labeled_sources": 1,
+        "covered_sources": 1,
+        "all_labeled_sources": true,
+        "top_result": "Inline script metadata > Abstract"
+      },
+      {
+        "id": "pilot-013",
+        "category": "comparison",
+        "question": "What type-annotation features do PEP 585 and PEP 604 add?",
+        "hit_at_8": 0.0,
+        "labeled_sources": 2,
+        "covered_sources": 0,
+        "all_labeled_sources": false,
+        "top_result": "Flexible function and variable annotations > Motivation"
+      },
+      {
+        "id": "pilot-014",
+        "category": "comparison",
+        "question": "What asynchronous features do PEP 525 and PEP 530 add?",
+        "hit_at_8": 1.0,
+        "labeled_sources": 2,
+        "covered_sources": 2,
+        "all_labeled_sources": true,
+        "top_result": "Asynchronous Generators > Acceptance"
+      },
+      {
+        "id": "pilot-015",
+        "category": "comparison",
+        "question": "Where do PEP 621 and PEP 723 place metadata?",
+        "hit_at_8": 0.0,
+        "labeled_sources": 2,
+        "covered_sources": 0,
+        "all_labeled_sources": false,
+        "top_result": "Inline script metadata > "
+      },
+      {
+        "id": "pilot-016",
+        "category": "comparison",
+        "question": "Which is the pattern-matching specification and which is the tutorial: PEP 634 or PEP 636?",
+        "hit_at_8": 1.0,
+        "labeled_sources": 2,
+        "covered_sources": 2,
+        "all_labeled_sources": true,
+        "top_result": "Structural Pattern Matching: Tutorial > Abstract"
+      },
+      {
+        "id": "pilot-017",
+        "category": "multi_hop",
+        "question": "Which PEP defines the field-annotation syntax used by data classes, and what limitation does it identify for type comments on uninitialized variables?",
+        "hit_at_8": 1.0,
+        "labeled_sources": 2,
+        "covered_sources": 1,
+        "all_labeled_sources": false,
+        "top_result": "Syntax for Variable Annotations > Rationale"
+      },
+      {
+        "id": "pilot-018",
+        "category": "multi_hop",
+        "question": "Which native-coroutine PEP does PEP 525 build on, and does that earlier proposal require a specific event-loop implementation?",
+        "hit_at_8": 1.0,
+        "labeled_sources": 2,
+        "covered_sources": 1,
+        "all_labeled_sources": false,
+        "top_result": "Coroutines with async and await syntax > Abstract"
+      },
+      {
+        "id": "pilot-019",
+        "category": "multi_hop",
+        "question": "Which rationale PEP does PEP 636 point to, and what type-or-shape checking idiom does its Motivation section show match replacing?",
+        "hit_at_8": 1.0,
+        "labeled_sources": 2,
+        "covered_sources": 2,
+        "all_labeled_sources": true,
+        "top_result": "Structural Pattern Matching: Motivation and Rationale > Abstract"
+      },
+      {
+        "id": "pilot-020",
+        "category": "multi_hop",
+        "question": "Which type-hinting PEP does PEP 544 extend, and does that earlier proposal require runtime type checking?",
+        "hit_at_8": 1.0,
+        "labeled_sources": 2,
+        "covered_sources": 2,
+        "all_labeled_sources": true,
+        "top_result": "Type Hints > Abstract"
+      }
+    ],
+    "hybrid_rerank": [
+      {
+        "id": "pilot-001",
+        "category": "exact_term",
+        "question": "Does PEP 484 require Python to enforce type hints at runtime?",
+        "hit_at_8": 0.0,
+        "labeled_sources": 1,
+        "covered_sources": 0,
+        "all_labeled_sources": false,
+        "top_result": "Type Hinting Generics In Standard Collections > Abstract"
+      },
+      {
+        "id": "pilot-002",
+        "category": "exact_term",
+        "question": "According to PEP 604, what does X | Y mean in a type annotation?",
+        "hit_at_8": 0.0,
+        "labeled_sources": 1,
+        "covered_sources": 0,
+        "all_labeled_sources": false,
+        "top_result": "Allow writing union types as ``X | Y`` > Motivation"
+      },
+      {
+        "id": "pilot-003",
+        "category": "exact_term",
+        "question": "According to PEP 655, what do Required[] and NotRequired[] mean for a TypedDict key?",
+        "hit_at_8": 1.0,
+        "labeled_sources": 1,
+        "covered_sources": 1,
+        "all_labeled_sources": true,
+        "top_result": "Using TypedDict for more precise \\*\\*kwargs typing > Specification > Required and non-required keys"
+      },
+      {
+        "id": "pilot-004",
+        "category": "exact_term",
+        "question": "What syntax does PEP 572 introduce for assigning a value within an expression?",
+        "hit_at_8": 1.0,
+        "labeled_sources": 1,
+        "covered_sources": 1,
+        "all_labeled_sources": true,
+        "top_result": "Syntax for Variable Annotations > Specification"
+      },
+      {
+        "id": "pilot-005",
+        "category": "lookup",
+        "question": "What file extension and archive format does a Python wheel use?",
+        "hit_at_8": 1.0,
+        "labeled_sources": 1,
+        "covered_sources": 1,
+        "all_labeled_sources": true,
+        "top_result": "The Wheel Binary Package Format 1.0 > Abstract"
+      },
+      {
+        "id": "pilot-006",
+        "category": "lookup",
+        "question": "Which methods form the context-manager protocol described by PEP 343?",
+        "hit_at_8": 0.0,
+        "labeled_sources": 1,
+        "covered_sources": 0,
+        "all_labeled_sources": false,
+        "top_result": "The \"with\" Statement > Standard Terminology"
+      },
+      {
+        "id": "pilot-007",
+        "category": "lookup",
+        "question": "Which file does PEP 621 use for project core metadata?",
+        "hit_at_8": 1.0,
+        "labeled_sources": 1,
+        "covered_sources": 1,
+        "all_labeled_sources": true,
+        "top_result": "Storing project metadata in pyproject.toml > "
+      },
+      {
+        "id": "pilot-008",
+        "category": "lookup",
+        "question": "Which asynchronous expression forms does PEP 530 add?",
+        "hit_at_8": 1.0,
+        "labeled_sources": 1,
+        "covered_sources": 1,
+        "all_labeled_sources": true,
+        "top_result": "Asynchronous Comprehensions > Abstract"
+      },
+      {
+        "id": "pilot-009",
+        "category": "conceptual",
+        "question": "Why does PEP 526 favor annotation syntax over type comments for parsing?",
+        "hit_at_8": 1.0,
+        "labeled_sources": 1,
+        "covered_sources": 1,
+        "all_labeled_sources": true,
+        "top_result": "Postponed Evaluation of Annotations > Abstract"
+      },
+      {
+        "id": "pilot-010",
+        "category": "conceptual",
+        "question": "Why does PEP 621 require dynamic metadata to be declared explicitly?",
+        "hit_at_8": 1.0,
+        "labeled_sources": 1,
+        "covered_sources": 1,
+        "all_labeled_sources": true,
+        "top_result": "Storing project metadata in pyproject.toml > Specification"
+      },
+      {
+        "id": "pilot-011",
+        "category": "conceptual",
+        "question": "According to PEP 380, why is a simple loop that re-yields values insufficient for full generator delegation?",
+        "hit_at_8": 1.0,
+        "labeled_sources": 1,
+        "covered_sources": 1,
+        "all_labeled_sources": true,
+        "top_result": "The \"with\" Statement > Motivation and Summary"
+      },
+      {
+        "id": "pilot-012",
+        "category": "conceptual",
+        "question": "Why does PEP 723 propose metadata inside standalone scripts?",
+        "hit_at_8": 0.0,
+        "labeled_sources": 1,
+        "covered_sources": 0,
+        "all_labeled_sources": false,
+        "top_result": "Inline script metadata > Rejected Ideas > Why not use a comment block resembling requirements.txt?"
+      },
+      {
+        "id": "pilot-013",
+        "category": "comparison",
+        "question": "What type-annotation features do PEP 585 and PEP 604 add?",
+        "hit_at_8": 0.0,
+        "labeled_sources": 2,
+        "covered_sources": 0,
+        "all_labeled_sources": false,
+        "top_result": "Allow writing union types as ``X | Y`` > Motivation"
+      },
+      {
+        "id": "pilot-014",
+        "category": "comparison",
+        "question": "What asynchronous features do PEP 525 and PEP 530 add?",
+        "hit_at_8": 1.0,
+        "labeled_sources": 2,
+        "covered_sources": 2,
+        "all_labeled_sources": true,
+        "top_result": "Asynchronous Comprehensions > Abstract"
+      },
+      {
+        "id": "pilot-015",
+        "category": "comparison",
+        "question": "Where do PEP 621 and PEP 723 place metadata?",
+        "hit_at_8": 0.0,
+        "labeled_sources": 2,
+        "covered_sources": 0,
+        "all_labeled_sources": false,
+        "top_result": "Storing project metadata in pyproject.toml > "
+      },
+      {
+        "id": "pilot-016",
+        "category": "comparison",
+        "question": "Which is the pattern-matching specification and which is the tutorial: PEP 634 or PEP 636?",
+        "hit_at_8": 1.0,
+        "labeled_sources": 2,
+        "covered_sources": 2,
+        "all_labeled_sources": true,
+        "top_result": "Structural Pattern Matching: Tutorial > Abstract"
+      },
+      {
+        "id": "pilot-017",
+        "category": "multi_hop",
+        "question": "Which PEP defines the field-annotation syntax used by data classes, and what limitation does it identify for type comments on uninitialized variables?",
+        "hit_at_8": 1.0,
+        "labeled_sources": 2,
+        "covered_sources": 1,
+        "all_labeled_sources": false,
+        "top_result": "Data Classes > Abstract"
+      },
+      {
+        "id": "pilot-018",
+        "category": "multi_hop",
+        "question": "Which native-coroutine PEP does PEP 525 build on, and does that earlier proposal require a specific event-loop implementation?",
+        "hit_at_8": 1.0,
+        "labeled_sources": 2,
+        "covered_sources": 2,
+        "all_labeled_sources": true,
+        "top_result": "Coroutines with async and await syntax > Abstract"
+      },
+      {
+        "id": "pilot-019",
+        "category": "multi_hop",
+        "question": "Which rationale PEP does PEP 636 point to, and what type-or-shape checking idiom does its Motivation section show match replacing?",
+        "hit_at_8": 1.0,
+        "labeled_sources": 2,
+        "covered_sources": 1,
+        "all_labeled_sources": false,
+        "top_result": "Structural Pattern Matching: Motivation and Rationale > Abstract"
+      },
+      {
+        "id": "pilot-020",
+        "category": "multi_hop",
+        "question": "Which type-hinting PEP does PEP 544 extend, and does that earlier proposal require runtime type checking?",
+        "hit_at_8": 1.0,
+        "labeled_sources": 2,
+        "covered_sources": 1,
+        "all_labeled_sources": false,
+        "top_result": "Protocols: Structural subtyping (static duck typing) > Abstract"
+      }
+    ]
+  },
+  "anthropic_api_calls": 0
+}

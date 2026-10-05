@@ -138,7 +138,7 @@ No GNU make on Windows: run the `uv run ...` commands from the Makefile directly
 | M2 | Ingestion | pinned PEP corpus, .rst/.md/.txt loaders, structure-aware chunking, MinHash dedup, versioned datasets | done |
 | M3 | Retrieval | bge-small embeddings, numpy vector store, BM25, RRF hybrid search, cross-encoder reranking, YAML configs | done |
 | M4 | Generation | provider interface, versioned prompts, grounded answers with validated citations and abstention, disk cache | done |
-| M5 | Evaluation harness | eval item schema, taxonomy, candidates + review, retrieval metrics, checks, judges, bootstrap CIs, runner, compare | done (harness); eval set v1 not yet built |
+| M5 | Evaluation harness | eval item schema, taxonomy, candidates + review, retrieval metrics, checks, judges, bootstrap CIs, runner, compare | done (harness); 24-question owner-approved pilot v1 built; generation evaluation pending |
 | M6 | Agent | tool-using agent loop (search tool), multi-turn query rewriting, step limits, trajectory logging, pass@k and pass^k | planned |
 | M7 | Data quality | failure taxonomy, annotation export, Cohen's kappa, judge-human agreement | planned |
 | M8 | Infrastructure | async batch runner with retries, tracing, FastAPI service, Docker | planned |

@@ -51,6 +51,8 @@ def generate_candidates(
     seed: Annotated[int, typer.Option()] = 0,
     model: Annotated[str | None, typer.Option(help="Defaults to ANTHROPIC_MODEL.")] = None,
     mock_llm: Annotated[bool, typer.Option("--mock-llm", hidden=True)] = False,
+    dry_run: Annotated[bool, typer.Option(help="Preview calls without contacting an LLM.")] = False,
+    yes: Annotated[bool, typer.Option("--yes", help="Approve paid candidate generation.")] = False,
 ) -> None:
     """Sample chunks and ask the LLM for candidate questions (to be reviewed by a human)."""
     from ragplatform.evals.candidates import generate_candidates as _generate
@@ -61,8 +63,41 @@ def generate_candidates(
 
     settings = get_settings()
     chunks = read_chunks(resolve_dataset_dir(dataset_version))
-    provider = CachedProvider(_provider(settings, mock_llm), settings.llm_cache_dir)
     chosen_model = model or settings.anthropic_model
+    from ragplatform.evals.candidates import stratified_sample
+
+    count = len(stratified_sample(chunks, n, seed))
+    from ragplatform.evals.candidate_plan import candidate_usage
+    from ragplatform.llm.pricing import load_pricing
+
+    tax = load_taxonomy(taxonomy)
+    usage = candidate_usage(chunks, n, tax, unanswerable_ratio, seed)
+    price_path = settings.configs_dir / "pricing.yaml"
+    cost = "unknown (no matching configured price)"
+    if price_path.exists():
+        pricing = load_pricing(price_path)
+        try:
+            cost = (
+                f"${pricing.cost_usd(chosen_model, usage):.4f} (prices dated {pricing.checked_on})"
+            )
+        except KeyError:
+            cost = "unknown (no matching configured price)"
+    typer.echo(
+        f"Candidate plan: {count} initial LLM calls; up to {count} repair calls; "
+        f"model {chosen_model}; max 4096 output tokens per call."
+    )
+    typer.echo("Actual cost depends on token usage and model pricing; this is not a spending cap.")
+    typer.echo(f"Planning allowance including one repair per candidate: {cost}")
+    if dry_run:
+        typer.echo("Dry run: zero LLM calls. No candidates written.")
+        return
+    if (
+        not mock_llm
+        and not yes
+        and not typer.confirm("Allow paid candidate generation?", default=False)
+    ):
+        raise typer.Abort()
+    provider = CachedProvider(_provider(settings, mock_llm), settings.llm_cache_dir)
     stamp = utc_now_iso().replace(":", "").replace("-", "").replace("+0000", "Z")
     candidates = asyncio.run(
         _generate(
@@ -70,7 +105,7 @@ def generate_candidates(
             n,
             provider,
             chosen_model,
-            load_taxonomy(taxonomy),
+            tax,
             unanswerable_ratio=unanswerable_ratio,
             seed=seed,
             batch_id=stamp,
@@ -105,16 +140,32 @@ def _show_candidate(candidate: Candidate, session: ReviewSession) -> None:
     )
     typer.echo("-" * 78)
     typer.echo(candidate.source.text)
+    for source in candidate.additional_sources:
+        typer.echo(
+            f"Additional source: {source.doc_title} > {source.section_path} ({source.doc_id})"
+        )
+        typer.echo(source.text)
     typer.echo("-" * 78)
 
 
 def _edit_sources(candidate: Candidate) -> list[SourceRef]:
-    doc_id = typer.prompt("doc_id", default=candidate.source.doc_id)
-    raw = typer.prompt(
-        "section path(s), ';'-separated ('' = whole document)",
-        default=candidate.source.section_path,
+    defaults = list(
+        dict.fromkeys(
+            (source.doc_id, source.section_path)
+            for source in [candidate.source, *candidate.additional_sources]
+        )
     )
-    return [SourceRef(doc_id=doc_id, section_path=p.strip()) for p in raw.split(";")]
+    sources: list[SourceRef] = []
+    for doc, section in defaults:
+        if typer.confirm(f"Keep or edit source {doc} > {section}?", default=True):
+            doc_id = typer.prompt("doc_id", default=doc)
+            path = typer.prompt("section path (empty = whole document)", default=section)
+            sources.append(SourceRef(doc_id=doc_id, section_path=path.strip()))
+    while not sources or typer.confirm("Add another source?", default=False):
+        doc_id = typer.prompt("doc_id")
+        path = typer.prompt("section path (empty = whole document)", default="")
+        sources.append(SourceRef(doc_id=doc_id, section_path=path.strip()))
+    return list(dict.fromkeys(sources))
 
 
 def _prompt_category(default: str) -> Category:
@@ -258,6 +309,57 @@ def run(
     if cache is not None:
         typer.echo(
             f"  LLM calls: {summary.llm_calls}, cache hits {cache.hits}, misses {cache.misses}"
+        )
+
+
+@eval_app.command("audit")
+def audit(
+    eval_set: Annotated[str, typer.Option()] = "v1",
+    dataset_version: Annotated[str | None, typer.Option()] = None,
+) -> None:
+    """Check reviewed labels and coverage offline; no LLM calls."""
+    from ragplatform.evals.eval_set import load_eval_set
+    from ragplatform.evals.readiness import audit_eval_set
+    from ragplatform.ingestion.dataset import read_chunks
+
+    items, version = load_eval_set(get_settings().eval_sets_dir, eval_set)
+    report = audit_eval_set(items, read_chunks(resolve_dataset_dir(dataset_version)))
+    typer.echo(f"Eval set {eval_set}@{version}; offline checks only, not human validation.")
+    typer.echo(report.model_dump_json(indent=2))
+    if not report.ready:
+        raise typer.Exit(code=1)
+
+
+@eval_app.command("baseline")
+def baseline(
+    eval_set: Annotated[str, typer.Option()] = "v1",
+    dataset_version: Annotated[str | None, typer.Option()] = None,
+    config: Annotated[
+        list[Path] | None, typer.Option(help="Repeat for each retrieval config.")
+    ] = None,
+    seed: Annotated[int, typer.Option()] = 0,
+) -> None:
+    """Audit a reviewed set, then run retrieval-only baselines. Never creates an LLM provider."""
+    from ragplatform.pipelines.run_config import load_run_config
+    from ragplatform.retrieval.index import load_retriever
+
+    audit(eval_set=eval_set, dataset_version=dataset_version)
+    paths = config or [get_settings().configs_dir / "bm25_only.yaml"]
+    directory = resolve_dataset_dir(dataset_version)
+    # Check every index/model before writing any runs, avoiding partial suites on setup errors.
+    for path in paths:
+        load_retriever(load_run_config(path).retrieval, directory)
+    typer.echo("Retrieval-only baseline: zero Anthropic calls; generation quality is not measured.")
+    for path in paths:
+        run(
+            config=path,
+            eval_set=eval_set,
+            limit=None,
+            retrieval_only=True,
+            yes=False,
+            dataset_version=dataset_version,
+            mock_llm=False,
+            seed=seed,
         )
 
 

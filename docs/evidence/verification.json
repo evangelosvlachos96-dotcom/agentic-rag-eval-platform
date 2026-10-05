@@ -1,0 +1,13 @@
+{
+  "date": "2026-10-04",
+  "scope": "Offline evaluation preparation; no real PEP benchmark",
+  "tests": {"command": ".venv/Scripts/python.exe -m pytest", "passed": 153, "deselected": 2},
+  "lint": {"command": "ruff check src tests scripts", "status": "passed"},
+  "format": {"command": "ruff format --check src tests scripts", "status": "passed"},
+  "typing": {"command": "mypy", "status": "passed", "files": 100},
+  "corpus": {"documents": 56, "chunks": 2111, "exact_removed": 53, "near_removed": 1, "dataset_version": "27b46e65f45d"},
+  "candidates": {"count": 24, "categories": 6, "reviewed": 0},
+  "anthropic_api_calls": 0,
+  "fixture_run": "20261005T021647Z_bm25_only",
+  "note": "Transcribed from executed command outputs. Slow model tests excluded. No human review decisions were made by the assistant."
+}

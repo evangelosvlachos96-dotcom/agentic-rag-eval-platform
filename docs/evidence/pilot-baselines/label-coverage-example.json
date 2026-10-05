@@ -1,0 +1,30 @@
+{
+  "item": {
+    "id": "pilot-003",
+    "question": "According to PEP 655, what do Required[] and NotRequired[] mean for a TypedDict key?",
+    "reference_answer": "Required[] means the key must be present; NotRequired[] means it may be absent.",
+    "relevant_sources": [
+      {
+        "doc_id": "96c61294f2cd86dd",
+        "section_path": "Abstract"
+      }
+    ],
+    "category": "exact_term",
+    "difficulty": "medium",
+    "answerable": true,
+    "created_by": "synthetic_reviewed",
+    "notes": ""
+  },
+  "retrieved": {
+    "chunk_id": "96c61294f2cd86dd-0004",
+    "doc_id": "96c61294f2cd86dd",
+    "doc_title": "Marking individual TypedDict items as required or potentially-missing",
+    "section_path": "Specification",
+    "rank": 2,
+    "score": 35.640539243715125,
+    "relevant": false
+  },
+  "text": "The ``typing.Required`` type qualifier is used to indicate that a\nvariable declared in a TypedDict definition is a required key:\n\n::\n\n   class Movie(TypedDict, total=False):\n       title: Required[str]\n       year: int\n\nAdditionally the ``typing.NotRequired`` type qualifier is used to\nindicate that a variable declared in a TypedDict definition is a\npotentially-missing key:\n\n::\n\n   class Movie(TypedDict):  # implicitly total=True\n       title: str\n       year: NotRequired[int]\n\nIt is an error to use ``Required[]`` or ``NotRequired[]`` in any\nlocation that is not an item of a TypedDict.\nType checkers must enforce this restriction.\n\nIt is valid to use ``Required[]`` and ``NotRequired[]`` even for\nitems where it is redundant, to enable additional explicitness if desired:\n\n::\n\n   class Movie(TypedDict):\n       title: Required[str]  # redundant\n       year: NotRequired[int]\n\nIt is an error to use both ``Required[]`` and ``NotRequired[]`` at the\nsame time:\n\n::\n\n   class Movie(TypedDict):\n       title: str\n       year: NotRequired[Required[int]]  # ERROR\n\nType checkers must enforce this restriction.\nThe runtime implementations of ``Required[]`` and ``NotRequired[]``\nmay also enforce this restriction.\n\nThe :pep:`alternative functional syntax <589#alternative-syntax>`\nfor TypedDict also supports\n``Required[]`` and ``NotRequired[]``:\n\n::\n\n   Movie = TypedDict('Movie', {'name': str, 'year': NotRequired[int]})",
+  "finding": "The specification answers the question but is outside the Abstract label.",
+  "action": "Preserve scores; propose alternative labels for a separate human review."
+}
