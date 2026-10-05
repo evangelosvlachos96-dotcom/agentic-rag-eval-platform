@@ -1,0 +1,14 @@
+{
+  "health": {
+    "ready": true,
+    "dataset_version": "27b46e65f45d",
+    "generation_enabled": false
+  },
+  "retrieved_chunks": 8,
+  "generation_status": 403,
+  "uid": 10001,
+  "network": "none",
+  "read_only_root": true,
+  "llm_calls": 0,
+  "image_id": "sha256:a3678c14dba2fa7eb5a14c08dcd4d2b1cb4ce0b17bf110970b14015c17b28743"
+}

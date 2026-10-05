@@ -20,10 +20,10 @@ format: ## Auto-format and auto-fix lint issues
 	$(UV) run ruff check --fix .
 
 typecheck: ## Strict mypy over src and tests
-	$(UV) run mypy
+	$(UV) run --extra api mypy
 
 test: ## Run the test suite
-	$(UV) run pytest
+	$(UV) run --extra api pytest
 
 check: lint typecheck test ## Everything CI runs
 

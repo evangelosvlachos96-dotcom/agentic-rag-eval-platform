@@ -1,10 +1,4 @@
-"""API: a FastAPI service exposing query and evaluation endpoints.
+"""Local FastAPI query service with explicit provider injection and safe defaults.
 
-Planned responsibilities (Milestone 8):
-
-- `/query` for grounded answers with citations
-- `/health` and `/metrics` for operations
-- request and response schemas built from the core pydantic models
-
-Requires the optional `api` extra.
+Install the api extra. The local factory uses retrieval only and never API keys.
 """

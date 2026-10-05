@@ -1,0 +1,236 @@
+{
+  "verification": "In-process HTTP contract check with real local BM25",
+  "llm_calls": 0,
+  "health": {
+    "ready": true,
+    "dataset_version": "27b46e65f45d",
+    "generation_enabled": false
+  },
+  "query_status": 200,
+  "query": {
+    "trace_id": "710caefffb294a7bb9abe9b9bb3a07a5",
+    "dataset_version": "27b46e65f45d",
+    "placeholder": false,
+    "retrieved": [
+      {
+        "chunk": {
+          "id": "8b8ef45a4e81715d-0011",
+          "document_id": "8b8ef45a4e81715d",
+          "content": "``ReadOnly[]`` can be used with ``Required[]``, ``NotRequired[]`` and ``Annotated[]``, in any nesting order:\n\n::\n\n    class Movie(TypedDict):\n        title: ReadOnly[Required[str]]  # OK\n        year: ReadOnly[NotRequired[Annotated[int, ValueRange(-9999, 9999)]]]  # OK\n\n::\n\n    class Movie(TypedDict):\n        title: Required[ReadOnly[str]]  # OK\n        year: Annotated[NotRequired[ReadOnly[int]], ValueRange(-9999, 9999)]  # OK\n\nThis is consistent with the behavior introduced in :pep:`655`.",
+          "index": 11,
+          "metadata": {
+            "doc_title": "TypedDict: Read-only items",
+            "section_path": "Specification > Interaction with other special types",
+            "char_start": 8650,
+            "char_end": 9144,
+            "token_count": 124,
+            "context_header": "TypedDict: Read-only items > Specification > Interaction with other special types",
+            "source": "pep-0705.rst"
+          }
+        },
+        "score": 27.90522785824205,
+        "rank": 1,
+        "retriever": "bm25",
+        "stages": {
+          "bm25": {
+            "score": 27.90522785824205,
+            "rank": 1
+          }
+        }
+      },
+      {
+        "chunk": {
+          "id": "676be8f1d20eb181-0009",
+          "document_id": "676be8f1d20eb181",
+          "content": "By default all keys in a ``TypedDict`` are required. This behaviour can be\noverridden by setting the dictionary's ``total`` parameter as ``False``.\nMoreover, :pep:`655` introduced new type qualifiers - ``typing.Required`` and\n``typing.NotRequired`` - that enable specifying whether a particular key is\nrequired or not::\n\n    class Movie(TypedDict):\n        title: str\n        year: NotRequired[int]\n\nWhen using a ``TypedDict`` to type ``**kwargs`` all of the required and\nnon-required keys should correspond to required and non-required function\nkeyword parameters. Therefore, if a required key is not supported by the\ncaller, then an error must be reported by type checkers.",
+          "index": 9,
+          "metadata": {
+            "doc_title": "Using TypedDict for more precise \\*\\*kwargs typing",
+            "section_path": "Specification > Required and non-required keys",
+            "char_start": 8431,
+            "char_end": 9106,
+            "token_count": 169,
+            "context_header": "Using TypedDict for more precise \\*\\*kwargs typing > Specification > Required and non-required keys",
+            "source": "pep-0692.rst"
+          }
+        },
+        "score": 25.343014352397738,
+        "rank": 2,
+        "retriever": "bm25",
+        "stages": {
+          "bm25": {
+            "score": 25.343014352397738,
+            "rank": 2
+          }
+        }
+      },
+      {
+        "chunk": {
+          "id": "96c61294f2cd86dd-0000",
+          "document_id": "96c61294f2cd86dd",
+          "content": "PEP: 655\nTitle: Marking individual TypedDict items as required or potentially-missing\nAuthor: David Foster <david at dafoster.net>\nSponsor: Guido van Rossum <guido at python.org>\nDiscussions-To: https://mail.python.org/archives/list/typing-sig@python.org/thread/53XVOD5ZUKJ263MWA6AUPEA6J7LBBLNV/\nStatus: Final\nType: Standards Track\nTopic: Typing\nCreated: 30-Jan-2021\nPython-Version: 3.11\nPost-History: 31-Jan-2021, 11-Feb-2021, 20-Feb-2021, 26-Feb-2021, 17-Jan-2022, 28-Jan-2022\nResolution: https://mail.python.org/archives/list/python-dev@python.org/message/AJEDNVC3FXM5QXNNW5CR4UCT4KI5XVUE/\n\n.. canonical-typing-spec:: :ref:`typing:required-notrequired`,\n                           :py:data:`typing.Required` and\n                           :py:data:`typing.NotRequired`",
+          "index": 0,
+          "metadata": {
+            "doc_title": "Marking individual TypedDict items as required or potentially-missing",
+            "section_path": "",
+            "char_start": 0,
+            "char_end": 771,
+            "token_count": 193,
+            "context_header": "Marking individual TypedDict items as required or potentially-missing",
+            "source": "pep-0655.rst"
+          }
+        },
+        "score": 22.16341543219463,
+        "rank": 3,
+        "retriever": "bm25",
+        "stages": {
+          "bm25": {
+            "score": 22.16341543219463,
+            "rank": 3
+          }
+        }
+      },
+      {
+        "chunk": {
+          "id": "96c61294f2cd86dd-0004",
+          "document_id": "96c61294f2cd86dd",
+          "content": "The ``typing.Required`` type qualifier is used to indicate that a\nvariable declared in a TypedDict definition is a required key:\n\n::\n\n   class Movie(TypedDict, total=False):\n       title: Required[str]\n       year: int\n\nAdditionally the ``typing.NotRequired`` type qualifier is used to\nindicate that a variable declared in a TypedDict definition is a\npotentially-missing key:\n\n::\n\n   class Movie(TypedDict):  # implicitly total=True\n       title: str\n       year: NotRequired[int]\n\nIt is an error to use ``Required[]`` or ``NotRequired[]`` in any\nlocation that is not an item of a TypedDict.\nType checkers must enforce this restriction.\n\nIt is valid to use ``Required[]`` and ``NotRequired[]`` even for\nitems where it is redundant, to enable additional explicitness if desired:\n\n::\n\n   class Movie(TypedDict):\n       title: Required[str]  # redundant\n       year: NotRequired[int]\n\nIt is an error to use both ``Required[]`` and ``NotRequired[]`` at the\nsame time:\n\n::\n\n   class Movie(TypedDict):\n       title: str\n       year: NotRequired[Required[int]]  # ERROR\n\nType checkers must enforce this restriction.\nThe runtime implementations of ``Required[]`` and ``NotRequired[]``\nmay also enforce this restriction.\n\nThe :pep:`alternative functional syntax <589#alternative-syntax>`\nfor TypedDict also supports\n``Required[]`` and ``NotRequired[]``:\n\n::\n\n   Movie = TypedDict('Movie', {'name': str, 'year': NotRequired[int]})",
+          "index": 4,
+          "metadata": {
+            "doc_title": "Marking individual TypedDict items as required or potentially-missing",
+            "section_path": "Specification",
+            "char_start": 4162,
+            "char_end": 5582,
+            "token_count": 355,
+            "context_header": "Marking individual TypedDict items as required or potentially-missing > Specification",
+            "source": "pep-0655.rst"
+          }
+        },
+        "score": 21.159904952581865,
+        "rank": 4,
+        "retriever": "bm25",
+        "stages": {
+          "bm25": {
+            "score": 21.159904952581865,
+            "rank": 4
+          }
+        }
+      },
+      {
+        "chunk": {
+          "id": "96c61294f2cd86dd-0011",
+          "document_id": "96c61294f2cd86dd",
+          "content": "To define a TypedDict where most keys are required and some are\npotentially-missing, define a single TypedDict as normal\n(without the ``total`` keyword)\nand mark those few keys that are potentially-missing with ``NotRequired[]``.\n\nTo define a TypedDict where most keys are potentially-missing and a few are\nrequired, define a ``total=False`` TypedDict\nand mark those few keys that are required with ``Required[]``.\n\nIf some items accept ``None`` in addition to a regular value, it is\nrecommended that the ``TYPE|None`` notation be preferred over\n``Optional[TYPE]`` for marking such item values, to avoid using\n``Required[]`` or ``NotRequired[]`` alongside ``Optional[]``\nwithin the same TypedDict definition:\n\nYes:\n\n.. code-block::\n   :class: good\n\n   from __future__ import annotations  # for Python 3.7-3.9\n\n   class Dog(TypedDict):\n       name: str\n       owner: NotRequired[str|None]\n\nOkay (required for Python 3.5.3-3.6):\n\n.. code-block::\n   :class: maybe\n\n   class Dog(TypedDict):\n       name: str\n       owner: 'NotRequired[str|None]'\n\nNo:\n\n.. code-block::\n   :class: bad\n\n   class Dog(TypedDict):\n       name: str\n       # ick; avoid using both Optional and NotRequired\n       owner: NotRequired[Optional[str]]",
+          "index": 11,
+          "metadata": {
+            "doc_title": "Marking individual TypedDict items as required or potentially-missing",
+            "section_path": "How to Teach This",
+            "char_start": 8640,
+            "char_end": 9858,
+            "token_count": 305,
+            "context_header": "Marking individual TypedDict items as required or potentially-missing > How to Teach This",
+            "source": "pep-0655.rst"
+          }
+        },
+        "score": 19.401502033983295,
+        "rank": 5,
+        "retriever": "bm25",
+        "stages": {
+          "bm25": {
+            "score": 19.401502033983295,
+            "rank": 5
+          }
+        }
+      },
+      {
+        "chunk": {
+          "id": "96c61294f2cd86dd-0012",
+          "document_id": "96c61294f2cd86dd",
+          "content": "If your code supports Python <3.11 and wishes to use ``Required[]`` or\n``NotRequired[]`` then it should use ``typing_extensions.TypedDict`` rather\nthan ``typing.TypedDict`` because the latter will not understand\n``(Not)Required[]``. In particular ``__required_keys__`` and\n``__optional_keys__`` on the resulting TypedDict type will not be correct:\n\nYes (Python 3.11+ only):\n\n.. code-block::\n   :class: good\n\n   from typing import NotRequired, TypedDict\n\n   class Dog(TypedDict):\n       name: str\n       owner: NotRequired[str|None]\n\nYes (Python <3.11 and 3.11+):\n\n.. code-block::\n   :class: good\n\n   from __future__ import annotations  # for Python 3.7-3.9\n\n   from typing_extensions import NotRequired, TypedDict  # for Python <3.11 with (Not)Required\n\n   class Dog(TypedDict):\n       name: str\n       owner: NotRequired[str|None]\n\nNo (Python <3.11 and 3.11+):\n\n.. code-block::\n   :class: bad\n\n   from typing import TypedDict  # oops: should import from typing_extensions instead\n   from typing_extensions import NotRequired\n\n   class Movie(TypedDict):\n       title: str\n       year: NotRequired[int]\n\n   assert Movie.__required_keys__ == frozenset({'title', 'year'})  # yikes\n   assert Movie.__optional_keys__ == frozenset()  # yikes",
+          "index": 12,
+          "metadata": {
+            "doc_title": "Marking individual TypedDict items as required or potentially-missing",
+            "section_path": "How to Teach This > Usage in Python <3.11",
+            "char_start": 9905,
+            "char_end": 11140,
+            "token_count": 309,
+            "context_header": "Marking individual TypedDict items as required or potentially-missing > How to Teach This > Usage in Python <3.11",
+            "source": "pep-0655.rst"
+          }
+        },
+        "score": 19.137924616383003,
+        "rank": 6,
+        "retriever": "bm25",
+        "stages": {
+          "bm25": {
+            "score": 19.137924616383003,
+            "rank": 6
+          }
+        }
+      },
+      {
+        "chunk": {
+          "id": "96c61294f2cd86dd-0008",
+          "document_id": "96c61294f2cd86dd",
+          "content": "``typing.get_origin()`` and ``typing.get_args()`` will be updated to\nrecognize ``Required[]`` and ``NotRequired[]``:\n\n::\n\n   assert get_origin(Required[int]) is Required\n   assert get_args(Required[int]) == (int,)\n\n   assert get_origin(NotRequired[int]) is NotRequired\n   assert get_args(NotRequired[int]) == (int,)",
+          "index": 8,
+          "metadata": {
+            "doc_title": "Marking individual TypedDict items as required or potentially-missing",
+            "section_path": "Specification > Runtime behavior > Interaction with ``get_origin()`` and ``get_args()``",
+            "char_start": 7721,
+            "char_end": 8036,
+            "token_count": 79,
+            "context_header": "Marking individual TypedDict items as required or potentially-missing > Specification > Runtime behavior > Interaction with ``get_origin()`` and ``get_args()``",
+            "source": "pep-0655.rst"
+          }
+        },
+        "score": 18.889379716783296,
+        "rank": 7,
+        "retriever": "bm25",
+        "stages": {
+          "bm25": {
+            "score": 18.889379716783296,
+            "rank": 7
+          }
+        }
+      },
+      {
+        "chunk": {
+          "id": "96c61294f2cd86dd-0007",
+          "document_id": "96c61294f2cd86dd",
+          "content": "``typing.get_type_hints(...)`` applied to a TypedDict will by default\nstrip out any ``Required[]`` or ``NotRequired[]`` type qualifiers,\nsince these qualifiers are expected to be inconvenient for code\ncasually introspecting type annotations.\n\n``typing.get_type_hints(..., include_extras=True)`` however\n*will* retain ``Required[]`` and ``NotRequired[]`` type qualifiers,\nfor advanced code introspecting type annotations that\nwishes to preserve *all* annotations in the original source:\n\n::\n\n   class Movie(TypedDict):\n       title: str\n       year: NotRequired[int]\n\n   assert get_type_hints(Movie) == \\\n       {'title': str, 'year': int}\n   assert get_type_hints(Movie, include_extras=True) == \\\n       {'title': str, 'year': NotRequired[int]}",
+          "index": 7,
+          "metadata": {
+            "doc_title": "Marking individual TypedDict items as required or potentially-missing",
+            "section_path": "Specification > Runtime behavior > Interaction with ``get_type_hints()``",
+            "char_start": 6867,
+            "char_end": 7611,
+            "token_count": 186,
+            "context_header": "Marking individual TypedDict items as required or potentially-missing > Specification > Runtime behavior > Interaction with ``get_type_hints()``",
+            "source": "pep-0655.rst"
+          }
+        },
+        "score": 18.368915674574524,
+        "rank": 8,
+        "retriever": "bm25",
+        "stages": {
+          "bm25": {
+            "score": 18.368915674574524,
+            "rank": 8
+          }
+        }
+      }
+    ],
+    "answer": null,
+    "agent": null
+  },
+  "generation_status": 403,
+  "generation": {
+    "detail": "Generation disabled; inject a provider explicitly"
+  },
+  "metrics": {
+    "queries": 2,
+    "completed": 1,
+    "errors": 1
+  }
+}

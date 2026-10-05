@@ -321,8 +321,8 @@ agentic-rag-eval-platform/
 │   ├── pipelines/        # run configuration
 │   ├── agent/            # bounded search agent
 │   ├── data_quality/     # failure taxonomy, annotation and agreement
-│   ├── api/              # FastAPI service (planned)
-│   ├── observability/    # logging and tracing (planned)
+│   ├── api/              # local FastAPI service
+│   ├── observability/    # correlated span logging
 │   ├── config.py
 │   └── models.py
 ├── configs/              # retrieval configs and pricing
@@ -349,7 +349,7 @@ agentic-rag-eval-platform/
 - [x] **M5 Evaluation harness:** eval set workflow, retrieval metrics, LLM judges and bootstrap confidence intervals
 - [x] **M6 Agent:** tool-using agent loop, multi-turn query rewriting, trajectory logging, pass@k and pass^k
 - [x] **M7 Data quality:** failure taxonomy, annotation workflow, Cohen's kappa and judge-human agreement
-- [ ] **M8 Infrastructure:** async batch runner with retries, tracing, FastAPI service and Docker
+- [x] **M8 Infrastructure:** async batch runner with retries, tracing, FastAPI service and Docker
 - [ ] **M9 Experiments:** chunking, retrieval and reranking ablations with a results report
 
 ---
@@ -359,5 +359,3 @@ agentic-rag-eval-platform/
 MIT. See [LICENSE](LICENSE).
 
 The PEP corpus is downloaded at runtime from [python/peps](https://github.com/python/peps) and is not redistributed in this repository.
-
-

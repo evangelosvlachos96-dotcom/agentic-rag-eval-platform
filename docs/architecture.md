@@ -186,3 +186,11 @@ text. Imports validate immutable provenance and evidence, saving separate review
 artifacts. Failure classification uses observable signals; Cohen's kappa operates
 on shared labeled IDs and exposes missingness. Judge-human comparisons consume
 stored judgments without making new calls. See [data quality workflow](data-quality.md).
+
+## Service and batch execution (M8)
+
+The optional FastAPI service uses injected search/provider dependencies. Its local
+factory loads BM25 only; no environment key enables generation. A request carries a
+new correlation ID through retrieval and optional generation/agent spans. The batch
+runner limits worker tasks, preserves input order and retries only explicit transient
+errors. See [local deployment and constraints](infrastructure.md).

@@ -141,11 +141,9 @@ No GNU make on Windows: run the `uv run ...` commands from the Makefile directly
 | M5 | Evaluation harness | eval item schema, taxonomy, candidates + review, retrieval metrics, checks, judges, bootstrap CIs, runner, compare | done (harness); 24-question owner-approved pilot v1 built; generation evaluation pending |
 | M6 | Agent | bounded search loop, query rewriting, trajectories, pass@k and pass^k | implemented and tested offline; real-provider evaluation pending |
 | M7 | Data quality | failure signals, annotation export/import, kappa, judge-human agreement | implemented offline; actual human/judge calibration pending |
-| M8 | Infrastructure | async batch runner with retries, tracing, FastAPI service, Docker | planned |
+| M8 | Infrastructure | bounded async batches, tracing, local FastAPI service, Docker | implemented and verified offline; not a public production deployment |
 | M9 | Experiments | chunking, vector-only vs hybrid, reranking ablations with a results report | planned |
 
 When starting a milestone: read the relevant subpackage docstring, add models
 first, then pure logic with tests, then the LLM-touching parts with a mocked
 provider, then update README roadmap and `docs/architecture.md`.
-
-
