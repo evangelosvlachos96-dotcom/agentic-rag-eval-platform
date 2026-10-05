@@ -16,6 +16,7 @@ import typer
 from ragplatform.cli.agent_cmds import agent_demo
 from ragplatform.cli.eval_cmds import eval_app
 from ragplatform.cli.ingest_cmds import register as _register_ingest
+from ragplatform.cli.quality_cmds import quality_app
 from ragplatform.cli.retrieval_cmds import register as _register_retrieval
 
 app = typer.Typer(
@@ -28,6 +29,7 @@ app = typer.Typer(
 _register_ingest(app)
 _register_retrieval(app)
 app.add_typer(eval_app, name="eval")
+app.add_typer(quality_app, name="quality")
 
 
 def main() -> None:

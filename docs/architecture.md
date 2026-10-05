@@ -178,3 +178,11 @@ turns see accumulated bounded evidence and prior queries. A cited answer or an
 explicit stop condition ends the loop. `AgentRun` retains replayable steps and
 configuration. The CLI demo uses only local BM25 and FakeProvider; it cannot spend
 API credits. See [agent limits and offline verification](agent.md).
+
+## Annotation and agreement (M7)
+
+Saved runs export into `AnnotationBatch` with blank judgments and full retrieved
+text. Imports validate immutable provenance and evidence, saving separate review
+artifacts. Failure classification uses observable signals; Cohen's kappa operates
+on shared labeled IDs and exposes missingness. Judge-human comparisons consume
+stored judgments without making new calls. See [data quality workflow](data-quality.md).
