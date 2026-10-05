@@ -169,3 +169,12 @@ eval_sets/<name>/items.jsonl         reviewed eval items + manifest.json
 experiments/runs/<ts>_<config>/      config.json, results.jsonl, summary.json, report.md
 configs/*.yaml                       run configs; configs/pricing.yaml for cost estimates
 ```
+
+## Bounded agent flow (M6)
+
+`run_agent` sends a JSON question/evidence state through `LLMProvider`, validates
+one search/answer/abstain action, and invokes the injected search tool. Subsequent
+turns see accumulated bounded evidence and prior queries. A cited answer or an
+explicit stop condition ends the loop. `AgentRun` retains replayable steps and
+configuration. The CLI demo uses only local BM25 and FakeProvider; it cannot spend
+API credits. See [agent limits and offline verification](agent.md).

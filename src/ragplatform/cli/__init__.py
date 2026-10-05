@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import typer
 
+from ragplatform.cli.agent_cmds import agent_demo
 from ragplatform.cli.eval_cmds import eval_app
 from ragplatform.cli.ingest_cmds import register as _register_ingest
 from ragplatform.cli.retrieval_cmds import register as _register_retrieval
@@ -34,3 +35,6 @@ def main() -> None:
 
 
 __all__ = ["app", "main"]
+
+
+app.command("agent-demo")(agent_demo)

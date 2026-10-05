@@ -297,7 +297,7 @@ The [earlier preparation checkpoint](docs/evaluation-phase.md) records the offli
 ## Engineering practices
 
 - **Typed throughout:** strict mypy, Pydantic models at every boundary.
-- **Tested:** 153 fast tests run offline with mocked LLM calls. Both real-model checks also passed using the cached local models; they remain separate from default CI.
+- **Tested:** Offline tests run offline with mocked LLM calls. Both real-model checks also passed using the cached local models; they remain separate from default CI.
 - **Reproducible:** pinned corpus commit, content-hashed dataset versions, versioned prompts and eval sets, and full run metadata.
 - **Pluggable components:** loaders, embedders, vector stores, rerankers and LLM providers sit behind protocols.
 - **Cost aware:** disk caching of LLM calls, cost estimates from a pricing config, and `--limit` for small trial runs.
@@ -319,7 +319,7 @@ agentic-rag-eval-platform/
 │   ├── evals/            # eval sets, metrics, checks, judges, bootstrap, runner, reports
 │   ├── prompts/          # versioned prompt files
 │   ├── pipelines/        # run configuration
-│   ├── agent/            # tool-using agent (planned)
+│   ├── agent/            # bounded search agent
 │   ├── data_quality/     # failure taxonomy and annotation (planned)
 │   ├── api/              # FastAPI service (planned)
 │   ├── observability/    # logging and tracing (planned)
@@ -347,7 +347,7 @@ agentic-rag-eval-platform/
 - [x] **M3 Retrieval:** embeddings, vector store, BM25, Reciprocal Rank Fusion and reranking
 - [x] **M4 Generation:** grounded answers with citations and abstention
 - [x] **M5 Evaluation harness:** eval set workflow, retrieval metrics, LLM judges and bootstrap confidence intervals
-- [ ] **M6 Agent:** tool-using agent loop, multi-turn query rewriting, trajectory logging, pass@k and pass^k
+- [x] **M6 Agent:** tool-using agent loop, multi-turn query rewriting, trajectory logging, pass@k and pass^k
 - [ ] **M7 Data quality:** failure taxonomy, annotation workflow, Cohen's kappa and judge-human agreement
 - [ ] **M8 Infrastructure:** async batch runner with retries, tracing, FastAPI service and Docker
 - [ ] **M9 Experiments:** chunking, retrieval and reranking ablations with a results report
@@ -359,3 +359,4 @@ agentic-rag-eval-platform/
 MIT. See [LICENSE](LICENSE).
 
 The PEP corpus is downloaded at runtime from [python/peps](https://github.com/python/peps) and is not redistributed in this repository.
+
