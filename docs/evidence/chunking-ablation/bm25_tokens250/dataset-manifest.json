@@ -1,0 +1,639 @@
+{
+  "dataset_version": "962bbf10fec4",
+  "created_at": "2026-10-05T07:24:56+00:00",
+  "source_dir": "data/raw/peps",
+  "source_files": [
+    {
+      "path": "pep-0001.rst",
+      "sha256": "c2bc2ce666758fa82ee2592926218d710e6fdddc674d78314bd6b56c392c46f6",
+      "size_bytes": 41682
+    },
+    {
+      "path": "pep-0008.rst",
+      "sha256": "6028935c6cb2c674d5f4d512c7ba6ce2923713b1c47ce1a78adc690db817fc5d",
+      "size_bytes": 50796
+    },
+    {
+      "path": "pep-0020.rst",
+      "sha256": "742999637cc96eef52e8148fdf65a6065a0953daee92bb48b8c739efcf6def07",
+      "size_bytes": 1648
+    },
+    {
+      "path": "pep-0257.rst",
+      "sha256": "7db41c5aaea3bfde0463307c72b38d735dc604491cadd059d7f9fe94b8142c0e",
+      "size_bytes": 10581
+    },
+    {
+      "path": "pep-0343.rst",
+      "sha256": "69ea4cd6143ae721342c1ef404f6a080f0b8e9c66dc8a502e4d5daea50a3c3f4",
+      "size_bytes": 36084
+    },
+    {
+      "path": "pep-0380.rst",
+      "sha256": "81b361bb5e41c3cadc0156a9272e15d6bbeaf2636db22e51049efc72754a2d47",
+      "size_bytes": 17150
+    },
+    {
+      "path": "pep-0427.rst",
+      "sha256": "c67662edf93c5956e0d185ed3681e58be08188a49113f855f95089114b00b91a",
+      "size_bytes": 19181
+    },
+    {
+      "path": "pep-0440.rst",
+      "sha256": "73e66234348131cc6b51dd432e3e05cfd087d2f253f96e72dd43f1b4a13e29a8",
+      "size_bytes": 66834
+    },
+    {
+      "path": "pep-0483.rst",
+      "sha256": "0c650e4a02826fc17515342e4e5b64f51f59a248979d3432dbffaf5f4e8e8ced",
+      "size_bytes": 29302
+    },
+    {
+      "path": "pep-0484.rst",
+      "sha256": "ddfe61c36a61b3ba926aaf23f4934ab17493a1cb7ea5d45497235b552c4a9f7c",
+      "size_bytes": 88614
+    },
+    {
+      "path": "pep-0492.rst",
+      "sha256": "8e60fb391f3584cb05e6fffed11e48f5233feae008540f8ca85e0800e3d5d1a6",
+      "size_bytes": 49191
+    },
+    {
+      "path": "pep-0498.rst",
+      "sha256": "a3eb06e347f3bb39eeb7658b9339241d9cdd825b7c59876f372fea84376dc4a6",
+      "size_bytes": 25103
+    },
+    {
+      "path": "pep-0505.rst",
+      "sha256": "0203ddda4933281f7977ae57bba3f6c0a4ff4a1278bef122d09fffa9a09fff1b",
+      "size_bytes": 31484
+    },
+    {
+      "path": "pep-0508.rst",
+      "sha256": "493a519a280e13b8f46196486610035347d9be12192c85ca16f68a183be04de8",
+      "size_bytes": 23559
+    },
+    {
+      "path": "pep-0517.rst",
+      "sha256": "fcc588817c7d8223a86cab484b0f6231ad3c78da6fbcbf7266e896ed69f6f81b",
+      "size_bytes": 46752
+    },
+    {
+      "path": "pep-0518.rst",
+      "sha256": "511eef59d353f1528ceb0c650608d8b8eb4d312d1cb954cf2dc7bd8ab78c2248",
+      "size_bytes": 20673
+    },
+    {
+      "path": "pep-0525.rst",
+      "sha256": "ae680b2c3e498242731e6687a9e168856211bac6f2b77371deec9056a88ad78c",
+      "size_bytes": 20414
+    },
+    {
+      "path": "pep-0526.rst",
+      "sha256": "963f49b380b62d1ccbf3b9924b08261da3920529ae59f5d923bfe70b61ae7eca",
+      "size_bytes": 25189
+    },
+    {
+      "path": "pep-0530.rst",
+      "sha256": "9e317a3592c536c2deea1d99da83fd7592a99a5a4da363270bd1d069df1d725e",
+      "size_bytes": 4329
+    },
+    {
+      "path": "pep-0544.rst",
+      "sha256": "d02ac1f85da2b5336daf44b360c0eeda057734da549920494972070d34613e54",
+      "size_bytes": 54059
+    },
+    {
+      "path": "pep-0557.rst",
+      "sha256": "5f616e7d2fb9a5632fb2c9881c0622d63920a78a4c19540405f4f5119e4bad12",
+      "size_bytes": 36434
+    },
+    {
+      "path": "pep-0563.rst",
+      "sha256": "5512e8a43ace196dcabba98ec6041459ba6843169f951e911d04e088ed7ac559",
+      "size_bytes": 27736
+    },
+    {
+      "path": "pep-0572.rst",
+      "sha256": "abf5401ec523a03d59a6f3173842784f426bfd49d8b0a87a512646557bcef8b1",
+      "size_bytes": 47028
+    },
+    {
+      "path": "pep-0584.rst",
+      "sha256": "227c416423b188aa703296595a0d161a31314da7cce08833072ec64ce76159e2",
+      "size_bytes": 30518
+    },
+    {
+      "path": "pep-0585.rst",
+      "sha256": "918bf996d429379fdba4ab9fcd52b7153e3de47907291f950eb4f017a5b08aea",
+      "size_bytes": 13300
+    },
+    {
+      "path": "pep-0586.rst",
+      "sha256": "4d38aac9c9f8623f85084c1a6aacbdcfe3b98e07b4a7ca67414eb2965e651903",
+      "size_bytes": 28831
+    },
+    {
+      "path": "pep-0589.rst",
+      "sha256": "946dda24d8c00f191d255ca512c3a69986e0c6703d19c5ca299f5efad9b27bc5",
+      "size_bytes": 25467
+    },
+    {
+      "path": "pep-0593.rst",
+      "sha256": "050333404ddbc4d7c5657a71f00a70e887c99c736846397e901b4533ed82684a",
+      "size_bytes": 10891
+    },
+    {
+      "path": "pep-0594.rst",
+      "sha256": "5ec9505b192faa51278f8f309f691e7c8a28d08eedf23552e9f3a4444389a116",
+      "size_bytes": 25146
+    },
+    {
+      "path": "pep-0602.rst",
+      "sha256": "f0f2a39f75d4ae3d5707cc921c3ae2cf47cc44ac27d06de33a76c28dccb8666b",
+      "size_bytes": 12585
+    },
+    {
+      "path": "pep-0604.rst",
+      "sha256": "c6d87a6c7ea65964e9fecde3af1e4d367e9d49be8441fdebed3682886f359a0d",
+      "size_bytes": 7043
+    },
+    {
+      "path": "pep-0612.rst",
+      "sha256": "6b9f5b0e082a32fa65e36d3ceeed62ba4f77b40513148f2235de0d829b807346",
+      "size_bytes": 27891
+    },
+    {
+      "path": "pep-0621.rst",
+      "sha256": "8710ea6fcc2f5d19571ea7b2610e5c2fbc93d44051c1e5669f40a685ab4bb49e",
+      "size_bytes": 30002
+    },
+    {
+      "path": "pep-0634.rst",
+      "sha256": "352927baffdbb0fdaba34cf059e95fe2a464a604fdba167a41c6257c90e10e5e",
+      "size_bytes": 23168
+    },
+    {
+      "path": "pep-0635.rst",
+      "sha256": "72feab4f0c2eb0c5d21700b610beb92ea508fb5b87379d3aeb62886a4605e833",
+      "size_bytes": 58227
+    },
+    {
+      "path": "pep-0636.rst",
+      "sha256": "9142442d0212ee6deb8b0ce9a2103c9804b7e77678236d2db97697738b47a262",
+      "size_bytes": 25325
+    },
+    {
+      "path": "pep-0646.rst",
+      "sha256": "f7704dbfcc337c93d26ea50d949443cebfbcfbc1669e761f2cd1fd76d742e746",
+      "size_bytes": 59313
+    },
+    {
+      "path": "pep-0647.rst",
+      "sha256": "d38f9c9802415d6656a4aa02989ab7c2516827b57d4b93821016b03492afa1c7",
+      "size_bytes": 13508
+    },
+    {
+      "path": "pep-0649.rst",
+      "sha256": "58948a3b8fb4b8a5cb55a12b2bf4719b7a3e89408e39daeeb48f4d3dc5be5e13",
+      "size_bytes": 63824
+    },
+    {
+      "path": "pep-0654.rst",
+      "sha256": "a369cba5e30ac103a8e9ea8a002be54c1b1795d94bab2f24c53b302e5c58b72e",
+      "size_bytes": 60980
+    },
+    {
+      "path": "pep-0655.rst",
+      "sha256": "f97518cdae83cd461034f5e9dcbed89e297903ec03bf32c71daa0b45f48d1b36",
+      "size_bytes": 20347
+    },
+    {
+      "path": "pep-0673.rst",
+      "sha256": "1b5a4efe80a5b0b1042694cd5d01afbf910f4ccec8a77cfadf6153c3d5d94d9f",
+      "size_bytes": 23048
+    },
+    {
+      "path": "pep-0675.rst",
+      "sha256": "d381739faa6a908f163616dec054f212facba686ba76b958897e4a161ef917f7",
+      "size_bytes": 47714
+    },
+    {
+      "path": "pep-0681.rst",
+      "sha256": "ccbf8ecabfd5ea43fdc9434bfe0f9849c719bfce590213746379567483b00812",
+      "size_bytes": 28269
+    },
+    {
+      "path": "pep-0692.rst",
+      "sha256": "c272e219f85563eccbccacf0cabeb3dd6885aeac2f1652a15e14a85f15fc5ae8",
+      "size_bytes": 22683
+    },
+    {
+      "path": "pep-0695.rst",
+      "sha256": "115c754fb36b634bc97322135b7d7da565afe27038c579f16b2313d9c9447da5",
+      "size_bytes": 57593
+    },
+    {
+      "path": "pep-0696.rst",
+      "sha256": "a049ee9d8d194c02cc6377fc761b93604fceff3ab5e43b90bf400f3a237f8db5",
+      "size_bytes": 21514
+    },
+    {
+      "path": "pep-0698.rst",
+      "sha256": "3c654c3acd4952750783a119a59e710bc2df39479d12b002497bf523ce821956",
+      "size_bytes": 18776
+    },
+    {
+      "path": "pep-0701.rst",
+      "sha256": "85299a5cc95a9fd78cf0f0a992411c114e293364710d8b8f26de3e56a31200f0",
+      "size_bytes": 30702
+    },
+    {
+      "path": "pep-0703.rst",
+      "sha256": "8dfe19b2ab3b0ee783f922b533fed7b8018d6d90f3cec5534fd7baaa283a3470",
+      "size_bytes": 86335
+    },
+    {
+      "path": "pep-0705.rst",
+      "sha256": "250e8cf04b058f55e06731b4c01d8c0d5714463d1a20b50b754f3a033ceaba10",
+      "size_bytes": 25278
+    },
+    {
+      "path": "pep-0723.rst",
+      "sha256": "17de64ccc1b03003dcd031abb0372c6c946ae9bbdc802ae3af7ede4437507e59",
+      "size_bytes": 34641
+    },
+    {
+      "path": "pep-0735.rst",
+      "sha256": "a97a2f177de2f629b96f878960d861b5384c011df9c539a605d0be2cc0f2fd25",
+      "size_bytes": 57085
+    },
+    {
+      "path": "pep-0742.rst",
+      "sha256": "dd23a67ae82462063d3180f7c4bdf45db0e6ee0cf5b7e6a5215b50ffcef075c8",
+      "size_bytes": 21454
+    },
+    {
+      "path": "pep-0747.rst",
+      "sha256": "ff3e16a0a5390301e2ef6cbb3fad155b6622c047be61da28503c11d67d5da28e",
+      "size_bytes": 26117
+    },
+    {
+      "path": "pep-0749.rst",
+      "sha256": "242e31343465e77e3f55cb1559ca24314acce5ae4533a54d06b88453144b85c5",
+      "size_bytes": 54911
+    }
+  ],
+  "chunking": {
+    "max_tokens": 250,
+    "overlap_ratio": 0.15,
+    "contextual_header": true
+  },
+  "dedup": {
+    "threshold": 0.85,
+    "num_perm": 128,
+    "shingle_size": 3
+  },
+  "n_documents": 56,
+  "n_chunks": 2849,
+  "exact_removed": 51,
+  "near_removed": 3,
+  "documents": [
+    {
+      "doc_id": "97585c9eb60883b7",
+      "title": "PEP Purpose and Guidelines",
+      "source": "pep-0001.rst",
+      "n_chunks": 60
+    },
+    {
+      "doc_id": "a55dfded40f487e1",
+      "title": "Style Guide for Python Code",
+      "source": "pep-0008.rst",
+      "n_chunks": 76
+    },
+    {
+      "doc_id": "61d2e3c12d083e47",
+      "title": "The Zen of Python",
+      "source": "pep-0020.rst",
+      "n_chunks": 6
+    },
+    {
+      "doc_id": "5b479fd9c13481fa",
+      "title": "Docstring Conventions",
+      "source": "pep-0257.rst",
+      "n_chunks": 19
+    },
+    {
+      "doc_id": "9b8996160cdfb03e",
+      "title": "The \"with\" Statement",
+      "source": "pep-0343.rst",
+      "n_chunks": 55
+    },
+    {
+      "doc_id": "0f8f3036fc38a3de",
+      "title": "Syntax for Delegating to a Subgenerator",
+      "source": "pep-0380.rst",
+      "n_chunks": 32
+    },
+    {
+      "doc_id": "1ae87f33e0ee1c34",
+      "title": "The Wheel Binary Package Format 1.0",
+      "source": "pep-0427.rst",
+      "n_chunks": 34
+    },
+    {
+      "doc_id": "a5feae5ef825dc18",
+      "title": "Version Identification and Dependency Specification",
+      "source": "pep-0440.rst",
+      "n_chunks": 105
+    },
+    {
+      "doc_id": "00ed39463d0680a5",
+      "title": "The Theory of Type Hints",
+      "source": "pep-0483.rst",
+      "n_chunks": 41
+    },
+    {
+      "doc_id": "a25e032f504686c8",
+      "title": "Type Hints",
+      "source": "pep-0484.rst",
+      "n_chunks": 125
+    },
+    {
+      "doc_id": "b6d5d84d24a46b97",
+      "title": "Coroutines with async and await syntax",
+      "source": "pep-0492.rst",
+      "n_chunks": 80
+    },
+    {
+      "doc_id": "de8fdb134a97cf7d",
+      "title": "Literal String Interpolation",
+      "source": "pep-0498.rst",
+      "n_chunks": 41
+    },
+    {
+      "doc_id": "d8b65ec94c20dcc6",
+      "title": "None-aware operators",
+      "source": "pep-0505.rst",
+      "n_chunks": 44
+    },
+    {
+      "doc_id": "c16921c303e8286b",
+      "title": "Dependency specification for Python Software Packages",
+      "source": "pep-0508.rst",
+      "n_chunks": 42
+    },
+    {
+      "doc_id": "b785428d336bfa08",
+      "title": "A build-system independent format for source trees",
+      "source": "pep-0517.rst",
+      "n_chunks": 63
+    },
+    {
+      "doc_id": "79a7928ab9a89e0a",
+      "title": "Specifying Minimum Build System Requirements for Python Projects",
+      "source": "pep-0518.rst",
+      "n_chunks": 34
+    },
+    {
+      "doc_id": "36159518962f7552",
+      "title": "Asynchronous Generators",
+      "source": "pep-0525.rst",
+      "n_chunks": 35
+    },
+    {
+      "doc_id": "4e9bac3fbbd66adf",
+      "title": "Syntax for Variable Annotations",
+      "source": "pep-0526.rst",
+      "n_chunks": 38
+    },
+    {
+      "doc_id": "6b38213d6c03bb44",
+      "title": "Asynchronous Comprehensions",
+      "source": "pep-0530.rst",
+      "n_chunks": 13
+    },
+    {
+      "doc_id": "a35c304214b4044a",
+      "title": "Protocols: Structural subtyping (static duck typing)",
+      "source": "pep-0544.rst",
+      "n_chunks": 78
+    },
+    {
+      "doc_id": "cb84384cb5f17589",
+      "title": "Data Classes",
+      "source": "pep-0557.rst",
+      "n_chunks": 56
+    },
+    {
+      "doc_id": "24cedd106580f3ea",
+      "title": "Postponed Evaluation of Annotations",
+      "source": "pep-0563.rst",
+      "n_chunks": 41
+    },
+    {
+      "doc_id": "94c93f7fd8babcee",
+      "title": "Assignment Expressions",
+      "source": "pep-0572.rst",
+      "n_chunks": 70
+    },
+    {
+      "doc_id": "906a0793c28adfc4",
+      "title": "Add Union Operators To dict",
+      "source": "pep-0584.rst",
+      "n_chunks": 70
+    },
+    {
+      "doc_id": "e26e4b478a435481",
+      "title": "Type Hinting Generics In Standard Collections",
+      "source": "pep-0585.rst",
+      "n_chunks": 24
+    },
+    {
+      "doc_id": "e37217a67ced11bb",
+      "title": "Literal Types",
+      "source": "pep-0586.rst",
+      "n_chunks": 45
+    },
+    {
+      "doc_id": "2314151aef4c395d",
+      "title": "TypedDict: Type Hints for Dictionaries with a Fixed Set of Keys",
+      "source": "pep-0589.rst",
+      "n_chunks": 36
+    },
+    {
+      "doc_id": "18ed3b62aa90c0eb",
+      "title": "Flexible function and variable annotations",
+      "source": "pep-0593.rst",
+      "n_chunks": 17
+    },
+    {
+      "doc_id": "3fb2b35878654bf3",
+      "title": "Removing dead batteries from the standard library",
+      "source": "pep-0594.rst",
+      "n_chunks": 53
+    },
+    {
+      "doc_id": "20f020e4fb07b2b3",
+      "title": "Annual Release Cycle for Python",
+      "source": "pep-0602.rst",
+      "n_chunks": 24
+    },
+    {
+      "doc_id": "1b96f779896ff109",
+      "title": "Allow writing union types as ``X | Y``",
+      "source": "pep-0604.rst",
+      "n_chunks": 15
+    },
+    {
+      "doc_id": "8a8877a149271399",
+      "title": "Parameter Specification Variables",
+      "source": "pep-0612.rst",
+      "n_chunks": 44
+    },
+    {
+      "doc_id": "74f7628b9d5e0341",
+      "title": "Storing project metadata in pyproject.toml",
+      "source": "pep-0621.rst",
+      "n_chunks": 54
+    },
+    {
+      "doc_id": "efde821a3005f52a",
+      "title": "Structural Pattern Matching: Specification",
+      "source": "pep-0634.rst",
+      "n_chunks": 37
+    },
+    {
+      "doc_id": "0b9e8fe8ec7fded3",
+      "title": "Structural Pattern Matching: Motivation and Rationale",
+      "source": "pep-0635.rst",
+      "n_chunks": 85
+    },
+    {
+      "doc_id": "6851e97d3527eed9",
+      "title": "Structural Pattern Matching: Tutorial",
+      "source": "pep-0636.rst",
+      "n_chunks": 36
+    },
+    {
+      "doc_id": "9117768b87185ae7",
+      "title": "Variadic Generics",
+      "source": "pep-0646.rst",
+      "n_chunks": 92
+    },
+    {
+      "doc_id": "b85f66d205e7533c",
+      "title": "User-Defined Type Guards",
+      "source": "pep-0647.rst",
+      "n_chunks": 21
+    },
+    {
+      "doc_id": "ad23617867325d80",
+      "title": "Deferred Evaluation Of Annotations Using Descriptors",
+      "source": "pep-0649.rst",
+      "n_chunks": 93
+    },
+    {
+      "doc_id": "35b758105131b8a9",
+      "title": "Exception Groups and except*",
+      "source": "pep-0654.rst",
+      "n_chunks": 95
+    },
+    {
+      "doc_id": "96c61294f2cd86dd",
+      "title": "Marking individual TypedDict items as required or potentially-missing",
+      "source": "pep-0655.rst",
+      "n_chunks": 34
+    },
+    {
+      "doc_id": "48d7bf0264520ce9",
+      "title": "Self Type",
+      "source": "pep-0673.rst",
+      "n_chunks": 32
+    },
+    {
+      "doc_id": "037f79d0f8ba9656",
+      "title": "Arbitrary Literal String Type",
+      "source": "pep-0675.rst",
+      "n_chunks": 68
+    },
+    {
+      "doc_id": "d19a07254ec82051",
+      "title": "Data Class Transforms",
+      "source": "pep-0681.rst",
+      "n_chunks": 43
+    },
+    {
+      "doc_id": "676be8f1d20eb181",
+      "title": "Using TypedDict for more precise \\*\\*kwargs typing",
+      "source": "pep-0692.rst",
+      "n_chunks": 35
+    },
+    {
+      "doc_id": "62b2ba99b0d1350a",
+      "title": "Type Parameter Syntax",
+      "source": "pep-0695.rst",
+      "n_chunks": 80
+    },
+    {
+      "doc_id": "37e67c50f61af40a",
+      "title": "Type Defaults for Type Parameters",
+      "source": "pep-0696.rst",
+      "n_chunks": 36
+    },
+    {
+      "doc_id": "d046a9a5c7967a12",
+      "title": "Override Decorator for Static Typing",
+      "source": "pep-0698.rst",
+      "n_chunks": 31
+    },
+    {
+      "doc_id": "6ed9b8e33bdcb267",
+      "title": "Syntactic formalization of f-strings",
+      "source": "pep-0701.rst",
+      "n_chunks": 47
+    },
+    {
+      "doc_id": "d42991383f672fe8",
+      "title": "Making the Global Interpreter Lock Optional in CPython",
+      "source": "pep-0703.rst",
+      "n_chunks": 129
+    },
+    {
+      "doc_id": "8b8ef45a4e81715d",
+      "title": "TypedDict: Read-only items",
+      "source": "pep-0705.rst",
+      "n_chunks": 41
+    },
+    {
+      "doc_id": "4ef54cafa35d2932",
+      "title": "Inline script metadata",
+      "source": "pep-0723.rst",
+      "n_chunks": 53
+    },
+    {
+      "doc_id": "291eff3d2334240d",
+      "title": "Dependency Groups in pyproject.toml",
+      "source": "pep-0735.rst",
+      "n_chunks": 86
+    },
+    {
+      "doc_id": "51164773df7a66f1",
+      "title": "Narrowing types with TypeIs",
+      "source": "pep-0742.rst",
+      "n_chunks": 36
+    },
+    {
+      "doc_id": "cedb11e7569c13e5",
+      "title": "Annotating Type Forms",
+      "source": "pep-0747.rst",
+      "n_chunks": 41
+    },
+    {
+      "doc_id": "80014392886f031e",
+      "title": "Implementing PEP 649",
+      "source": "pep-0749.rst",
+      "n_chunks": 82
+    }
+  ]
+}

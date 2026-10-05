@@ -33,6 +33,7 @@ htmlcov/
 data/raw/*
 data/processed/*
 data/smoke/
+data/ablations/
 !data/raw/.gitkeep
 !data/processed/.gitkeep
 experiments/*

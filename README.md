@@ -4,7 +4,7 @@ A production-style retrieval-augmented generation (RAG) system for technical doc
 
 The platform combines structure-aware ingestion, hybrid BM25 and vector retrieval with reranking, grounded generation with citations, and an evaluation harness that measures retrieval and generation separately with confidence intervals. It uses 56 Python Enhancement Proposals (PEPs) as its corpus: public, well structured, and full of exact identifiers that stress keyword and semantic search in different ways.
 
-The project is built in milestones. Milestones 1 to 5 are complete; the agent, data quality layer, production infrastructure and experiment report are in progress (see [Roadmap](#roadmap)).
+Milestones M1–M9 are implemented for a local showcase: retrieval has real pilot results, and the agent, annotation workflow and service have offline verification. Paid answer/agent evaluation and human–judge calibration remain pending; no real-model answer-quality claim is made.
 
 ---
 
@@ -31,7 +31,7 @@ This project treats those failures as measurable:
 
 - **Retrieval and generation are evaluated separately**, so a bad answer can be traced to either a retrieval miss or a generation error.
 - **Programmatic checks run before LLM judges**, because checks like citation validity and abstention correctness are cheap, deterministic and objective.
-- **Every metric is reported with a bootstrap confidence interval**, and run comparisons use a paired bootstrap, so small differences aren't mistaken for improvements.
+- **Aggregate retrieval metrics are reported with bootstrap confidence intervals**, and run comparisons use a paired bootstrap, so small differences aren't mistaken for improvements.
 - **Every run is reproducible**, recording the config, git commit, dataset version, eval set version, prompt versions and models used.
 
 ---
@@ -141,7 +141,7 @@ For this query, every top result is a PEP that *cites* PEP 484, while PEP 484's 
 ### Install
 
 ```bash
-git clone https://github.com/<your-username>/agentic-rag-eval-platform.git
+git clone https://github.com/evangelosvlachos96-dotcom/agentic-rag-eval-platform.git
 cd agentic-rag-eval-platform
 uv sync --all-extras
 ```
@@ -294,6 +294,28 @@ The [earlier preparation checkpoint](docs/evaluation-phase.md) records the offli
 
 ---
 
+## Local showcase checkpoints
+
+The [agent](docs/agent.md), [annotation workflow](docs/data-quality.md) and
+[local service](docs/infrastructure.md) are implemented and tested without paid calls.
+Docker was built and verified with networking disabled, a read-only dataset and a
+non-root user. Agent demo answers are explicitly placeholders.
+
+![Offline engineering verification](docs/images/engineering-checkpoints.png)
+
+The [chunking experiments](docs/chunking-results.md) compare 250-, 400- and 600-token
+budgets and removal of contextual headers. Smaller chunks improve Hit@1 but reduce
+Hit@8 on this pilot; paired MRR intervals include zero. Defaults remain unchanged.
+
+![Chunking experiment results](docs/images/chunking-results.png)
+
+Useful offline commands:
+
+```powershell
+rag agent-demo "What does PEP 655 specify?" --dataset-version 27b46e65f45d
+rag quality export docs/evidence/pilot-baselines/hybrid data/processed/27b46e65f45d experiments/annotations.json
+```
+
 ## Engineering practices
 
 - **Typed throughout:** strict mypy, Pydantic models at every boundary.
@@ -350,7 +372,7 @@ agentic-rag-eval-platform/
 - [x] **M6 Agent:** tool-using agent loop, multi-turn query rewriting, trajectory logging, pass@k and pass^k
 - [x] **M7 Data quality:** failure taxonomy, annotation workflow, Cohen's kappa and judge-human agreement
 - [x] **M8 Infrastructure:** async batch runner with retries, tracing, FastAPI service and Docker
-- [ ] **M9 Experiments:** chunking, retrieval and reranking ablations with a results report
+- [x] **M9 Experiments:** chunking, retrieval and reranking ablations with a results report
 
 ---
 

@@ -3,6 +3,7 @@
 
 # Evaluation versions hash file bytes; preserve the exact reviewed artifacts.
 eval_sets/**/items.jsonl -text
+docs/evidence/**/results.jsonl -text
 
 # Windows-specific files keep CRLF.
 *.bat text eol=crlf

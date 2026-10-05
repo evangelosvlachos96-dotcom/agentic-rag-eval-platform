@@ -1,9 +1,9 @@
 # Architecture
 
-Milestones 1 to 5 are implemented: ingestion, indexing, hybrid retrieval with
-reranking, grounded generation, and the evaluation harness. The agent loop
-(M6), data-quality tooling (M7), infrastructure (M8) and experiments (M9) are
-still placeholders. See the roadmap in the README for status.
+M1–M9 components are implemented for local use, with real retrieval experiments
+and offline tests for the agent, annotation workflow and service. Live answer/agent
+quality and human–judge calibration remain pending. See the README and the linked
+milestone reports for measured results and limitations.
 
 ## System overview
 
@@ -65,7 +65,7 @@ flowchart LR
         OUT --> CMP[compare: paired bootstrap deltas]
     end
 
-    subgraph Planned["Planned"]
+    subgraph Extensions["Implemented local extensions"]
         AGENT[Agent loop, pass@k / pass^k  M6]
         DQ[Failure taxonomy, Cohen's kappa  M7]
         INFRA[Batch runner, tracing, FastAPI, Docker  M8]
@@ -84,13 +84,13 @@ flowchart LR
 | `ragplatform.llm` | Provider protocol, Anthropic client, fake provider, disk cache, structured output, pricing | M4 | done |
 | `ragplatform.prompts` | Versioned prompt files (`answer_v1`, `judge_*_v1`, `generate_candidates_v1`) | M4, M5 | done |
 | `ragplatform.generation` | Grounded answers with citations and abstention | M4 | done |
-| `ragplatform.pipelines` | `RunConfig` YAML (retrieval + generation + judge) | M3 | partial |
+| `ragplatform.pipelines` | Run configuration, bounded async batch execution and BM25 chunking sweeps | M3, M8, M9 | implemented |
 | `ragplatform.evals` | Eval items, taxonomy, metrics, checks, judges, bootstrap, candidates, review, runner, compare | M5 | done |
 | `ragplatform.cli` | The `rag` typer CLI | M2-M5 | done |
-| `ragplatform.agent` | Tool-using loop, query rewriting, step limits, trajectory logging | M6 | planned |
-| `ragplatform.data_quality` | Failure taxonomy, annotation export, Cohen's kappa, judge-human agreement | M7 | planned |
-| `ragplatform.api` | FastAPI service | M8 | planned |
-| `ragplatform.observability` | structlog configuration and tracing | M8 | planned |
+| `ragplatform.agent` | Tool-using loop, query rewriting, step limits, trajectory logging | M6 | tested offline |
+| `ragplatform.data_quality` | Failure taxonomy, annotation export, Cohen's kappa, judge-human agreement | M7 | tested offline; calibration pending |
+| `ragplatform.api` | FastAPI service | M8 | verified locally |
+| `ragplatform.observability` | structlog configuration and tracing | M8 | verified locally |
 
 ## Key design decisions
 
@@ -194,3 +194,10 @@ factory loads BM25 only; no environment key enables generation. A request carrie
 new correlation ID through retrieval and optional generation/agent spans. The batch
 runner limits worker tasks, preserves input order and retries only explicit transient
 errors. See [local deployment and constraints](infrastructure.md).
+
+## Retrieval experiments (M9)
+
+The frozen 24-item pilot was run across BM25, vector, hybrid and hybrid with
+reranking. BM25 chunking sweeps add 250/600-token and no-contextual-header variants.
+All runs retain configuration, labels, dataset versions, item metrics and bootstrap
+summaries. No provider is constructed for these runs. Reports: [retrieval baselines](baseline-results.md) and [chunking ablations](chunking-results.md).

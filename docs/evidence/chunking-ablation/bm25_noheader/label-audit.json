@@ -1,0 +1,15 @@
+{
+  "n_items": 24,
+  "category_counts": {
+    "comparison": 4,
+    "conceptual": 4,
+    "exact_term": 4,
+    "lookup": 4,
+    "multi_hop": 4,
+    "unanswerable": 4
+  },
+  "errors": [],
+  "warnings": [
+    "Fewer than 60 items: treat this as a pilot, not a full benchmark."
+  ]
+}

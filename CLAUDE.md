@@ -45,7 +45,7 @@ corpus -> ingestion -> retrieval -> generation -> Answer
   judges, bootstrap CIs, candidate generation, review session, runner, report, compare.
 - `cli/`: the `rag` typer app. Modules there must **not** use
   `from __future__ import annotations` (typer evaluates annotations at runtime).
-- `agent/`, `data_quality/`, `api/`, `observability/`: planned (M6-M8).
+- `agent/`, `data_quality/`, `api/`, `observability/`: implemented with offline verification (M6-M8).
 
 Full diagram: `docs/architecture.md`. Evaluation methodology: `docs/evaluation.md`.
 
@@ -56,7 +56,7 @@ uv sync                      # install base + dev deps (never install extras by 
 uv sync --extra retrieval    # sentence-transformers + torch; needed for rag index / vector configs
 make lint                    # ruff check + ruff format --check
 make format                  # ruff format + ruff check --fix
-make typecheck               # mypy --strict over src and tests
+make typecheck               # mypy --strict over src and tests, with api extra
 make test                    # pytest (slow and integration tests are deselected by default)
 make check                   # lint + typecheck + test; must pass before every commit
 uv run pytest -m slow        # the two model-download tests (run locally, not in CI)
@@ -142,7 +142,7 @@ No GNU make on Windows: run the `uv run ...` commands from the Makefile directly
 | M6 | Agent | bounded search loop, query rewriting, trajectories, pass@k and pass^k | implemented and tested offline; real-provider evaluation pending |
 | M7 | Data quality | failure signals, annotation export/import, kappa, judge-human agreement | implemented offline; actual human/judge calibration pending |
 | M8 | Infrastructure | bounded async batches, tracing, local FastAPI service, Docker | implemented and verified offline; not a public production deployment |
-| M9 | Experiments | chunking, vector-only vs hybrid, reranking ablations with a results report | planned |
+| M9 | Experiments | chunking, retrieval-mode and reranking ablations | pilot runs and reports complete; broader held-out benchmark pending |
 
 When starting a milestone: read the relevant subpackage docstring, add models
 first, then pure logic with tests, then the LLM-touching parts with a mocked
