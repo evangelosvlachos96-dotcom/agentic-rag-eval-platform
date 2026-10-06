@@ -8,7 +8,8 @@ try {
     $check = @'
 import json, urllib.request, urllib.error, time, os
 base = 'http://127.0.0.1:8000'
-for attempt in range(30):
+deadline = time.monotonic() + 45
+while time.monotonic() < deadline:
     try:
         health = json.load(urllib.request.urlopen(base + '/health', timeout=2))
         break
@@ -37,6 +38,9 @@ print(json.dumps({'health':health, 'retrieved_chunks':len(query['retrieved']), '
     $evidence | Add-Member -NotePropertyName image_id -NotePropertyValue $imageId
     $evidence | ConvertTo-Json -Depth 8 | Set-Content -Encoding utf8 (Join-Path $root 'docs/evidence/infrastructure/container-smoke.json')
     Write-Output 'Container checks passed: real retrieval, generation disabled, non-root, network disabled.'
+} catch {
+    docker logs --tail 50 $container
+    throw
 } finally {
     docker rm -f $container | Out-Null
 }

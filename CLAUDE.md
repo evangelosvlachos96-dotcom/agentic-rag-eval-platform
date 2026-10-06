@@ -105,8 +105,10 @@ No GNU make on Windows: run the `uv run ...` commands from the Makefile directly
 - **Docs stay honest.** The README roadmap only ticks a box when the feature is
   implemented, tested and used somewhere. Update the roadmap in the same commit as the
   feature.
-- **Commits.** Conventional Commits (`feat:`, `fix:`, `chore:`, `docs:`, `test:`). One
-  logical change per commit. Do not push; the owner pushes after review.
+- **Commits.** Work on `main`. Use plain single-line alphanumeric commit messages,
+  with Evangelos Vlachos as sole author and committer and no coauthor trailers.
+  Complete checks, commit and push each finished phase. Paid model calls require
+  explicit owner approval; free local and mocked work is authorized.
 
 ## Integrity rules for evaluation
 

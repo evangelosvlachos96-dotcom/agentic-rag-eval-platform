@@ -1,0 +1,14 @@
+{
+  "status": "passed",
+  "kind": "Placeholder integration check only; no answer-quality evidence",
+  "run_id": "20261006T054849Z_bm25_only",
+  "source_commit": "9e90cb577df108ff70dcde16aa22efafdf883cdf",
+  "eval_version": "1f48f2e04ef7",
+  "dataset_version": "27b46e65f45d",
+  "items": 24,
+  "errors": 0,
+  "provider": "cached(fake)",
+  "fake_completion_calls": 92,
+  "anthropic_calls": 0,
+  "source_summary_sha256": "9024dc05f559cbf12d8c7003b6c0408d7a30d33f0c7765407a4fb00540c0cd74"
+}

@@ -296,6 +296,8 @@ The [earlier preparation checkpoint](docs/evaluation-phase.md) records the offli
 
 ## Local showcase checkpoints
 
+See the [readiness report](docs/readiness.md) for verified behavior and the paid-evaluation boundary.
+
 The [agent](docs/agent.md), [annotation workflow](docs/data-quality.md) and
 [local service](docs/infrastructure.md) are implemented and tested without paid calls.
 Docker was built and verified with networking disabled, a read-only dataset and a
@@ -380,4 +382,4 @@ agentic-rag-eval-platform/
 
 MIT. See [LICENSE](LICENSE).
 
-The PEP corpus is downloaded at runtime from [python/peps](https://github.com/python/peps) and is not redistributed in this repository.
+The full PEP corpus is downloaded at runtime from [python/peps](https://github.com/python/peps). Evidence reports include selected source passages for review and reproducibility.

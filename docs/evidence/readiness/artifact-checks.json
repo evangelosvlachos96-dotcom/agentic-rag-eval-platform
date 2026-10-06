@@ -1,0 +1,23 @@
+{
+  "status": "passed",
+  "eval_version": "1f48f2e04ef7",
+  "questions_per_run": 24,
+  "verified_runs": [
+    "20261005T030406Z_bm25_only",
+    "20261005T033936Z_hybrid",
+    "20261005T033941Z_hybrid_rerank",
+    "20261005T033932Z_vector_only",
+    "20261005T072507Z_bm25_noheader",
+    "20261005T072446Z_bm25_tokens250",
+    "20261005T072458Z_bm25_tokens600"
+  ],
+  "checks": [
+    "item coverage",
+    "retrieval-only provenance",
+    "approved question text and source relevance flags",
+    "per-item metrics",
+    "bootstrap means and intervals",
+    "annotation hash and blank labels"
+  ],
+  "llm_calls": 0
+}

@@ -10,5 +10,5 @@
   "network": "none",
   "read_only_root": true,
   "llm_calls": 0,
-  "image_id": "sha256:a3678c14dba2fa7eb5a14c08dcd4d2b1cb4ce0b17bf110970b14015c17b28743"
+  "image_id": "sha256:6bdecd206f0323b9584c8cbaf2e33eef25a257e3385d7f509e9f42e5e8d8e81b"
 }

@@ -1,8 +1,9 @@
 # USD per million tokens, Anthropic first-party API rates.
 # Used only to *estimate* run cost before confirming a generation run.
-# Update this file when prices change; the runner refuses unknown model ids.
-checked_on: "2026-09-16"
-source: "Anthropic pricing table as bundled with the Claude Code claude-api reference (cached 2026-06-24)"
+# Standard first-party global base-token rates; excludes optional billing modifiers.
+# Unknown model prices produce an unknown estimate. This is not a spending cap.
+checked_on: "2026-10-05"
+source: "https://platform.claude.com/docs/en/about-claude/pricing"
 models:
   claude-opus-5:
     input_per_mtok: 5.00
