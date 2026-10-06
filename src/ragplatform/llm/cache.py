@@ -2,9 +2,10 @@
 
 The key is the sha256 of the full :class:`CompletionRequest` (model, system,
 messages, max_tokens, purpose), so an identical call is served
-from ``<cache_dir>/<key>.json`` without touching the network. Evaluation runs
+from ``<cache_dir>/<provider_namespace>_<key>.json`` without touching the network. Evaluation runs
 therefore cost nothing to repeat, and a run can be resumed after a crash.
-Hits and misses are counted so the runner can report them.
+Hits and misses are counted so the runner can report them. Older unnamespaced
+files are deliberately not reused; provider identity was not recorded in them.
 """
 
 from __future__ import annotations
@@ -43,7 +44,9 @@ class CachedProvider:
         return f"cached({self._inner.name})"
 
     def _path(self, request: CompletionRequest) -> Path:
-        return self._dir / f"{cache_key(request)}.json"
+        # A fake response must never be reused by a real provider for the same request.
+        namespace = hashlib.sha256(self._inner.name.encode("utf-8")).hexdigest()[:16]
+        return self._dir / f"{namespace}_{cache_key(request)}.json"
 
     async def complete(self, request: CompletionRequest) -> CompletionResponse:
         path = self._path(request)

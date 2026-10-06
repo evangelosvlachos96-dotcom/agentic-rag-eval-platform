@@ -65,3 +65,23 @@ def test_baseline_is_retrieval_only(offline_cli: Path) -> None:
     summary = RunSummary.model_validate_json(summaries[0].read_text(encoding="utf-8"))
     assert summary.llm_calls == 0
     assert summary.retrieval_only
+
+
+def test_generation_dry_run_and_decline_never_construct_provider(offline_cli: Path) -> None:
+    args = [
+        "eval",
+        "run",
+        "--eval-set",
+        "fixture",
+        "--config",
+        str(REPO / "configs/bm25_only.yaml"),
+    ]
+    runner = CliRunner()
+    dry = runner.invoke(app, [*args, "--dry-run"])
+    assert dry.exit_code == 0, dry.output
+    assert "zero LLM calls" in dry.output
+    assert "not a spending cap" in dry.output
+    declined = runner.invoke(app, args, input="n\n")
+    assert declined.exit_code == 1
+    assert "Aborted" in declined.output
+    assert not offline_cli.exists()

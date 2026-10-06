@@ -1,6 +1,7 @@
 """Offline agent behavior, cost boundaries, and evidence validity."""
 
 import json
+from pathlib import Path
 
 import pytest
 
@@ -157,3 +158,14 @@ async def test_timeout_and_question_limit() -> None:
             "  ", provider=provider, search=Search(), model="fake", dataset_version="fixture"
         )
     assert provider.calls == 0
+
+
+@pytest.mark.asyncio
+async def test_cached_fake_trajectory_is_still_placeholder(tmp_path: Path) -> None:
+    from ragplatform.llm.cache import CachedProvider
+
+    provider = CachedProvider(FakeProvider(responses=['{"action":"abstain"}']), tmp_path)
+    run = await run_agent(
+        "q", provider=provider, search=Search(), model="fake", dataset_version="fixture"
+    )
+    assert run.placeholder

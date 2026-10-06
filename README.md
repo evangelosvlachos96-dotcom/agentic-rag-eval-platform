@@ -322,7 +322,7 @@ rag quality export docs/evidence/pilot-baselines/hybrid data/processed/27b46e65f
 - **Tested:** Offline tests run offline with mocked LLM calls. Both real-model checks also passed using the cached local models; they remain separate from default CI.
 - **Reproducible:** pinned corpus commit, content-hashed dataset versions, versioned prompts and eval sets, and full run metadata.
 - **Pluggable components:** loaders, embedders, vector stores, rerankers and LLM providers sit behind protocols.
-- **Cost aware:** disk caching of LLM calls, cost estimates from a pricing config, and `--limit` for small trial runs.
+- **Cost aware:** provider-isolated caching, per-model usage accounting, and [provider-free dry runs](docs/cost-safety.md). Planning estimates are not spending caps.
 - **Safe configuration:** secrets come from environment variables and `.env` is never committed.
 - **Continuous integration:** GitHub Actions runs lint, type checking and tests on every push and pull request.
 

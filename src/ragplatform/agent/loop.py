@@ -144,7 +144,7 @@ async def run_agent(
         provider=provider.name,
         model=model,
         dataset_version=dataset_version,
-        placeholder=provider.name == "fake",
+        placeholder="fake" in provider.name,
         stop_reason=reason,
         steps=steps,
         answer=answer,

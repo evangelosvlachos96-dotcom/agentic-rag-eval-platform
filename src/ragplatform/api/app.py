@@ -108,7 +108,7 @@ def create_app(
                         response = QueryResponse(
                             trace_id=correlation,
                             dataset_version=dataset_version,
-                            placeholder=provider is not None and provider.name == "fake",
+                            placeholder=provider is not None and "fake" in provider.name,
                             retrieved=retrieved,
                             answer=answer,
                         )

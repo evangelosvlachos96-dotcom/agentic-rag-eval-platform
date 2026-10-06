@@ -43,6 +43,7 @@ from ragplatform.evals.results import (
 from ragplatform.generation.generator import generate_answer
 from ragplatform.ingestion.chunking import ChunkMetadata
 from ragplatform.ingestion.dataset import read_chunks, read_manifest, utc_now_iso
+from ragplatform.llm.metering import MeteredProvider
 from ragplatform.models import TokenUsage
 
 if TYPE_CHECKING:
@@ -126,6 +127,7 @@ class EvalRunner:
         self.dataset_version = read_manifest(dataset_dir).dataset_version
         self.retrievals: dict[str, list[RetrievedChunk]] = {}
         self.results: dict[str, ItemResult] = {}
+        self.meter: MeteredProvider | None = None
         self.llm_calls = 0
         self.total_usage = TokenUsage(input_tokens=0, output_tokens=0)
 
@@ -207,10 +209,6 @@ class EvalRunner:
             self.pricing,
         )
 
-    def _account(self, usage: TokenUsage, calls: int = 1) -> None:
-        self.llm_calls += calls
-        self.total_usage = self.total_usage + usage
-
     async def _judge(
         self, item: EvalItem, answer_text: str, context: list[RetrievedChunk]
     ) -> tuple[JudgeEvaluation, dict[str, float]]:
@@ -222,14 +220,12 @@ class EvalRunner:
             self.provider, self.config.judge, self.judge_model, item.question, answer_text, context
         )
         usage = usage + r.usage
-        self._account(r.usage, 2 if r.repaired else 1)
         if faith.score is not None:
             metrics["faithfulness"] = faith.score
         rel, r = await judge_relevance(
             self.provider, self.config.judge, self.judge_model, item.question, answer_text
         )
         usage = usage + r.usage
-        self._account(r.usage, 2 if r.repaired else 1)
         metrics["relevance"] = 1.0 if rel.relevant else 0.0
         correctness = None
         if item.answerable:
@@ -242,7 +238,6 @@ class EvalRunner:
                 item.reference_answer,
             )
             usage = usage + r.usage
-            self._account(r.usage, 2 if r.repaired else 1)
             metrics["correctness"] = 1.0 if correctness.correct else 0.0
         return JudgeEvaluation(
             faithfulness=faith, correctness=correctness, relevance=rel, usage=usage
@@ -256,8 +251,6 @@ class EvalRunner:
         answer = await generate_answer(
             item.question, context, self.provider, self.config.generation, self.generator_model
         )
-        if answer.usage is not None:
-            self._account(answer.usage, 2 if answer.metadata.get("repaired") else 1)
         checks = programmatic_checks(answer, item)
         metrics = dict(base.metrics)
         metrics["abstained"] = 1.0 if checks.abstained else 0.0
@@ -266,6 +259,9 @@ class EvalRunner:
         else:
             metrics["correct_abstention"] = 1.0 if checks.correct_abstention else 0.0
             metrics["missed_abstention"] = 1.0 if checks.missed_abstention else 0.0
+        self.results[item.id] = base.model_copy(
+            update={"answer": answer, "checks": checks, "metrics": metrics}
+        )
         judges: JudgeEvaluation | None = None
         if not checks.abstained:
             metrics["citations_valid"] = 1.0 if checks.citations_valid else 0.0
@@ -283,14 +279,26 @@ class EvalRunner:
     async def generate_all(self) -> None:
         if self.provider is None:
             raise ValueError("a provider is required for the generation phase")
-        for item in self.items:
-            try:
-                self.results[item.id] = await self._generate_item(item)
-            except Exception as exc:  # one bad item must not kill the run
-                log.warning("item_failed", item_id=item.id, error=str(exc))
-                self.results[item.id] = self.results[item.id].model_copy(
-                    update={"error": f"{type(exc).__name__}: {exc}"}
-                )
+        if self.meter is not None:
+            raise ValueError("generation already attempted; create a new run to repeat")
+        original = self.provider
+        self.meter = MeteredProvider(original)
+        self.provider = self.meter
+        try:
+            for item in self.items:
+                try:
+                    self.results[item.id] = await self._generate_item(item)
+                except Exception as exc:
+                    log.warning("item_failed", item_id=item.id, error=type(exc).__name__)
+                    self.results[item.id] = self.results[item.id].model_copy(
+                        update={"error": type(exc).__name__}
+                    )
+        finally:
+            self.provider = original
+            self.llm_calls = len(self.meter.records)
+            self.total_usage = TokenUsage(input_tokens=0, output_tokens=0)
+            for usage in self.meter.usage_by_model().values():
+                self.total_usage = self.total_usage + usage
         log.info("generation_phase_complete", items=len(self.items), llm_calls=self.llm_calls)
 
     # ------------------------------------------------------------------ aggregation
@@ -313,12 +321,7 @@ class EvalRunner:
         for category in sorted({r.category for r in results}):
             by_category[category] = self._aggregate([r for r in results if r.category == category])
         commit, dirty = git_state(self.repo_dir) if self.repo_dir is not None else (None, None)
-        cost: float | None = None
-        if self.pricing is not None and not self.retrieval_only and self.generator_model:
-            try:
-                cost = self.pricing.cost_usd(self.generator_model, self.total_usage)
-            except KeyError:
-                cost = None
+        cost = self.meter.estimated_cost(self.pricing) if self.meter else None
         summary = RunSummary(
             run_id=self.run_dir.name,
             config_name=self.config.name,
@@ -350,6 +353,13 @@ class EvalRunner:
             cache_misses=self.cache.misses if self.cache else 0,
             total_usage=self.total_usage,
             estimated_cost_usd=cost,
+            usage_by_model=self.meter.usage_by_model() if self.meter else {},
+            billable_usage_by_model=self.meter.usage_by_model(billable_only=True)
+            if self.meter
+            else {},
+            calls_with_unknown_usage=sum(r.usage is None for r in self.meter.records)
+            if self.meter
+            else 0,
             bootstrap_seed=self.bootstrap_seed,
             bootstrap_resamples=self.bootstrap_resamples,
         )

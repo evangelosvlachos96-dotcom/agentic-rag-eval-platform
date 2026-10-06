@@ -233,6 +233,9 @@ def run(
         bool, typer.Option("--mock-llm", help="Smoke-test with canned placeholder responses.")
     ] = False,
     seed: Annotated[int, typer.Option(help="Bootstrap seed.")] = 0,
+    dry_run: Annotated[
+        bool, typer.Option(help="Plan generation without constructing a provider.")
+    ] = False,
 ) -> None:
     """Evaluate a config on an eval set and write experiments/runs/<timestamp>_<config>/."""
     from ragplatform.evals.eval_set import load_eval_set
@@ -256,11 +259,8 @@ def run(
     cache: CachedProvider | None = None
     generator_model = run_config.generation.model or settings.anthropic_model
     judge_model = run_config.judge.model or settings.anthropic_judge_model
-    if not retrieval_only:
-        cache = CachedProvider(_provider(settings, mock_llm), settings.llm_cache_dir)
-        provider = cache
-        if mock_llm:
-            generator_model = judge_model = "fake-model"
+    if mock_llm:
+        generator_model = judge_model = "fake-model"
 
     run_dir = settings.experiments_dir / "runs" / make_run_id(run_config.name)
     runner = EvalRunner(
@@ -296,9 +296,25 @@ def run(
             f"(generator {estimate.generator_model}, judge {estimate.judge_model}); "
             "cached calls are free"
         )
+        typer.echo(
+            "Planning allowance, not a spending cap; repair calls and SDK retries may add cost."
+        )
+        if pricing is not None:
+            typer.echo(
+                f"Pricing snapshot last checked: {pricing.checked_on}; verify before paid use."
+            )
+        if dry_run:
+            typer.echo("Dry run complete: zero LLM calls; no provider constructed.")
+            return
         if not yes and not typer.confirm("proceed?", default=False):
             raise typer.Abort()
+        cache = CachedProvider(_provider(settings, mock_llm), settings.llm_cache_dir)
+        runner.cache = cache
+        runner.provider = cache
         asyncio.run(runner.generate_all())
+    if dry_run:
+        typer.echo("Dry run complete: zero LLM calls; no provider constructed.")
+        return
     summary = runner.finalize()
     typer.echo(f"run written to {run_dir}")
     for name, metric in sorted(summary.metrics.items()):

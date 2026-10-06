@@ -52,7 +52,7 @@ all = [
 rag = "ragplatform.cli:app"
 
 [project.urls]
-Repository = "https://github.com/evangelosvlachos/agentic-rag-eval-platform"
+Repository = "https://github.com/evangelosvlachos96-dotcom/agentic-rag-eval-platform"
 
 [dependency-groups]
 dev = [

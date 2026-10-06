@@ -129,6 +129,27 @@ def render_report(summary: RunSummary, results: Sequence[ItemResult]) -> str:
             "numbers below are canned and mean nothing.",
             "",
         ]
+    if summary.usage_by_model:
+        lines += [
+            "## Usage accounting",
+            "",
+            "Token totals include cached responses; incremental cost excludes cache hits. "
+            "Rates are applied separately per requested model. Hidden SDK retries and "
+            "provider billing adjustments are not independently observable.",
+            "",
+            f"Calls with unknown usage: {summary.calls_with_unknown_usage}",
+            "",
+            "| Model | Total input | Total output | Billable input | Billable output |",
+            "| --- | ---: | ---: | ---: | ---: |",
+        ]
+        for model, tokens in sorted(summary.usage_by_model.items()):
+            billed = summary.billable_usage_by_model.get(model)
+            lines.append(
+                f"| {model} | {tokens.input_tokens} | {tokens.output_tokens} | "
+                f"{billed.input_tokens if billed else 0} | "
+                f"{billed.output_tokens if billed else 0} |"
+            )
+        lines.append("")
     lines += ["## Metrics", "", *_metric_table(summary.metrics), ""]
     if summary.by_category:
         lines += ["## By category", ""]

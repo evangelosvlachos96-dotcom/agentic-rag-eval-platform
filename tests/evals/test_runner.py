@@ -182,3 +182,43 @@ def test_git_state_and_run_id() -> None:
     assert dirty is None or isinstance(dirty, bool)
     assert make_run_id("hybrid").endswith("_hybrid")
     assert git_state(Path("/definitely/not/a/repo")) == (None, None)
+
+
+async def test_invalid_outputs_are_still_metered(dataset_dir: Path, tmp_path: Path) -> None:
+    runner = _runner(
+        dataset_dir,
+        tmp_path,
+        provider=FakeProvider(responder=lambda r: "invalid"),
+        retrieval_only=False,
+        limit=1,
+    )
+    runner.retrieve_all()
+    await runner.generate_all()
+    summary = runner.finalize()
+    assert summary.llm_calls == 2
+    assert summary.n_errors == 1
+    assert summary.total_usage.output_tokens > 0
+    assert summary.calls_with_unknown_usage == 0
+    assert summary.billable_usage_by_model["fake-model"].output_tokens > 0
+
+
+async def test_judge_error_preserves_generated_answer(dataset_dir: Path, tmp_path: Path) -> None:
+    def responder(request: CompletionRequest) -> str:
+        return mock_responder(request) if request.purpose == "answer" else "invalid"
+
+    runner = _runner(
+        dataset_dir,
+        tmp_path,
+        provider=FakeProvider(responder=responder),
+        retrieval_only=False,
+        limit=1,
+    )
+    runner.retrieve_all()
+    await runner.generate_all()
+    summary = runner.finalize()
+    result = read_results(runner.run_dir)[0]
+    assert result.answer is not None
+    assert result.checks is not None
+    assert result.error == "StructuredOutputError"
+    assert summary.llm_calls == 3
+    assert summary.total_usage.output_tokens > 0

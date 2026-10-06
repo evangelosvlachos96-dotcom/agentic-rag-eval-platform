@@ -112,6 +112,9 @@ class RunSummary(BaseModel):
     cache_hits: int
     cache_misses: int
     total_usage: TokenUsage
+    usage_by_model: dict[str, TokenUsage] = Field(default_factory=dict)
+    billable_usage_by_model: dict[str, TokenUsage] = Field(default_factory=dict)
+    calls_with_unknown_usage: int = 0
     estimated_cost_usd: float | None
     bootstrap_seed: int
     bootstrap_resamples: int

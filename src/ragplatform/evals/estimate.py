@@ -2,8 +2,9 @@
 
 The estimate builds the real answer prompts (retrieval has already run) and
 counts them with the approximate token counter, then adds a fixed allowance
-per judge call. It is deliberately an over-estimate: judges are budgeted as
-if every item is answered, even though abstentions skip some judge calls.
+per judge call. It is an approximate planning estimate, not an upper bound. Judges are budgeted
+as if every item is answered, but repair calls, SDK retries and outputs longer
+than the fixed allowances can increase actual usage.
 """
 
 from __future__ import annotations

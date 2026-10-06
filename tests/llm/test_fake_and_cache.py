@@ -76,3 +76,17 @@ async def test_cached_provider_hits_disk_on_repeat(tmp_path: Path) -> None:
     again = CachedProvider(FakeProvider(responses=[]), tmp_path / "llm")
     assert (await again.complete(_request("same"))).text == "first"
     assert again.name == "cached(fake)"
+
+
+async def test_cache_is_isolated_by_provider(tmp_path: Path) -> None:
+    class OtherProvider(FakeProvider):
+        @property
+        def name(self) -> str:
+            return "other-test-provider"
+
+    fake = CachedProvider(FakeProvider(responses=["placeholder"]), tmp_path)
+    other = CachedProvider(OtherProvider(responses=["independent"]), tmp_path)
+    await fake.complete(_request("same"))
+    response = await other.complete(_request("same"))
+    assert response.text == "independent"
+    assert not response.cached
