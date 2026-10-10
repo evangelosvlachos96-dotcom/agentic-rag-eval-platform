@@ -47,6 +47,16 @@ class AnthropicProvider:
     def name(self) -> str:
         return "anthropic"
 
+    async def count_input_tokens(self, request: CompletionRequest) -> int:
+        """Use the non-billable count endpoint before reserving a paid request."""
+        messages: list[MessageParam] = [
+            {"role": m.role, "content": m.content} for m in request.messages
+        ]
+        response = await self._client.messages.count_tokens(
+            model=request.model, system=request.system or omit, messages=messages
+        )
+        return response.input_tokens
+
     async def complete(self, request: CompletionRequest) -> CompletionResponse:
         messages: list[MessageParam] = [
             {"role": m.role, "content": m.content} for m in request.messages

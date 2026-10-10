@@ -3,7 +3,9 @@
 The M1–M9 local implementation is complete. Real retrieval experiments, offline
 agent/evaluation tests, annotation tooling and container verification are saved in
 this repository. **Paid answer and agent evaluation has not been run.** Development
-stops at that spending boundary until the owner explicitly approves it.
+had stopped at that spending boundary. On 2026-10-10 the owner approved a EUR 4
+validation budget; the [bounded live workflow](live-validation.md) is prepared,
+but execution is blocked by the missing local API credential.
 
 ## Verified
 

@@ -2,7 +2,7 @@
 # Used only to *estimate* run cost before confirming a generation run.
 # Standard first-party global base-token rates; excludes optional billing modifiers.
 # Unknown model prices produce an unknown estimate. This is not a spending cap.
-checked_on: "2026-10-05"
+checked_on: "2026-10-10"
 source: "https://platform.claude.com/docs/en/about-claude/pricing"
 models:
   claude-opus-5:

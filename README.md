@@ -6,6 +6,11 @@ The platform combines structure-aware ingestion, hybrid BM25 and vector retrieva
 
 Milestones M1–M9 are implemented for a local showcase: retrieval has real pilot results, and the agent, annotation workflow and service have offline verification. Paid answer/agent evaluation and human–judge calibration remain pending; no real-model answer-quality claim is made.
 
+[Explore the results page](https://evangelosvlachos96-dotcom.github.io/agentic-rag-eval-platform/)
+or read the [budgeted live-validation plan](docs/live-validation.md).
+
+![Measured results showcase](docs/images/results-desktop.png)
+
 ---
 
 ## Contents
