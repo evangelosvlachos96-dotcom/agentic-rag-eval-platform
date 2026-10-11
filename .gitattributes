@@ -3,7 +3,9 @@
 
 # Evaluation versions hash file bytes; preserve the exact reviewed artifacts.
 eval_sets/**/items.jsonl -text
-docs/evidence/**/results.jsonl -text
+docs/evidence/**/results.jsonl -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+# Archived patches contain meaningful context-line prefixes, including blank lines.
+docs/evidence/**/execution-changes.patch -whitespace
 
 # Windows-specific files keep CRLF.
 *.bat text eol=crlf

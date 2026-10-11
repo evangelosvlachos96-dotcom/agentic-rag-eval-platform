@@ -1,0 +1,22 @@
+{
+  "status": "completed",
+  "agents": [
+    {
+      "item_id": "pilot-001",
+      "stop_reason": "answered"
+    },
+    {
+      "item_id": "pilot-009",
+      "stop_reason": "answered"
+    },
+    {
+      "item_id": "pilot-017",
+      "stop_reason": "answered"
+    },
+    {
+      "item_id": "pilot-021",
+      "stop_reason": "abstained"
+    }
+  ],
+  "human_review": "pending"
+}

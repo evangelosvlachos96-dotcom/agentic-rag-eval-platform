@@ -12,7 +12,8 @@ The allowance is **not a spending cap**. It uses approximate input token counts 
 fixed typical output allowances. Structured-output repairs, longer answers and
 provider SDK retries can increase usage. Verify model availability and current
 rates before authorizing a paid run; the CLI prints the pricing snapshot date.
-No paid evaluation was executed during this development work.
+The original development phase used no paid requests. The owner subsequently
+authorized the [bounded live validation](live-validation.md) on 2026-10-10.
 
 Run accounting observes each completion before output parsing. Consequently:
 
@@ -33,3 +34,13 @@ a real-provider request with the same content. Older unnamespaced cache files ar
 not reused because they lack that isolation. This can cause a future real run to
 make fresh calls; review its plan first. Cached fake agent trajectories remain
 explicitly marked as placeholders.
+
+## Bounded live session
+
+The live-validation script adds persistent pre-call reservations, a shared USD 3
+limit, no SDK retries, and five seconds between completed paid requests. Unknown
+usage stops automatic progress. After confirming the old process has stopped, an
+operator can explicitly resume while keeping the full failed-call reservation.
+This never refunds an unknown request, resets the budget, or clears an overrun.
+Both the interrupted run and the recovery note remain in published evidence.
+Reported usage cost and retained unknown-cost allowances are shown separately.

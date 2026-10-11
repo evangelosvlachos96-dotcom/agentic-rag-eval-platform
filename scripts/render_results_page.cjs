@@ -26,6 +26,9 @@ const root = path.resolve(__dirname, '..');
         document.documentElement.scrollWidth > window.innerWidth);
       if (overflow) throw new Error(`Horizontal overflow at ${width}px`);
       await page.screenshot({path: path.join(root, `docs/images/results-${name}.png`), fullPage: true});
+      if (name === 'desktop') {
+        await page.locator('#validation').screenshot({path: path.join(root, 'docs/images/live-validation.png')});
+      }
     }
     console.log('Desktop/mobile screenshots saved; local links and layout checks passed.');
   } finally { await browser.close(); }

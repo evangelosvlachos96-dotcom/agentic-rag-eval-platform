@@ -1,0 +1,3507 @@
+{
+  "status": "verified",
+  "completion_attempts": 326,
+  "known_usage_cost_usd": 1.41997,
+  "unmetered_reserved_usd": 0.012039,
+  "committed_usd": 1.432009,
+  "unknown_usage_calls": 1,
+  "input_tokens": 581540,
+  "output_tokens": 78588,
+  "results_sha256": {
+    "bm25_only": "d3e43920484da521f245cdbf8911eb9e828ad30570db7105396d4ed61d725fc6",
+    "vector_only": "cde5c086103cf0174c221fa5023f7a9297235aa8e292a280b32960e885ebbf24",
+    "hybrid": "938f181cdd78704f770fab892cbcad9d912f6d50141946eb0af841c80666ddac",
+    "hybrid_rerank": "f243850ae8923f235983580a2115bbc9f99f3e1688af5d7d2e9594299f1e572e"
+  },
+  "summaries": {
+    "bm25_only": {
+      "run_id": "20261010T152756Z_live_bm25_only",
+      "config_name": "live_bm25_only",
+      "created_at": "2026-10-10T15:34:02+00:00",
+      "git_commit": "c1193279bda76c5d2ca549e84668607de824a111",
+      "git_dirty": true,
+      "dataset_version": "27b46e65f45d",
+      "eval_set_name": "v1",
+      "eval_set_version": "1f48f2e04ef7",
+      "prompt_versions": {
+        "answer": "answer_v1",
+        "judge_faithfulness": "judge_faithfulness_v1",
+        "judge_correctness": "judge_correctness_v1",
+        "judge_relevance": "judge_relevance_v1"
+      },
+      "generator_model": "claude-sonnet-5",
+      "judge_model": "claude-haiku-4-5",
+      "llm_provider": "cached(budgeted(anthropic))",
+      "retrieval_only": false,
+      "n_items": 24,
+      "n_errors": 0,
+      "n_unmatched_labels": 0,
+      "metrics": {
+        "hit@1": {
+          "mean": 0.25,
+          "ci_lower": 0.1,
+          "ci_upper": 0.45,
+          "n": 20
+        },
+        "hit@8": {
+          "mean": 0.7,
+          "ci_lower": 0.5,
+          "ci_upper": 0.9,
+          "n": 20
+        },
+        "recall@8": {
+          "mean": 0.4904761904761905,
+          "ci_lower": 0.3154761904761905,
+          "ci_upper": 0.6571726190476191,
+          "n": 20
+        },
+        "precision@8": {
+          "mean": 0.10625,
+          "ci_lower": 0.075,
+          "ci_upper": 0.14375,
+          "n": 20
+        },
+        "mrr": {
+          "mean": 0.4196428571428571,
+          "ci_lower": 0.2571428571428571,
+          "ci_upper": 0.5916666666666666,
+          "n": 20
+        },
+        "ndcg@8": {
+          "mean": 0.37956946040163647,
+          "ci_lower": 0.23133807741628887,
+          "ci_upper": 0.5228823978024942,
+          "n": 20
+        },
+        "abstained": {
+          "mean": 0.20833333333333334,
+          "ci_lower": 0.041666666666666664,
+          "ci_upper": 0.375,
+          "n": 24
+        },
+        "unnecessary_abstention": {
+          "mean": 0.05,
+          "ci_lower": 0.0,
+          "ci_upper": 0.15,
+          "n": 20
+        },
+        "citations_valid": {
+          "mean": 1.0,
+          "ci_lower": 1.0,
+          "ci_upper": 1.0,
+          "n": 19
+        },
+        "answered_without_citations": {
+          "mean": 0.0,
+          "ci_lower": 0.0,
+          "ci_upper": 0.0,
+          "n": 19
+        },
+        "faithfulness": {
+          "mean": 0.9230994152046785,
+          "ci_lower": 0.8388888888888889,
+          "ci_upper": 0.9941520467836258,
+          "n": 19
+        },
+        "relevance": {
+          "mean": 1.0,
+          "ci_lower": 1.0,
+          "ci_upper": 1.0,
+          "n": 19
+        },
+        "correctness": {
+          "mean": 0.95,
+          "ci_lower": 0.85,
+          "ci_upper": 1.0,
+          "n": 20
+        },
+        "correct_abstention": {
+          "mean": 1.0,
+          "ci_lower": 1.0,
+          "ci_upper": 1.0,
+          "n": 4
+        },
+        "missed_abstention": {
+          "mean": 0.0,
+          "ci_lower": 0.0,
+          "ci_upper": 0.0,
+          "n": 4
+        }
+      },
+      "by_category": {
+        "comparison": {
+          "hit@1": {
+            "mean": 0.5,
+            "ci_lower": 0.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "hit@8": {
+            "mean": 0.5,
+            "ci_lower": 0.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "recall@8": {
+            "mean": 0.375,
+            "ci_lower": 0.0,
+            "ci_upper": 0.75,
+            "n": 4
+          },
+          "precision@8": {
+            "mean": 0.09375,
+            "ci_lower": 0.0,
+            "ci_upper": 0.1875,
+            "n": 4
+          },
+          "mrr": {
+            "mean": 0.5,
+            "ci_lower": 0.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "ndcg@8": {
+            "mean": 0.4032867981913646,
+            "ci_lower": 0.0,
+            "ci_upper": 0.8065735963827292,
+            "n": 4
+          },
+          "abstained": {
+            "mean": 0.0,
+            "ci_lower": 0.0,
+            "ci_upper": 0.0,
+            "n": 4
+          },
+          "unnecessary_abstention": {
+            "mean": 0.0,
+            "ci_lower": 0.0,
+            "ci_upper": 0.0,
+            "n": 4
+          },
+          "citations_valid": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "answered_without_citations": {
+            "mean": 0.0,
+            "ci_lower": 0.0,
+            "ci_upper": 0.0,
+            "n": 4
+          },
+          "faithfulness": {
+            "mean": 0.8222222222222222,
+            "ci_lower": 0.5499999999999999,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "relevance": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "correctness": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          }
+        },
+        "conceptual": {
+          "hit@1": {
+            "mean": 0.25,
+            "ci_lower": 0.0,
+            "ci_upper": 0.75,
+            "n": 4
+          },
+          "hit@8": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "recall@8": {
+            "mean": 0.875,
+            "ci_lower": 0.625,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "precision@8": {
+            "mean": 0.15625,
+            "ci_lower": 0.125,
+            "ci_upper": 0.21875,
+            "n": 4
+          },
+          "mrr": {
+            "mean": 0.625,
+            "ci_lower": 0.5,
+            "ci_upper": 0.875,
+            "n": 4
+          },
+          "ndcg@8": {
+            "mean": 0.6200667359902698,
+            "ci_lower": 0.4478720438187706,
+            "ci_upper": 0.73124219157754,
+            "n": 4
+          },
+          "abstained": {
+            "mean": 0.0,
+            "ci_lower": 0.0,
+            "ci_upper": 0.0,
+            "n": 4
+          },
+          "unnecessary_abstention": {
+            "mean": 0.0,
+            "ci_lower": 0.0,
+            "ci_upper": 0.0,
+            "n": 4
+          },
+          "citations_valid": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "answered_without_citations": {
+            "mean": 0.0,
+            "ci_lower": 0.0,
+            "ci_upper": 0.0,
+            "n": 4
+          },
+          "faithfulness": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "relevance": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "correctness": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          }
+        },
+        "exact_term": {
+          "hit@1": {
+            "mean": 0.0,
+            "ci_lower": 0.0,
+            "ci_upper": 0.0,
+            "n": 4
+          },
+          "hit@8": {
+            "mean": 0.25,
+            "ci_lower": 0.0,
+            "ci_upper": 0.75,
+            "n": 4
+          },
+          "recall@8": {
+            "mean": 0.125,
+            "ci_lower": 0.0,
+            "ci_upper": 0.375,
+            "n": 4
+          },
+          "precision@8": {
+            "mean": 0.03125,
+            "ci_lower": 0.0,
+            "ci_upper": 0.09375,
+            "n": 4
+          },
+          "mrr": {
+            "mean": 0.03571428571428571,
+            "ci_lower": 0.0,
+            "ci_upper": 0.10714285714285714,
+            "n": 4
+          },
+          "ndcg@8": {
+            "mean": 0.05109559939712153,
+            "ci_lower": 0.0,
+            "ci_upper": 0.1532867981913646,
+            "n": 4
+          },
+          "abstained": {
+            "mean": 0.25,
+            "ci_lower": 0.0,
+            "ci_upper": 0.75,
+            "n": 4
+          },
+          "unnecessary_abstention": {
+            "mean": 0.25,
+            "ci_lower": 0.0,
+            "ci_upper": 0.75,
+            "n": 4
+          },
+          "citations_valid": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 3
+          },
+          "answered_without_citations": {
+            "mean": 0.0,
+            "ci_lower": 0.0,
+            "ci_upper": 0.0,
+            "n": 3
+          },
+          "faithfulness": {
+            "mean": 0.8333333333333334,
+            "ci_lower": 0.5,
+            "ci_upper": 1.0,
+            "n": 3
+          },
+          "relevance": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 3
+          },
+          "correctness": {
+            "mean": 0.75,
+            "ci_lower": 0.25,
+            "ci_upper": 1.0,
+            "n": 4
+          }
+        },
+        "lookup": {
+          "hit@1": {
+            "mean": 0.25,
+            "ci_lower": 0.0,
+            "ci_upper": 0.75,
+            "n": 4
+          },
+          "hit@8": {
+            "mean": 0.75,
+            "ci_lower": 0.25,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "recall@8": {
+            "mean": 0.75,
+            "ci_lower": 0.25,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "precision@8": {
+            "mean": 0.09375,
+            "ci_lower": 0.03125,
+            "ci_upper": 0.125,
+            "n": 4
+          },
+          "mrr": {
+            "mean": 0.4375,
+            "ci_lower": 0.125,
+            "ci_upper": 0.75,
+            "n": 4
+          },
+          "ndcg@8": {
+            "mean": 0.5154015779112127,
+            "ci_lower": 0.15773243839286438,
+            "ci_upper": 0.8154648767857289,
+            "n": 4
+          },
+          "abstained": {
+            "mean": 0.0,
+            "ci_lower": 0.0,
+            "ci_upper": 0.0,
+            "n": 4
+          },
+          "unnecessary_abstention": {
+            "mean": 0.0,
+            "ci_lower": 0.0,
+            "ci_upper": 0.0,
+            "n": 4
+          },
+          "citations_valid": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "answered_without_citations": {
+            "mean": 0.0,
+            "ci_lower": 0.0,
+            "ci_upper": 0.0,
+            "n": 4
+          },
+          "faithfulness": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "relevance": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "correctness": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          }
+        },
+        "multi_hop": {
+          "hit@1": {
+            "mean": 0.25,
+            "ci_lower": 0.0,
+            "ci_upper": 0.75,
+            "n": 4
+          },
+          "hit@8": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "recall@8": {
+            "mean": 0.32738095238095233,
+            "ci_lower": 0.2321428571428571,
+            "ci_upper": 0.4583333333333333,
+            "n": 4
+          },
+          "precision@8": {
+            "mean": 0.15625,
+            "ci_lower": 0.125,
+            "ci_upper": 0.21875,
+            "n": 4
+          },
+          "mrr": {
+            "mean": 0.49999999999999994,
+            "ci_lower": 0.3333333333333333,
+            "ci_upper": 0.8333333333333334,
+            "n": 4
+          },
+          "ndcg@8": {
+            "mean": 0.30799659051821404,
+            "ci_lower": 0.1860387647342618,
+            "ci_upper": 0.5185202353269384,
+            "n": 4
+          },
+          "abstained": {
+            "mean": 0.0,
+            "ci_lower": 0.0,
+            "ci_upper": 0.0,
+            "n": 4
+          },
+          "unnecessary_abstention": {
+            "mean": 0.0,
+            "ci_lower": 0.0,
+            "ci_upper": 0.0,
+            "n": 4
+          },
+          "citations_valid": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "answered_without_citations": {
+            "mean": 0.0,
+            "ci_lower": 0.0,
+            "ci_upper": 0.0,
+            "n": 4
+          },
+          "faithfulness": {
+            "mean": 0.9375,
+            "ci_lower": 0.8125,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "relevance": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "correctness": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          }
+        },
+        "unanswerable": {
+          "abstained": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "correct_abstention": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "missed_abstention": {
+            "mean": 0.0,
+            "ci_lower": 0.0,
+            "ci_upper": 0.0,
+            "n": 4
+          }
+        }
+      },
+      "llm_calls": 81,
+      "cache_hits": 39,
+      "cache_misses": 42,
+      "total_usage": {
+        "input_tokens": 151624,
+        "output_tokens": 21150
+      },
+      "usage_by_model": {
+        "claude-sonnet-5": {
+          "input_tokens": 83758,
+          "output_tokens": 6475
+        },
+        "claude-haiku-4-5": {
+          "input_tokens": 67866,
+          "output_tokens": 14675
+        }
+      },
+      "billable_usage_by_model": {
+        "claude-haiku-4-5": {
+          "input_tokens": 35070,
+          "output_tokens": 9162
+        },
+        "claude-sonnet-5": {
+          "input_tokens": 40107,
+          "output_tokens": 4058
+        }
+      },
+      "calls_with_unknown_usage": 0,
+      "estimated_cost_usd": 0.201674,
+      "bootstrap_seed": 0,
+      "bootstrap_resamples": 1000
+    },
+    "vector_only": {
+      "run_id": "20261010T153558Z_live_vector_only",
+      "config_name": "live_vector_only",
+      "created_at": "2026-10-10T15:46:09+00:00",
+      "git_commit": "c1193279bda76c5d2ca549e84668607de824a111",
+      "git_dirty": true,
+      "dataset_version": "27b46e65f45d",
+      "eval_set_name": "v1",
+      "eval_set_version": "1f48f2e04ef7",
+      "prompt_versions": {
+        "answer": "answer_v1",
+        "judge_faithfulness": "judge_faithfulness_v1",
+        "judge_correctness": "judge_correctness_v1",
+        "judge_relevance": "judge_relevance_v1"
+      },
+      "generator_model": "claude-sonnet-5",
+      "judge_model": "claude-haiku-4-5",
+      "llm_provider": "cached(budgeted(anthropic))",
+      "retrieval_only": false,
+      "n_items": 24,
+      "n_errors": 0,
+      "n_unmatched_labels": 0,
+      "metrics": {
+        "hit@1": {
+          "mean": 0.25,
+          "ci_lower": 0.05,
+          "ci_upper": 0.45,
+          "n": 20
+        },
+        "hit@8": {
+          "mean": 0.75,
+          "ci_lower": 0.55,
+          "ci_upper": 0.95,
+          "n": 20
+        },
+        "recall@8": {
+          "mean": 0.6059523809523809,
+          "ci_lower": 0.41428571428571426,
+          "ci_upper": 0.7916666666666666,
+          "n": 20
+        },
+        "precision@8": {
+          "mean": 0.13125,
+          "ci_lower": 0.09375,
+          "ci_upper": 0.16875,
+          "n": 20
+        },
+        "mrr": {
+          "mean": 0.4296428571428571,
+          "ci_lower": 0.2642053571428572,
+          "ci_upper": 0.5893571428571427,
+          "n": 20
+        },
+        "ndcg@8": {
+          "mean": 0.4428437716180749,
+          "ci_lower": 0.2810465750040102,
+          "ci_upper": 0.6035719751032307,
+          "n": 20
+        },
+        "abstained": {
+          "mean": 0.2916666666666667,
+          "ci_lower": 0.125,
+          "ci_upper": 0.5,
+          "n": 24
+        },
+        "unnecessary_abstention": {
+          "mean": 0.15,
+          "ci_lower": 0.0,
+          "ci_upper": 0.3,
+          "n": 20
+        },
+        "citations_valid": {
+          "mean": 1.0,
+          "ci_lower": 1.0,
+          "ci_upper": 1.0,
+          "n": 17
+        },
+        "answered_without_citations": {
+          "mean": 0.0,
+          "ci_lower": 0.0,
+          "ci_upper": 0.0,
+          "n": 17
+        },
+        "faithfulness": {
+          "mean": 1.0,
+          "ci_lower": 1.0,
+          "ci_upper": 1.0,
+          "n": 17
+        },
+        "relevance": {
+          "mean": 1.0,
+          "ci_lower": 1.0,
+          "ci_upper": 1.0,
+          "n": 17
+        },
+        "correctness": {
+          "mean": 0.85,
+          "ci_lower": 0.7,
+          "ci_upper": 1.0,
+          "n": 20
+        },
+        "correct_abstention": {
+          "mean": 1.0,
+          "ci_lower": 1.0,
+          "ci_upper": 1.0,
+          "n": 4
+        },
+        "missed_abstention": {
+          "mean": 0.0,
+          "ci_lower": 0.0,
+          "ci_upper": 0.0,
+          "n": 4
+        }
+      },
+      "by_category": {
+        "comparison": {
+          "hit@1": {
+            "mean": 0.25,
+            "ci_lower": 0.0,
+            "ci_upper": 0.75,
+            "n": 4
+          },
+          "hit@8": {
+            "mean": 0.5,
+            "ci_lower": 0.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "recall@8": {
+            "mean": 0.5,
+            "ci_lower": 0.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "precision@8": {
+            "mean": 0.125,
+            "ci_lower": 0.0,
+            "ci_upper": 0.25,
+            "n": 4
+          },
+          "mrr": {
+            "mean": 0.3125,
+            "ci_lower": 0.0,
+            "ci_upper": 0.75,
+            "n": 4
+          },
+          "ndcg@8": {
+            "mean": 0.3671126300402692,
+            "ci_lower": 0.0,
+            "ci_upper": 0.75,
+            "n": 4
+          },
+          "abstained": {
+            "mean": 0.25,
+            "ci_lower": 0.0,
+            "ci_upper": 0.75,
+            "n": 4
+          },
+          "unnecessary_abstention": {
+            "mean": 0.25,
+            "ci_lower": 0.0,
+            "ci_upper": 0.75,
+            "n": 4
+          },
+          "correctness": {
+            "mean": 0.75,
+            "ci_lower": 0.25,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "citations_valid": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 3
+          },
+          "answered_without_citations": {
+            "mean": 0.0,
+            "ci_lower": 0.0,
+            "ci_upper": 0.0,
+            "n": 3
+          },
+          "faithfulness": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 3
+          },
+          "relevance": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 3
+          }
+        },
+        "conceptual": {
+          "hit@1": {
+            "mean": 0.0,
+            "ci_lower": 0.0,
+            "ci_upper": 0.0,
+            "n": 4
+          },
+          "hit@8": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "recall@8": {
+            "mean": 0.875,
+            "ci_lower": 0.625,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "precision@8": {
+            "mean": 0.15625,
+            "ci_lower": 0.125,
+            "ci_upper": 0.21875,
+            "n": 4
+          },
+          "mrr": {
+            "mean": 0.4107142857142857,
+            "ci_lower": 0.2321428571428571,
+            "ci_upper": 0.5,
+            "n": 4
+          },
+          "ndcg@8": {
+            "mean": 0.48909403454800954,
+            "ci_lower": 0.36009307028393744,
+            "ci_upper": 0.6180949988120816,
+            "n": 4
+          },
+          "abstained": {
+            "mean": 0.0,
+            "ci_lower": 0.0,
+            "ci_upper": 0.0,
+            "n": 4
+          },
+          "unnecessary_abstention": {
+            "mean": 0.0,
+            "ci_lower": 0.0,
+            "ci_upper": 0.0,
+            "n": 4
+          },
+          "citations_valid": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "answered_without_citations": {
+            "mean": 0.0,
+            "ci_lower": 0.0,
+            "ci_upper": 0.0,
+            "n": 4
+          },
+          "faithfulness": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "relevance": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "correctness": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          }
+        },
+        "exact_term": {
+          "hit@1": {
+            "mean": 0.5,
+            "ci_lower": 0.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "hit@8": {
+            "mean": 0.75,
+            "ci_lower": 0.25,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "recall@8": {
+            "mean": 0.625,
+            "ci_lower": 0.25,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "precision@8": {
+            "mean": 0.09375,
+            "ci_lower": 0.03125,
+            "ci_upper": 0.125,
+            "n": 4
+          },
+          "mrr": {
+            "mean": 0.55,
+            "ci_lower": 0.1,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "ndcg@8": {
+            "mean": 0.559299428192324,
+            "ci_lower": 0.11859885638464811,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "abstained": {
+            "mean": 0.25,
+            "ci_lower": 0.0,
+            "ci_upper": 0.75,
+            "n": 4
+          },
+          "unnecessary_abstention": {
+            "mean": 0.25,
+            "ci_lower": 0.0,
+            "ci_upper": 0.75,
+            "n": 4
+          },
+          "citations_valid": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 3
+          },
+          "answered_without_citations": {
+            "mean": 0.0,
+            "ci_lower": 0.0,
+            "ci_upper": 0.0,
+            "n": 3
+          },
+          "faithfulness": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 3
+          },
+          "relevance": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 3
+          },
+          "correctness": {
+            "mean": 0.75,
+            "ci_lower": 0.25,
+            "ci_upper": 1.0,
+            "n": 4
+          }
+        },
+        "lookup": {
+          "hit@1": {
+            "mean": 0.25,
+            "ci_lower": 0.0,
+            "ci_upper": 0.75,
+            "n": 4
+          },
+          "hit@8": {
+            "mean": 0.5,
+            "ci_lower": 0.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "recall@8": {
+            "mean": 0.5,
+            "ci_lower": 0.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "precision@8": {
+            "mean": 0.0625,
+            "ci_lower": 0.0,
+            "ci_upper": 0.125,
+            "n": 4
+          },
+          "mrr": {
+            "mean": 0.3125,
+            "ci_lower": 0.0,
+            "ci_upper": 0.75,
+            "n": 4
+          },
+          "ndcg@8": {
+            "mean": 0.3576691395183483,
+            "ci_lower": 0.0,
+            "ci_upper": 0.75,
+            "n": 4
+          },
+          "abstained": {
+            "mean": 0.0,
+            "ci_lower": 0.0,
+            "ci_upper": 0.0,
+            "n": 4
+          },
+          "unnecessary_abstention": {
+            "mean": 0.0,
+            "ci_lower": 0.0,
+            "ci_upper": 0.0,
+            "n": 4
+          },
+          "citations_valid": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "answered_without_citations": {
+            "mean": 0.0,
+            "ci_lower": 0.0,
+            "ci_upper": 0.0,
+            "n": 4
+          },
+          "faithfulness": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "relevance": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "correctness": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          }
+        },
+        "multi_hop": {
+          "hit@1": {
+            "mean": 0.25,
+            "ci_lower": 0.0,
+            "ci_upper": 0.75,
+            "n": 4
+          },
+          "hit@8": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "recall@8": {
+            "mean": 0.5297619047619048,
+            "ci_lower": 0.22619047619047616,
+            "ci_upper": 0.8333333333333333,
+            "n": 4
+          },
+          "precision@8": {
+            "mean": 0.21875,
+            "ci_lower": 0.15625,
+            "ci_upper": 0.25,
+            "n": 4
+          },
+          "mrr": {
+            "mean": 0.5625,
+            "ci_lower": 0.375,
+            "ci_upper": 0.875,
+            "n": 4
+          },
+          "ndcg@8": {
+            "mean": 0.44104362579142375,
+            "ci_lower": 0.20782017008226375,
+            "ci_upper": 0.6939385476474642,
+            "n": 4
+          },
+          "abstained": {
+            "mean": 0.25,
+            "ci_lower": 0.0,
+            "ci_upper": 0.75,
+            "n": 4
+          },
+          "unnecessary_abstention": {
+            "mean": 0.25,
+            "ci_lower": 0.0,
+            "ci_upper": 0.75,
+            "n": 4
+          },
+          "citations_valid": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 3
+          },
+          "answered_without_citations": {
+            "mean": 0.0,
+            "ci_lower": 0.0,
+            "ci_upper": 0.0,
+            "n": 3
+          },
+          "faithfulness": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 3
+          },
+          "relevance": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 3
+          },
+          "correctness": {
+            "mean": 0.75,
+            "ci_lower": 0.25,
+            "ci_upper": 1.0,
+            "n": 4
+          }
+        },
+        "unanswerable": {
+          "abstained": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "correct_abstention": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "missed_abstention": {
+            "mean": 0.0,
+            "ci_lower": 0.0,
+            "ci_upper": 0.0,
+            "n": 4
+          }
+        }
+      },
+      "llm_calls": 76,
+      "cache_hits": 0,
+      "cache_misses": 76,
+      "total_usage": {
+        "input_tokens": 123497,
+        "output_tokens": 17037
+      },
+      "usage_by_model": {
+        "claude-sonnet-5": {
+          "input_tokens": 70687,
+          "output_tokens": 4376
+        },
+        "claude-haiku-4-5": {
+          "input_tokens": 52810,
+          "output_tokens": 12661
+        }
+      },
+      "billable_usage_by_model": {
+        "claude-sonnet-5": {
+          "input_tokens": 70687,
+          "output_tokens": 4376
+        },
+        "claude-haiku-4-5": {
+          "input_tokens": 52810,
+          "output_tokens": 12661
+        }
+      },
+      "calls_with_unknown_usage": 0,
+      "estimated_cost_usd": 0.301249,
+      "bootstrap_seed": 0,
+      "bootstrap_resamples": 1000
+    },
+    "hybrid": {
+      "run_id": "20261010T154612Z_live_hybrid",
+      "config_name": "live_hybrid",
+      "created_at": "2026-10-10T15:57:34+00:00",
+      "git_commit": "c1193279bda76c5d2ca549e84668607de824a111",
+      "git_dirty": true,
+      "dataset_version": "27b46e65f45d",
+      "eval_set_name": "v1",
+      "eval_set_version": "1f48f2e04ef7",
+      "prompt_versions": {
+        "answer": "answer_v1",
+        "judge_faithfulness": "judge_faithfulness_v1",
+        "judge_correctness": "judge_correctness_v1",
+        "judge_relevance": "judge_relevance_v1"
+      },
+      "generator_model": "claude-sonnet-5",
+      "judge_model": "claude-haiku-4-5",
+      "llm_provider": "cached(budgeted(anthropic))",
+      "retrieval_only": false,
+      "n_items": 24,
+      "n_errors": 0,
+      "n_unmatched_labels": 0,
+      "metrics": {
+        "hit@1": {
+          "mean": 0.4,
+          "ci_lower": 0.2,
+          "ci_upper": 0.6,
+          "n": 20
+        },
+        "hit@8": {
+          "mean": 0.8,
+          "ci_lower": 0.6,
+          "ci_upper": 0.95,
+          "n": 20
+        },
+        "recall@8": {
+          "mean": 0.6392857142857143,
+          "ci_lower": 0.4499404761904763,
+          "ci_upper": 0.8036309523809523,
+          "n": 20
+        },
+        "precision@8": {
+          "mean": 0.1375,
+          "ci_lower": 0.1,
+          "ci_upper": 0.175,
+          "n": 20
+        },
+        "mrr": {
+          "mean": 0.5625,
+          "ci_lower": 0.39166666666666666,
+          "ci_upper": 0.7333333333333333,
+          "n": 20
+        },
+        "ndcg@8": {
+          "mean": 0.5146632399424829,
+          "ci_lower": 0.35712103310543364,
+          "ci_upper": 0.6652994079273309,
+          "n": 20
+        },
+        "abstained": {
+          "mean": 0.20833333333333334,
+          "ci_lower": 0.041666666666666664,
+          "ci_upper": 0.375,
+          "n": 24
+        },
+        "unnecessary_abstention": {
+          "mean": 0.05,
+          "ci_lower": 0.0,
+          "ci_upper": 0.15,
+          "n": 20
+        },
+        "citations_valid": {
+          "mean": 1.0,
+          "ci_lower": 1.0,
+          "ci_upper": 1.0,
+          "n": 19
+        },
+        "answered_without_citations": {
+          "mean": 0.0,
+          "ci_lower": 0.0,
+          "ci_upper": 0.0,
+          "n": 19
+        },
+        "faithfulness": {
+          "mean": 0.9342105263157895,
+          "ci_lower": 0.8726973684210527,
+          "ci_upper": 0.9869517543859647,
+          "n": 19
+        },
+        "relevance": {
+          "mean": 1.0,
+          "ci_lower": 1.0,
+          "ci_upper": 1.0,
+          "n": 19
+        },
+        "correctness": {
+          "mean": 0.95,
+          "ci_lower": 0.85,
+          "ci_upper": 1.0,
+          "n": 20
+        },
+        "correct_abstention": {
+          "mean": 1.0,
+          "ci_lower": 1.0,
+          "ci_upper": 1.0,
+          "n": 4
+        },
+        "missed_abstention": {
+          "mean": 0.0,
+          "ci_lower": 0.0,
+          "ci_upper": 0.0,
+          "n": 4
+        }
+      },
+      "by_category": {
+        "comparison": {
+          "hit@1": {
+            "mean": 0.25,
+            "ci_lower": 0.0,
+            "ci_upper": 0.75,
+            "n": 4
+          },
+          "hit@8": {
+            "mean": 0.5,
+            "ci_lower": 0.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "recall@8": {
+            "mean": 0.5,
+            "ci_lower": 0.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "precision@8": {
+            "mean": 0.125,
+            "ci_lower": 0.0,
+            "ci_upper": 0.25,
+            "n": 4
+          },
+          "mrr": {
+            "mean": 0.3333333333333333,
+            "ci_lower": 0.0,
+            "ci_upper": 0.75,
+            "n": 4
+          },
+          "ndcg@8": {
+            "mean": 0.3777389984928038,
+            "ci_lower": 0.0,
+            "ci_upper": 0.7554779969856076,
+            "n": 4
+          },
+          "abstained": {
+            "mean": 0.0,
+            "ci_lower": 0.0,
+            "ci_upper": 0.0,
+            "n": 4
+          },
+          "unnecessary_abstention": {
+            "mean": 0.0,
+            "ci_lower": 0.0,
+            "ci_upper": 0.0,
+            "n": 4
+          },
+          "citations_valid": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "answered_without_citations": {
+            "mean": 0.0,
+            "ci_lower": 0.0,
+            "ci_upper": 0.0,
+            "n": 4
+          },
+          "faithfulness": {
+            "mean": 0.8125,
+            "ci_lower": 0.625,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "relevance": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "correctness": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          }
+        },
+        "conceptual": {
+          "hit@1": {
+            "mean": 0.5,
+            "ci_lower": 0.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "hit@8": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "recall@8": {
+            "mean": 0.875,
+            "ci_lower": 0.625,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "precision@8": {
+            "mean": 0.15625,
+            "ci_lower": 0.125,
+            "ci_upper": 0.21875,
+            "n": 4
+          },
+          "mrr": {
+            "mean": 0.75,
+            "ci_lower": 0.5,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "ndcg@8": {
+            "mean": 0.7237494690360122,
+            "ci_lower": 0.5088912804029996,
+            "ci_upper": 0.9386076576690248,
+            "n": 4
+          },
+          "abstained": {
+            "mean": 0.0,
+            "ci_lower": 0.0,
+            "ci_upper": 0.0,
+            "n": 4
+          },
+          "unnecessary_abstention": {
+            "mean": 0.0,
+            "ci_lower": 0.0,
+            "ci_upper": 0.0,
+            "n": 4
+          },
+          "citations_valid": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "answered_without_citations": {
+            "mean": 0.0,
+            "ci_lower": 0.0,
+            "ci_upper": 0.0,
+            "n": 4
+          },
+          "faithfulness": {
+            "mean": 0.875,
+            "ci_lower": 0.7499999999999999,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "relevance": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "correctness": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          }
+        },
+        "exact_term": {
+          "hit@1": {
+            "mean": 0.25,
+            "ci_lower": 0.0,
+            "ci_upper": 0.75,
+            "n": 4
+          },
+          "hit@8": {
+            "mean": 0.75,
+            "ci_lower": 0.25,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "recall@8": {
+            "mean": 0.625,
+            "ci_lower": 0.25,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "precision@8": {
+            "mean": 0.09375,
+            "ci_lower": 0.03125,
+            "ci_upper": 0.125,
+            "n": 4
+          },
+          "mrr": {
+            "mean": 0.4375,
+            "ci_lower": 0.125,
+            "ci_upper": 0.8125,
+            "n": 4
+          },
+          "ndcg@8": {
+            "mean": 0.4543823413269837,
+            "ci_lower": 0.10766913951834826,
+            "ci_upper": 0.8467132018086354,
+            "n": 4
+          },
+          "abstained": {
+            "mean": 0.25,
+            "ci_lower": 0.0,
+            "ci_upper": 0.75,
+            "n": 4
+          },
+          "unnecessary_abstention": {
+            "mean": 0.25,
+            "ci_lower": 0.0,
+            "ci_upper": 0.75,
+            "n": 4
+          },
+          "citations_valid": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 3
+          },
+          "answered_without_citations": {
+            "mean": 0.0,
+            "ci_lower": 0.0,
+            "ci_upper": 0.0,
+            "n": 3
+          },
+          "faithfulness": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 3
+          },
+          "relevance": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 3
+          },
+          "correctness": {
+            "mean": 0.75,
+            "ci_lower": 0.25,
+            "ci_upper": 1.0,
+            "n": 4
+          }
+        },
+        "lookup": {
+          "hit@1": {
+            "mean": 0.25,
+            "ci_lower": 0.0,
+            "ci_upper": 0.75,
+            "n": 4
+          },
+          "hit@8": {
+            "mean": 0.75,
+            "ci_lower": 0.25,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "recall@8": {
+            "mean": 0.75,
+            "ci_lower": 0.25,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "precision@8": {
+            "mean": 0.09375,
+            "ci_lower": 0.03125,
+            "ci_upper": 0.125,
+            "n": 4
+          },
+          "mrr": {
+            "mean": 0.4583333333333333,
+            "ci_lower": 0.125,
+            "ci_upper": 0.75,
+            "n": 4
+          },
+          "ndcg@8": {
+            "mean": 0.5327324383928644,
+            "ci_lower": 0.15773243839286438,
+            "ci_upper": 0.8154648767857289,
+            "n": 4
+          },
+          "abstained": {
+            "mean": 0.0,
+            "ci_lower": 0.0,
+            "ci_upper": 0.0,
+            "n": 4
+          },
+          "unnecessary_abstention": {
+            "mean": 0.0,
+            "ci_lower": 0.0,
+            "ci_upper": 0.0,
+            "n": 4
+          },
+          "citations_valid": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "answered_without_citations": {
+            "mean": 0.0,
+            "ci_lower": 0.0,
+            "ci_upper": 0.0,
+            "n": 4
+          },
+          "faithfulness": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "relevance": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "correctness": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          }
+        },
+        "multi_hop": {
+          "hit@1": {
+            "mean": 0.75,
+            "ci_lower": 0.25,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "hit@8": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "recall@8": {
+            "mean": 0.4464285714285714,
+            "ci_lower": 0.30952380952380953,
+            "ci_upper": 0.5833333333333333,
+            "n": 4
+          },
+          "precision@8": {
+            "mean": 0.21875,
+            "ci_lower": 0.15625,
+            "ci_upper": 0.25,
+            "n": 4
+          },
+          "mrr": {
+            "mean": 0.8333333333333334,
+            "ci_lower": 0.49999999999999994,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "ndcg@8": {
+            "mean": 0.4847129524637497,
+            "ci_lower": 0.33744204926471566,
+            "ci_upper": 0.6319838556627837,
+            "n": 4
+          },
+          "abstained": {
+            "mean": 0.0,
+            "ci_lower": 0.0,
+            "ci_upper": 0.0,
+            "n": 4
+          },
+          "unnecessary_abstention": {
+            "mean": 0.0,
+            "ci_lower": 0.0,
+            "ci_upper": 0.0,
+            "n": 4
+          },
+          "citations_valid": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "answered_without_citations": {
+            "mean": 0.0,
+            "ci_lower": 0.0,
+            "ci_upper": 0.0,
+            "n": 4
+          },
+          "faithfulness": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "relevance": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "correctness": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          }
+        },
+        "unanswerable": {
+          "abstained": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "correct_abstention": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "missed_abstention": {
+            "mean": 0.0,
+            "ci_lower": 0.0,
+            "ci_upper": 0.0,
+            "n": 4
+          }
+        }
+      },
+      "llm_calls": 84,
+      "cache_hits": 0,
+      "cache_misses": 84,
+      "total_usage": {
+        "input_tokens": 151509,
+        "output_tokens": 20010
+      },
+      "usage_by_model": {
+        "claude-sonnet-5": {
+          "input_tokens": 85854,
+          "output_tokens": 5606
+        },
+        "claude-haiku-4-5": {
+          "input_tokens": 65655,
+          "output_tokens": 14404
+        }
+      },
+      "billable_usage_by_model": {
+        "claude-sonnet-5": {
+          "input_tokens": 85854,
+          "output_tokens": 5606
+        },
+        "claude-haiku-4-5": {
+          "input_tokens": 65655,
+          "output_tokens": 14404
+        }
+      },
+      "calls_with_unknown_usage": 0,
+      "estimated_cost_usd": 0.36544299999999996,
+      "bootstrap_seed": 0,
+      "bootstrap_resamples": 1000
+    },
+    "hybrid_rerank": {
+      "run_id": "20261010T155741Z_live_hybrid_rerank",
+      "config_name": "live_hybrid_rerank",
+      "created_at": "2026-10-10T16:12:27+00:00",
+      "git_commit": "c1193279bda76c5d2ca549e84668607de824a111",
+      "git_dirty": true,
+      "dataset_version": "27b46e65f45d",
+      "eval_set_name": "v1",
+      "eval_set_version": "1f48f2e04ef7",
+      "prompt_versions": {
+        "answer": "answer_v1",
+        "judge_faithfulness": "judge_faithfulness_v1",
+        "judge_correctness": "judge_correctness_v1",
+        "judge_relevance": "judge_relevance_v1"
+      },
+      "generator_model": "claude-sonnet-5",
+      "judge_model": "claude-haiku-4-5",
+      "llm_provider": "cached(budgeted(anthropic))",
+      "retrieval_only": false,
+      "n_items": 24,
+      "n_errors": 0,
+      "n_unmatched_labels": 0,
+      "metrics": {
+        "hit@1": {
+          "mean": 0.35,
+          "ci_lower": 0.15,
+          "ci_upper": 0.55,
+          "n": 20
+        },
+        "hit@8": {
+          "mean": 0.7,
+          "ci_lower": 0.5,
+          "ci_upper": 0.9,
+          "n": 20
+        },
+        "recall@8": {
+          "mean": 0.5571428571428572,
+          "ci_lower": 0.3475595238095239,
+          "ci_upper": 0.75,
+          "n": 20
+        },
+        "precision@8": {
+          "mean": 0.1125,
+          "ci_lower": 0.075,
+          "ci_upper": 0.15,
+          "n": 20
+        },
+        "mrr": {
+          "mean": 0.5016666666666667,
+          "ci_lower": 0.32666666666666666,
+          "ci_upper": 0.675,
+          "n": 20
+        },
+        "ndcg@8": {
+          "mean": 0.4440589572392259,
+          "ci_lower": 0.2835790890546502,
+          "ci_upper": 0.6009454981919131,
+          "n": 20
+        },
+        "abstained": {
+          "mean": 0.25,
+          "ci_lower": 0.08333333333333333,
+          "ci_upper": 0.4583333333333333,
+          "n": 24
+        },
+        "unnecessary_abstention": {
+          "mean": 0.1,
+          "ci_lower": 0.0,
+          "ci_upper": 0.25,
+          "n": 20
+        },
+        "citations_valid": {
+          "mean": 1.0,
+          "ci_lower": 1.0,
+          "ci_upper": 1.0,
+          "n": 18
+        },
+        "answered_without_citations": {
+          "mean": 0.0,
+          "ci_lower": 0.0,
+          "ci_upper": 0.0,
+          "n": 18
+        },
+        "faithfulness": {
+          "mean": 0.9453703703703703,
+          "ci_lower": 0.8860416666666667,
+          "ci_upper": 1.0,
+          "n": 18
+        },
+        "relevance": {
+          "mean": 1.0,
+          "ci_lower": 1.0,
+          "ci_upper": 1.0,
+          "n": 18
+        },
+        "correctness": {
+          "mean": 0.9,
+          "ci_lower": 0.75,
+          "ci_upper": 1.0,
+          "n": 20
+        },
+        "correct_abstention": {
+          "mean": 1.0,
+          "ci_lower": 1.0,
+          "ci_upper": 1.0,
+          "n": 4
+        },
+        "missed_abstention": {
+          "mean": 0.0,
+          "ci_lower": 0.0,
+          "ci_upper": 0.0,
+          "n": 4
+        }
+      },
+      "by_category": {
+        "comparison": {
+          "hit@1": {
+            "mean": 0.5,
+            "ci_lower": 0.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "hit@8": {
+            "mean": 0.5,
+            "ci_lower": 0.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "recall@8": {
+            "mean": 0.5,
+            "ci_lower": 0.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "precision@8": {
+            "mean": 0.125,
+            "ci_lower": 0.0,
+            "ci_upper": 0.25,
+            "n": 4
+          },
+          "mrr": {
+            "mean": 0.5,
+            "ci_lower": 0.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "ndcg@8": {
+            "mean": 0.4543823975884861,
+            "ci_lower": 0.0,
+            "ci_upper": 0.9087647951769722,
+            "n": 4
+          },
+          "abstained": {
+            "mean": 0.0,
+            "ci_lower": 0.0,
+            "ci_upper": 0.0,
+            "n": 4
+          },
+          "unnecessary_abstention": {
+            "mean": 0.0,
+            "ci_lower": 0.0,
+            "ci_upper": 0.0,
+            "n": 4
+          },
+          "citations_valid": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "answered_without_citations": {
+            "mean": 0.0,
+            "ci_lower": 0.0,
+            "ci_upper": 0.0,
+            "n": 4
+          },
+          "faithfulness": {
+            "mean": 0.8166666666666667,
+            "ci_lower": 0.6333333333333333,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "relevance": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "correctness": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          }
+        },
+        "conceptual": {
+          "hit@1": {
+            "mean": 0.0,
+            "ci_lower": 0.0,
+            "ci_upper": 0.0,
+            "n": 4
+          },
+          "hit@8": {
+            "mean": 0.75,
+            "ci_lower": 0.25,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "recall@8": {
+            "mean": 0.625,
+            "ci_lower": 0.25,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "precision@8": {
+            "mean": 0.125,
+            "ci_lower": 0.03125,
+            "ci_upper": 0.21875,
+            "n": 4
+          },
+          "mrr": {
+            "mean": 0.375,
+            "ci_lower": 0.125,
+            "ci_upper": 0.5,
+            "n": 4
+          },
+          "ndcg@8": {
+            "mean": 0.4057607012146762,
+            "ci_lower": 0.15131506101317643,
+            "ci_upper": 0.6180949988120816,
+            "n": 4
+          },
+          "abstained": {
+            "mean": 0.0,
+            "ci_lower": 0.0,
+            "ci_upper": 0.0,
+            "n": 4
+          },
+          "unnecessary_abstention": {
+            "mean": 0.0,
+            "ci_lower": 0.0,
+            "ci_upper": 0.0,
+            "n": 4
+          },
+          "citations_valid": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "answered_without_citations": {
+            "mean": 0.0,
+            "ci_lower": 0.0,
+            "ci_upper": 0.0,
+            "n": 4
+          },
+          "faithfulness": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "relevance": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "correctness": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          }
+        },
+        "exact_term": {
+          "hit@1": {
+            "mean": 0.0,
+            "ci_lower": 0.0,
+            "ci_upper": 0.0,
+            "n": 4
+          },
+          "hit@8": {
+            "mean": 0.5,
+            "ci_lower": 0.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "recall@8": {
+            "mean": 0.5,
+            "ci_lower": 0.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "precision@8": {
+            "mean": 0.0625,
+            "ci_lower": 0.0,
+            "ci_upper": 0.125,
+            "n": 4
+          },
+          "mrr": {
+            "mean": 0.25,
+            "ci_lower": 0.0,
+            "ci_upper": 0.5,
+            "n": 4
+          },
+          "ndcg@8": {
+            "mean": 0.31546487678572877,
+            "ci_lower": 0.0,
+            "ci_upper": 0.6309297535714575,
+            "n": 4
+          },
+          "abstained": {
+            "mean": 0.25,
+            "ci_lower": 0.0,
+            "ci_upper": 0.75,
+            "n": 4
+          },
+          "unnecessary_abstention": {
+            "mean": 0.25,
+            "ci_lower": 0.0,
+            "ci_upper": 0.75,
+            "n": 4
+          },
+          "citations_valid": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 3
+          },
+          "answered_without_citations": {
+            "mean": 0.0,
+            "ci_lower": 0.0,
+            "ci_upper": 0.0,
+            "n": 3
+          },
+          "faithfulness": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 3
+          },
+          "relevance": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 3
+          },
+          "correctness": {
+            "mean": 0.75,
+            "ci_lower": 0.25,
+            "ci_upper": 1.0,
+            "n": 4
+          }
+        },
+        "lookup": {
+          "hit@1": {
+            "mean": 0.5,
+            "ci_lower": 0.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "hit@8": {
+            "mean": 0.75,
+            "ci_lower": 0.25,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "recall@8": {
+            "mean": 0.75,
+            "ci_lower": 0.25,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "precision@8": {
+            "mean": 0.09375,
+            "ci_lower": 0.03125,
+            "ci_upper": 0.125,
+            "n": 4
+          },
+          "mrr": {
+            "mean": 0.5833333333333333,
+            "ci_lower": 0.16666666666666666,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "ndcg@8": {
+            "mean": 0.625,
+            "ci_lower": 0.25,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "abstained": {
+            "mean": 0.0,
+            "ci_lower": 0.0,
+            "ci_upper": 0.0,
+            "n": 4
+          },
+          "unnecessary_abstention": {
+            "mean": 0.0,
+            "ci_lower": 0.0,
+            "ci_upper": 0.0,
+            "n": 4
+          },
+          "citations_valid": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "answered_without_citations": {
+            "mean": 0.0,
+            "ci_lower": 0.0,
+            "ci_upper": 0.0,
+            "n": 4
+          },
+          "faithfulness": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "relevance": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "correctness": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          }
+        },
+        "multi_hop": {
+          "hit@1": {
+            "mean": 0.75,
+            "ci_lower": 0.25,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "hit@8": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "recall@8": {
+            "mean": 0.4107142857142857,
+            "ci_lower": 0.15476190476190477,
+            "ci_upper": 0.7916666666666667,
+            "n": 4
+          },
+          "precision@8": {
+            "mean": 0.15625,
+            "ci_lower": 0.125,
+            "ci_upper": 0.21875,
+            "n": 4
+          },
+          "mrr": {
+            "mean": 0.8,
+            "ci_lower": 0.39999999999999997,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "ndcg@8": {
+            "mean": 0.41968681060723884,
+            "ci_lower": 0.1959694630261272,
+            "ci_upper": 0.681866275994031,
+            "n": 4
+          },
+          "abstained": {
+            "mean": 0.25,
+            "ci_lower": 0.0,
+            "ci_upper": 0.75,
+            "n": 4
+          },
+          "unnecessary_abstention": {
+            "mean": 0.25,
+            "ci_lower": 0.0,
+            "ci_upper": 0.75,
+            "n": 4
+          },
+          "citations_valid": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 3
+          },
+          "answered_without_citations": {
+            "mean": 0.0,
+            "ci_lower": 0.0,
+            "ci_upper": 0.0,
+            "n": 3
+          },
+          "faithfulness": {
+            "mean": 0.9166666666666666,
+            "ci_lower": 0.75,
+            "ci_upper": 1.0,
+            "n": 3
+          },
+          "relevance": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 3
+          },
+          "correctness": {
+            "mean": 0.75,
+            "ci_lower": 0.25,
+            "ci_upper": 1.0,
+            "n": 4
+          }
+        },
+        "unanswerable": {
+          "abstained": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "correct_abstention": {
+            "mean": 1.0,
+            "ci_lower": 1.0,
+            "ci_upper": 1.0,
+            "n": 4
+          },
+          "missed_abstention": {
+            "mean": 0.0,
+            "ci_lower": 0.0,
+            "ci_upper": 0.0,
+            "n": 4
+          }
+        }
+      },
+      "llm_calls": 81,
+      "cache_hits": 4,
+      "cache_misses": 77,
+      "total_usage": {
+        "input_tokens": 143620,
+        "output_tokens": 20096
+      },
+      "usage_by_model": {
+        "claude-sonnet-5": {
+          "input_tokens": 79863,
+          "output_tokens": 5423
+        },
+        "claude-haiku-4-5": {
+          "input_tokens": 63757,
+          "output_tokens": 14673
+        }
+      },
+      "billable_usage_by_model": {
+        "claude-sonnet-5": {
+          "input_tokens": 79863,
+          "output_tokens": 5423
+        },
+        "claude-haiku-4-5": {
+          "input_tokens": 62529,
+          "output_tokens": 14286
+        }
+      },
+      "calls_with_unknown_usage": 0,
+      "estimated_cost_usd": 0.347915,
+      "bootstrap_seed": 0,
+      "bootstrap_resamples": 1000
+    }
+  },
+  "comparisons": {
+    "vector_only": {
+      "run_a": "20261010T152756Z_live_bm25_only",
+      "run_b": "20261010T153558Z_live_vector_only",
+      "eval_set_version_a": "1f48f2e04ef7",
+      "eval_set_version_b": "1f48f2e04ef7",
+      "n_common_items": 24,
+      "metrics": {
+        "abstained": {
+          "mean_a": 0.20833333333333334,
+          "mean_b": 0.2916666666666667,
+          "delta": 0.08333333333333333,
+          "lower": 0.0,
+          "upper": 0.20833333333333334,
+          "n": 24,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        },
+        "answered_without_citations": {
+          "mean_a": 0.0,
+          "mean_b": 0.0,
+          "delta": 0.0,
+          "lower": 0.0,
+          "upper": 0.0,
+          "n": 17,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        },
+        "citations_valid": {
+          "mean_a": 1.0,
+          "mean_b": 1.0,
+          "delta": 0.0,
+          "lower": 0.0,
+          "upper": 0.0,
+          "n": 17,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        },
+        "correct_abstention": {
+          "mean_a": 1.0,
+          "mean_b": 1.0,
+          "delta": 0.0,
+          "lower": 0.0,
+          "upper": 0.0,
+          "n": 4,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        },
+        "correctness": {
+          "mean_a": 0.95,
+          "mean_b": 0.85,
+          "delta": -0.1,
+          "lower": -0.25,
+          "upper": 0.0,
+          "n": 20,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        },
+        "faithfulness": {
+          "mean_a": 0.9493464052287582,
+          "mean_b": 1.0,
+          "delta": 0.05065359477124183,
+          "lower": 0.0,
+          "upper": 0.12258986928104572,
+          "n": 17,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        },
+        "hit@1": {
+          "mean_a": 0.25,
+          "mean_b": 0.25,
+          "delta": 0.0,
+          "lower": -0.2,
+          "upper": 0.2,
+          "n": 20,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        },
+        "hit@8": {
+          "mean_a": 0.7,
+          "mean_b": 0.75,
+          "delta": 0.05,
+          "lower": -0.1,
+          "upper": 0.2,
+          "n": 20,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        },
+        "missed_abstention": {
+          "mean_a": 0.0,
+          "mean_b": 0.0,
+          "delta": 0.0,
+          "lower": 0.0,
+          "upper": 0.0,
+          "n": 4,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        },
+        "mrr": {
+          "mean_a": 0.4196428571428571,
+          "mean_b": 0.4296428571428571,
+          "delta": 0.01,
+          "lower": -0.15833333333333333,
+          "upper": 0.20010416666666658,
+          "n": 20,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        },
+        "ndcg@8": {
+          "mean_a": 0.37956946040163647,
+          "mean_b": 0.4428437716180749,
+          "delta": 0.06327431121643845,
+          "lower": -0.08950623745445097,
+          "upper": 0.23522212371066897,
+          "n": 20,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        },
+        "precision@8": {
+          "mean_a": 0.10625,
+          "mean_b": 0.13125,
+          "delta": 0.025,
+          "lower": -0.0125,
+          "upper": 0.0625,
+          "n": 20,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        },
+        "recall@8": {
+          "mean_a": 0.4904761904761905,
+          "mean_b": 0.6059523809523809,
+          "delta": 0.11547619047619047,
+          "lower": -0.07502976190476189,
+          "upper": 0.30598214285714276,
+          "n": 20,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        },
+        "relevance": {
+          "mean_a": 1.0,
+          "mean_b": 1.0,
+          "delta": 0.0,
+          "lower": 0.0,
+          "upper": 0.0,
+          "n": 17,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        },
+        "unnecessary_abstention": {
+          "mean_a": 0.05,
+          "mean_b": 0.15,
+          "delta": 0.1,
+          "lower": 0.0,
+          "upper": 0.25,
+          "n": 20,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        }
+      },
+      "skipped_metrics": []
+    },
+    "hybrid": {
+      "run_a": "20261010T152756Z_live_bm25_only",
+      "run_b": "20261010T154612Z_live_hybrid",
+      "eval_set_version_a": "1f48f2e04ef7",
+      "eval_set_version_b": "1f48f2e04ef7",
+      "n_common_items": 24,
+      "metrics": {
+        "abstained": {
+          "mean_a": 0.20833333333333334,
+          "mean_b": 0.20833333333333334,
+          "delta": 0.0,
+          "lower": 0.0,
+          "upper": 0.0,
+          "n": 24,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        },
+        "answered_without_citations": {
+          "mean_a": 0.0,
+          "mean_b": 0.0,
+          "delta": 0.0,
+          "lower": 0.0,
+          "upper": 0.0,
+          "n": 19,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        },
+        "citations_valid": {
+          "mean_a": 1.0,
+          "mean_b": 1.0,
+          "delta": 0.0,
+          "lower": 0.0,
+          "upper": 0.0,
+          "n": 19,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        },
+        "correct_abstention": {
+          "mean_a": 1.0,
+          "mean_b": 1.0,
+          "delta": 0.0,
+          "lower": 0.0,
+          "upper": 0.0,
+          "n": 4,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        },
+        "correctness": {
+          "mean_a": 0.95,
+          "mean_b": 0.95,
+          "delta": 0.0,
+          "lower": 0.0,
+          "upper": 0.0,
+          "n": 20,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        },
+        "faithfulness": {
+          "mean_a": 0.9230994152046785,
+          "mean_b": 0.9342105263157895,
+          "delta": 0.011111111111111113,
+          "lower": -0.05907894736842104,
+          "upper": 0.08919590643274854,
+          "n": 19,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        },
+        "hit@1": {
+          "mean_a": 0.25,
+          "mean_b": 0.4,
+          "delta": 0.15,
+          "lower": -0.05,
+          "upper": 0.35,
+          "n": 20,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        },
+        "hit@8": {
+          "mean_a": 0.7,
+          "mean_b": 0.8,
+          "delta": 0.1,
+          "lower": 0.0,
+          "upper": 0.25,
+          "n": 20,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        },
+        "missed_abstention": {
+          "mean_a": 0.0,
+          "mean_b": 0.0,
+          "delta": 0.0,
+          "lower": 0.0,
+          "upper": 0.0,
+          "n": 4,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        },
+        "mrr": {
+          "mean_a": 0.4196428571428571,
+          "mean_b": 0.5625,
+          "delta": 0.14285714285714288,
+          "lower": -0.011309523809523814,
+          "upper": 0.3053571428571428,
+          "n": 20,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        },
+        "ndcg@8": {
+          "mean_a": 0.37956946040163647,
+          "mean_b": 0.5146632399424829,
+          "delta": 0.13509377954084623,
+          "lower": 0.03587725341044505,
+          "upper": 0.2622528978781256,
+          "n": 20,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": true
+        },
+        "precision@8": {
+          "mean_a": 0.10625,
+          "mean_b": 0.1375,
+          "delta": 0.03125,
+          "lower": 0.0125,
+          "upper": 0.05625,
+          "n": 20,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": true
+        },
+        "recall@8": {
+          "mean_a": 0.4904761904761905,
+          "mean_b": 0.6392857142857143,
+          "delta": 0.1488095238095238,
+          "lower": 0.03330357142857145,
+          "upper": 0.2917857142857142,
+          "n": 20,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": true
+        },
+        "relevance": {
+          "mean_a": 1.0,
+          "mean_b": 1.0,
+          "delta": 0.0,
+          "lower": 0.0,
+          "upper": 0.0,
+          "n": 19,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        },
+        "unnecessary_abstention": {
+          "mean_a": 0.05,
+          "mean_b": 0.05,
+          "delta": 0.0,
+          "lower": 0.0,
+          "upper": 0.0,
+          "n": 20,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        }
+      },
+      "skipped_metrics": []
+    },
+    "hybrid_rerank": {
+      "run_a": "20261010T152756Z_live_bm25_only",
+      "run_b": "20261010T155741Z_live_hybrid_rerank",
+      "eval_set_version_a": "1f48f2e04ef7",
+      "eval_set_version_b": "1f48f2e04ef7",
+      "n_common_items": 24,
+      "metrics": {
+        "abstained": {
+          "mean_a": 0.20833333333333334,
+          "mean_b": 0.25,
+          "delta": 0.041666666666666664,
+          "lower": 0.0,
+          "upper": 0.125,
+          "n": 24,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        },
+        "answered_without_citations": {
+          "mean_a": 0.0,
+          "mean_b": 0.0,
+          "delta": 0.0,
+          "lower": 0.0,
+          "upper": 0.0,
+          "n": 18,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        },
+        "citations_valid": {
+          "mean_a": 1.0,
+          "mean_b": 1.0,
+          "delta": 0.0,
+          "lower": 0.0,
+          "upper": 0.0,
+          "n": 18,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        },
+        "correct_abstention": {
+          "mean_a": 1.0,
+          "mean_b": 1.0,
+          "delta": 0.0,
+          "lower": 0.0,
+          "upper": 0.0,
+          "n": 4,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        },
+        "correctness": {
+          "mean_a": 0.95,
+          "mean_b": 0.9,
+          "delta": -0.05,
+          "lower": -0.15,
+          "upper": 0.0,
+          "n": 20,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        },
+        "faithfulness": {
+          "mean_a": 0.9188271604938273,
+          "mean_b": 0.9453703703703703,
+          "delta": 0.026543209876543208,
+          "lower": -0.0308641975308642,
+          "upper": 0.10124999999999999,
+          "n": 18,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        },
+        "hit@1": {
+          "mean_a": 0.25,
+          "mean_b": 0.35,
+          "delta": 0.1,
+          "lower": -0.1,
+          "upper": 0.3,
+          "n": 20,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        },
+        "hit@8": {
+          "mean_a": 0.7,
+          "mean_b": 0.7,
+          "delta": 0.0,
+          "lower": -0.2,
+          "upper": 0.2,
+          "n": 20,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        },
+        "missed_abstention": {
+          "mean_a": 0.0,
+          "mean_b": 0.0,
+          "delta": 0.0,
+          "lower": 0.0,
+          "upper": 0.0,
+          "n": 4,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        },
+        "mrr": {
+          "mean_a": 0.4196428571428571,
+          "mean_b": 0.5016666666666667,
+          "delta": 0.08202380952380953,
+          "lower": -0.0721547619047619,
+          "upper": 0.23752678571428573,
+          "n": 20,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        },
+        "ndcg@8": {
+          "mean_a": 0.37956946040163647,
+          "mean_b": 0.4440589572392259,
+          "delta": 0.06448949683758946,
+          "lower": -0.06988000448745749,
+          "upper": 0.19374750099874022,
+          "n": 20,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        },
+        "precision@8": {
+          "mean_a": 0.10625,
+          "mean_b": 0.1125,
+          "delta": 0.00625,
+          "lower": -0.03125,
+          "upper": 0.0375,
+          "n": 20,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        },
+        "recall@8": {
+          "mean_a": 0.4904761904761905,
+          "mean_b": 0.5571428571428572,
+          "delta": 0.06666666666666667,
+          "lower": -0.13333333333333333,
+          "upper": 0.25,
+          "n": 20,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        },
+        "relevance": {
+          "mean_a": 1.0,
+          "mean_b": 1.0,
+          "delta": 0.0,
+          "lower": 0.0,
+          "upper": 0.0,
+          "n": 18,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        },
+        "unnecessary_abstention": {
+          "mean_a": 0.05,
+          "mean_b": 0.1,
+          "delta": 0.05,
+          "lower": 0.0,
+          "upper": 0.15,
+          "n": 20,
+          "confidence": 0.95,
+          "n_resamples": 1000,
+          "seed": 0,
+          "distinguishable": false
+        }
+      },
+      "skipped_metrics": []
+    }
+  },
+  "examples": [
+    {
+      "selection": "correct",
+      "result": {
+        "item_id": "pilot-001",
+        "question": "Does PEP 484 require Python to enforce type hints at runtime?",
+        "category": "exact_term",
+        "difficulty": "medium",
+        "answerable": true,
+        "reference_answer": "No. PEP 484 does not require runtime type checking.",
+        "retrieval": {
+          "retrieved": [
+            {
+              "chunk_id": "24cedd106580f3ea-0004",
+              "doc_id": "24cedd106580f3ea",
+              "doc_title": "Postponed Evaluation of Annotations",
+              "section_path": "Rationale and Goals > Non-goals",
+              "rank": 1,
+              "score": 0.03252247488101534,
+              "relevant": false
+            },
+            {
+              "chunk_id": "a25e032f504686c8-0001",
+              "doc_id": "a25e032f504686c8",
+              "doc_title": "Type Hints",
+              "section_path": "Abstract",
+              "rank": 2,
+              "score": 0.030309988518943745,
+              "relevant": true
+            },
+            {
+              "chunk_id": "4e9bac3fbbd66adf-0005",
+              "doc_id": "4e9bac3fbbd66adf",
+              "doc_title": "Syntax for Variable Annotations",
+              "section_path": "Rationale > Non-goals",
+              "rank": 3,
+              "score": 0.03007688828584351,
+              "relevant": false
+            },
+            {
+              "chunk_id": "24cedd106580f3ea-0005",
+              "doc_id": "24cedd106580f3ea",
+              "doc_title": "Postponed Evaluation of Annotations",
+              "section_path": "Rationale and Goals > Non-typing usage of annotations",
+              "rank": 4,
+              "score": 0.028283227848101264,
+              "relevant": false
+            },
+            {
+              "chunk_id": "a25e032f504686c8-0076",
+              "doc_id": "a25e032f504686c8",
+              "doc_title": "Type Hints",
+              "section_path": "Rejected Alternatives > The problem of forward declarations",
+              "rank": 5,
+              "score": 0.027972027972027972,
+              "relevant": false
+            },
+            {
+              "chunk_id": "a25e032f504686c8-0004",
+              "doc_id": "a25e032f504686c8",
+              "doc_title": "Type Hints",
+              "section_path": "Rationale and Goals > Non-goals",
+              "rank": 6,
+              "score": 0.027236652236652236,
+              "relevant": false
+            },
+            {
+              "chunk_id": "a25e032f504686c8-0078",
+              "doc_id": "a25e032f504686c8",
+              "doc_title": "Type Hints",
+              "section_path": "Rejected Alternatives > The double colon",
+              "rank": 7,
+              "score": 0.02658450704225352,
+              "relevant": false
+            },
+            {
+              "chunk_id": "24cedd106580f3ea-0011",
+              "doc_id": "24cedd106580f3ea",
+              "doc_title": "Postponed Evaluation of Annotations",
+              "section_path": "Resolving Type Hints at Runtime > Runtime annotation resolution and ``TYPE_CHECKING``",
+              "rank": 8,
+              "score": 0.025603392041748205,
+              "relevant": false
+            }
+          ],
+          "n_relevant_in_corpus": 2,
+          "labels_matched": true,
+          "metrics": {
+            "hit@1": 0.0,
+            "hit@8": 1.0,
+            "recall@8": 0.5,
+            "precision@8": 0.125,
+            "mrr": 0.5,
+            "ndcg@8": 0.38685280723454163
+          }
+        },
+        "answer": {
+          "query": "Does PEP 484 require Python to enforce type hints at runtime?",
+          "text": "No. PEP 484 explicitly states that Python will remain a dynamically typed language, and the authors have no desire to ever make type hints mandatory, even by convention. No type checking happens at runtime under this proposal; instead it assumes a separate off-line type checker that users can run voluntarily, acting like a powerful linter.",
+          "citations": [
+            {
+              "chunk_id": "a25e032f504686c8-0001",
+              "quote": null
+            },
+            {
+              "chunk_id": "a25e032f504686c8-0004",
+              "quote": null
+            }
+          ],
+          "abstained": false,
+          "model": "claude-sonnet-5",
+          "prompt_version": "answer_v1",
+          "usage": {
+            "input_tokens": 3146,
+            "output_tokens": 154
+          },
+          "invalid_citations": [],
+          "metadata": {
+            "repaired": false,
+            "n_context_chunks": 8
+          }
+        },
+        "checks": {
+          "abstained": false,
+          "n_citations": 2,
+          "n_invalid_citations": 0,
+          "citations_valid": true,
+          "answered_without_citations": false,
+          "correct_abstention": false,
+          "missed_abstention": false,
+          "unnecessary_abstention": false
+        },
+        "judges": {
+          "faithfulness": {
+            "claims": [
+              {
+                "claim": "PEP 484 explicitly states that Python will remain a dynamically typed language",
+                "evidence": "**Python will remain a dynamically typed language, and the authors have no desire to ever make type hints mandatory, even by convention.** (from Type Hints > Rationale and Goals > Non-goals)",
+                "reasoning": "The context directly quotes this statement from PEP 484's non-goals section, explicitly supporting this claim.",
+                "supported": true
+              },
+              {
+                "claim": "The authors have no desire to ever make type hints mandatory, even by convention",
+                "evidence": "**Python will remain a dynamically typed language, and the authors have no desire to ever make type hints mandatory, even by convention.** (from Type Hints > Rationale and Goals > Non-goals)",
+                "reasoning": "This is a direct quote from PEP 484's non-goals section, explicitly supporting this claim.",
+                "supported": true
+              },
+              {
+                "claim": "No type checking happens at runtime under this proposal",
+                "evidence": "While these annotations are available at runtime through the usual ``__annotations__`` attribute, *no type checking happens at runtime*. Instead, the proposal assumes the existence of a separate off-line type checker which users can run over their source code voluntarily.",
+                "reasoning": "The context explicitly states that no type checking happens at runtime and that type checking is delegated to an off-line type checker, directly supporting this claim.",
+                "supported": true
+              },
+              {
+                "claim": "PEP 484 assumes a separate off-line type checker that users can run voluntarily",
+                "evidence": "Instead, the proposal assumes the existence of a separate off-line type checker which users can run over their source code voluntarily. Essentially, such a type checker acts as a very powerful linter.",
+                "reasoning": "The context directly supports this claim, stating that an off-line type checker is assumed and that users run it voluntarily.",
+                "supported": true
+              },
+              {
+                "claim": "PEP 484's type checker acts like a powerful linter",
+                "evidence": "Essentially, such a type checker acts as a very powerful linter.",
+                "reasoning": "The context directly compares the type checker to a powerful linter, supporting this characterization.",
+                "supported": true
+              }
+            ]
+          },
+          "correctness": {
+            "evidence": "Reference: 'No. PEP 484 does not require runtime type checking.' Candidate: 'No. PEP 484 explicitly states that Python will remain a dynamically typed language, and the authors have no desire to ever make type hints mandatory, even by convention. No type checking happens at runtime under this proposal; instead it assumes a separate off-line type checker that users can run voluntarily, acting like a powerful linter.'",
+            "reasoning": "The candidate answer correctly addresses the core question with the same conclusion as the reference (No), and includes the essential fact that PEP 484 does not require runtime type checking. The candidate provides additional context and explanation about Python remaining dynamically typed, the voluntary nature of type checking, and the concept of offline type checkers, all of which are consistent with and elaborative on PEP 484's actual design philosophy. No contradictions exist between the candidate and reference answers.",
+            "correct": true
+          },
+          "relevance": {
+            "reasoning": "The answer directly addresses the question about whether PEP 484 requires Python to enforce type hints at runtime. It provides a clear 'No' followed by explanation of how PEP 484 handles type hints (through optional offline type checkers rather than runtime enforcement), which is exactly what the question asks about.",
+            "relevant": true
+          },
+          "usage": {
+            "input_tokens": 3121,
+            "output_tokens": 854
+          }
+        },
+        "error": null,
+        "metrics": {
+          "hit@1": 0.0,
+          "hit@8": 1.0,
+          "recall@8": 0.5,
+          "precision@8": 0.125,
+          "mrr": 0.5,
+          "ndcg@8": 0.38685280723454163,
+          "abstained": 0.0,
+          "unnecessary_abstention": 0.0,
+          "citations_valid": 1.0,
+          "answered_without_citations": 0.0,
+          "faithfulness": 1.0,
+          "relevance": 1.0,
+          "correctness": 1.0
+        }
+      }
+    },
+    {
+      "selection": "incorrect",
+      "result": {
+        "item_id": "pilot-002",
+        "question": "According to PEP 604, what does X | Y mean in a type annotation?",
+        "category": "exact_term",
+        "difficulty": "medium",
+        "answerable": true,
+        "reference_answer": "A union type, equivalent to Union[X, Y].",
+        "retrieval": {
+          "retrieved": [
+            {
+              "chunk_id": "4e9bac3fbbd66adf-0020",
+              "doc_id": "4e9bac3fbbd66adf",
+              "doc_title": "Syntax for Variable Annotations",
+              "section_path": "Rejected/Postponed Proposals",
+              "rank": 1,
+              "score": 0.029551337359792925,
+              "relevant": false
+            },
+            {
+              "chunk_id": "ad23617867325d80-0005",
+              "doc_id": "ad23617867325d80",
+              "doc_title": "Deferred Evaluation Of Annotations Using Descriptors",
+              "section_path": "Overview > Comparison Of Annotation Semantics",
+              "rank": 2,
+              "score": 0.029138513513513514,
+              "relevant": false
+            },
+            {
+              "chunk_id": "ad23617867325d80-0006",
+              "doc_id": "ad23617867325d80",
+              "doc_title": "Deferred Evaluation Of Annotations Using Descriptors",
+              "section_path": "Overview > Comparison Of Annotation Semantics",
+              "rank": 3,
+              "score": 0.027432808155699723,
+              "relevant": false
+            },
+            {
+              "chunk_id": "1b96f779896ff109-0002",
+              "doc_id": "1b96f779896ff109",
+              "doc_title": "Allow writing union types as ``X | Y``",
+              "section_path": "Motivation",
+              "rank": 4,
+              "score": 0.026655348047538198,
+              "relevant": false
+            },
+            {
+              "chunk_id": "ad23617867325d80-0007",
+              "doc_id": "ad23617867325d80",
+              "doc_title": "Deferred Evaluation Of Annotations Using Descriptors",
+              "section_path": "Overview > Comparison Of Annotation Semantics",
+              "rank": 5,
+              "score": 0.02664576802507837,
+              "relevant": false
+            },
+            {
+              "chunk_id": "4e9bac3fbbd66adf-0006",
+              "doc_id": "4e9bac3fbbd66adf",
+              "doc_title": "Syntax for Variable Annotations",
+              "section_path": "Specification",
+              "rank": 6,
+              "score": 0.02426470588235294,
+              "relevant": false
+            },
+            {
+              "chunk_id": "80014392886f031e-0039",
+              "doc_id": "80014392886f031e",
+              "doc_title": "Implementing PEP 649",
+              "section_path": "Behavior of dataclass field types",
+              "rank": 7,
+              "score": 0.02097902097902098,
+              "relevant": false
+            },
+            {
+              "chunk_id": "18ed3b62aa90c0eb-0002",
+              "doc_id": "18ed3b62aa90c0eb",
+              "doc_title": "Flexible function and variable annotations",
+              "section_path": "Motivation",
+              "rank": 8,
+              "score": 0.01639344262295082,
+              "relevant": false
+            }
+          ],
+          "n_relevant_in_corpus": 1,
+          "labels_matched": true,
+          "metrics": {
+            "hit@1": 0.0,
+            "hit@8": 0.0,
+            "recall@8": 0.0,
+            "precision@8": 0.0,
+            "mrr": 0.0,
+            "ndcg@8": 0.0
+          }
+        },
+        "answer": {
+          "query": "According to PEP 604, what does X | Y mean in a type annotation?",
+          "text": "The context does not cover this.",
+          "citations": [],
+          "abstained": true,
+          "model": "claude-sonnet-5",
+          "prompt_version": "answer_v1",
+          "usage": {
+            "input_tokens": 3987,
+            "output_tokens": 30
+          },
+          "invalid_citations": [],
+          "metadata": {
+            "repaired": false,
+            "n_context_chunks": 8
+          }
+        },
+        "checks": {
+          "abstained": true,
+          "n_citations": 0,
+          "n_invalid_citations": 0,
+          "citations_valid": true,
+          "answered_without_citations": false,
+          "correct_abstention": false,
+          "missed_abstention": false,
+          "unnecessary_abstention": true
+        },
+        "judges": null,
+        "error": null,
+        "metrics": {
+          "hit@1": 0.0,
+          "hit@8": 0.0,
+          "recall@8": 0.0,
+          "precision@8": 0.0,
+          "mrr": 0.0,
+          "ndcg@8": 0.0,
+          "abstained": 1.0,
+          "unnecessary_abstention": 1.0,
+          "correctness": 0.0
+        }
+      }
+    },
+    {
+      "selection": "grounding concern",
+      "result": {
+        "item_id": "pilot-009",
+        "question": "Why does PEP 526 favor annotation syntax over type comments for parsing?",
+        "category": "conceptual",
+        "difficulty": "medium",
+        "answerable": true,
+        "reference_answer": "Its rationale says annotation syntax can be parsed with ast, while type comments require a custom parser.",
+        "retrieval": {
+          "retrieved": [
+            {
+              "chunk_id": "4e9bac3fbbd66adf-0004",
+              "doc_id": "4e9bac3fbbd66adf",
+              "doc_title": "Syntax for Variable Annotations",
+              "section_path": "Rationale",
+              "rank": 1,
+              "score": 0.03252247488101534,
+              "relevant": true
+            },
+            {
+              "chunk_id": "4e9bac3fbbd66adf-0003",
+              "doc_id": "4e9bac3fbbd66adf",
+              "doc_title": "Syntax for Variable Annotations",
+              "section_path": "Abstract",
+              "rank": 2,
+              "score": 0.030798389007344232,
+              "relevant": false
+            },
+            {
+              "chunk_id": "4e9bac3fbbd66adf-0019",
+              "doc_id": "4e9bac3fbbd66adf",
+              "doc_title": "Syntax for Variable Annotations",
+              "section_path": "Rejected/Postponed Proposals",
+              "rank": 3,
+              "score": 0.030776515151515152,
+              "relevant": false
+            },
+            {
+              "chunk_id": "4e9bac3fbbd66adf-0005",
+              "doc_id": "4e9bac3fbbd66adf",
+              "doc_title": "Syntax for Variable Annotations",
+              "section_path": "Rationale > Non-goals",
+              "rank": 4,
+              "score": 0.02964426877470356,
+              "relevant": true
+            },
+            {
+              "chunk_id": "4ef54cafa35d2932-0021",
+              "doc_id": "4ef54cafa35d2932",
+              "doc_title": "Inline script metadata",
+              "section_path": "Rejected Ideas > Why not use a comment block resembling requirements.txt?",
+              "rank": 5,
+              "score": 0.02591362126245847,
+              "relevant": false
+            },
+            {
+              "chunk_id": "a25e032f504686c8-0047",
+              "doc_id": "a25e032f504686c8",
+              "doc_title": "Type Hints",
+              "section_path": "Type comments",
+              "rank": 6,
+              "score": 0.025837770122142185,
+              "relevant": false
+            },
+            {
+              "chunk_id": "4e9bac3fbbd66adf-0002",
+              "doc_id": "4e9bac3fbbd66adf",
+              "doc_title": "Syntax for Variable Annotations",
+              "section_path": "Notice for Reviewers",
+              "rank": 7,
+              "score": 0.025678061306371368,
+              "relevant": false
+            },
+            {
+              "chunk_id": "a25e032f504686c8-0001",
+              "doc_id": "a25e032f504686c8",
+              "doc_title": "Type Hints",
+              "section_path": "Abstract",
+              "rank": 8,
+              "score": 0.025588697017268444,
+              "relevant": false
+            }
+          ],
+          "n_relevant_in_corpus": 2,
+          "labels_matched": true,
+          "metrics": {
+            "hit@1": 1.0,
+            "hit@8": 1.0,
+            "recall@8": 1.0,
+            "precision@8": 0.25,
+            "mrr": 1.0,
+            "ndcg@8": 0.8772153153380493
+          }
+        },
+        "answer": {
+          "query": "Why does PEP 526 favor annotation syntax over type comments for parsing?",
+          "text": "Because type comments aren't actually part of the language, so a tool wanting to parse them needs a custom parser instead of simply being able to use Python's built-in `ast` module, as would be possible with dedicated annotation syntax.",
+          "citations": [
+            {
+              "chunk_id": "4e9bac3fbbd66adf-0004",
+              "quote": null
+            }
+          ],
+          "abstained": false,
+          "model": "claude-sonnet-5",
+          "prompt_version": "answer_v1",
+          "usage": {
+            "input_tokens": 3826,
+            "output_tokens": 111
+          },
+          "invalid_citations": [],
+          "metadata": {
+            "repaired": false,
+            "n_context_chunks": 8
+          }
+        },
+        "checks": {
+          "abstained": false,
+          "n_citations": 1,
+          "n_invalid_citations": 0,
+          "citations_valid": true,
+          "answered_without_citations": false,
+          "correct_abstention": false,
+          "missed_abstention": false,
+          "unnecessary_abstention": false
+        },
+        "judges": {
+          "faithfulness": {
+            "claims": [
+              {
+                "claim": "Type comments aren't actually part of the language",
+                "evidence": "Since type comments aren't actually part of the language, if a Python script wants to parse them, it requires a custom parser instead of just using ``ast``.",
+                "reasoning": "The context explicitly states that type comments are not part of the language, which is the basis for the parsing disadvantage.",
+                "supported": true
+              },
+              {
+                "claim": "A tool wanting to parse type comments needs a custom parser instead of using Python's built-in `ast` module",
+                "evidence": "Since type comments aren't actually part of the language, if a Python script wants to parse them, it requires a custom parser instead of just using ``ast``.",
+                "reasoning": "The context directly states this as a downside of type comments - the need for a custom parser rather than using the standard `ast` module.",
+                "supported": true
+              },
+              {
+                "claim": "Dedicated annotation syntax would allow using the built-in `ast` module",
+                "evidence": "none",
+                "reasoning": "While the context implies this by contrasting the custom parser requirement for type comments with the benefits of making annotation syntax 'a core part of the language,' it does not explicitly state that the built-in `ast` module can be used with dedicated annotation syntax.",
+                "supported": false
+              }
+            ]
+          },
+          "correctness": {
+            "evidence": "Reference: 'annotation syntax can be parsed with ast, while type comments require a custom parser'\n\nCandidate: 'type comments aren't actually part of the language, so a tool wanting to parse them needs a custom parser instead of simply being able to use Python's built-in `ast` module, as would be possible with dedicated annotation syntax'",
+            "reasoning": "The candidate answer captures the essential facts from the reference: (1) annotation syntax can be parsed with the `ast` module, and (2) type comments require a custom parser. The candidate provides additional context about why this difference exists (type comments aren't part of the language), but this elaboration doesn't contradict the reference\u2014it explains the underlying reason. The candidate directly addresses why PEP 526 favors annotation syntax over type comments, which matches the reference answer's core point.",
+            "correct": true
+          },
+          "relevance": {
+            "reasoning": "The answer directly addresses the question by explaining a specific parsing advantage of annotation syntax (PEP 526) over type comments: annotation syntax integrates with Python's standard `ast` module, while type comments require custom parsing. This provides a clear technical reason for the preference mentioned in PEP 526.",
+            "relevant": true
+          },
+          "usage": {
+            "input_tokens": 4326,
+            "output_tokens": 828
+          }
+        },
+        "error": null,
+        "metrics": {
+          "hit@1": 1.0,
+          "hit@8": 1.0,
+          "recall@8": 1.0,
+          "precision@8": 0.25,
+          "mrr": 1.0,
+          "ndcg@8": 0.8772153153380493,
+          "abstained": 0.0,
+          "unnecessary_abstention": 0.0,
+          "citations_valid": 1.0,
+          "answered_without_citations": 0.0,
+          "faithfulness": 0.6666666666666666,
+          "relevance": 1.0,
+          "correctness": 1.0
+        }
+      }
+    },
+    {
+      "selection": "unanswerable",
+      "result": {
+        "item_id": "pilot-021",
+        "question": "What is this RAG platform's production database password?",
+        "category": "unanswerable",
+        "difficulty": "medium",
+        "answerable": false,
+        "reference_answer": "The provided PEP corpus does not contain that information.",
+        "retrieval": {
+          "retrieved": [
+            {
+              "chunk_id": "3fb2b35878654bf3-0027",
+              "doc_id": "3fb2b35878654bf3",
+              "doc_title": "Removing dead batteries from the standard library",
+              "section_path": "Deprecated modules > Operating system interface > crypt",
+              "rank": 1,
+              "score": 0.03252247488101534,
+              "relevant": false
+            },
+            {
+              "chunk_id": "3fb2b35878654bf3-0029",
+              "doc_id": "3fb2b35878654bf3",
+              "doc_title": "Removing dead batteries from the standard library",
+              "section_path": "Deprecated modules > Operating system interface > spwd",
+              "rank": 2,
+              "score": 0.03128054740957967,
+              "relevant": false
+            },
+            {
+              "chunk_id": "d8b65ec94c20dcc6-0014",
+              "doc_id": "d8b65ec94c20dcc6",
+              "doc_title": "None-aware operators",
+              "section_path": "Examples > jsonify",
+              "rank": 3,
+              "score": 0.02694394213381555,
+              "relevant": false
+            },
+            {
+              "chunk_id": "4ef54cafa35d2932-0026",
+              "doc_id": "4ef54cafa35d2932",
+              "doc_title": "Inline script metadata",
+              "section_path": "Rejected Ideas > Why not limit tool configuration?",
+              "rank": 4,
+              "score": 0.025678061306371368,
+              "relevant": false
+            },
+            {
+              "chunk_id": "4ef54cafa35d2932-0012",
+              "doc_id": "4ef54cafa35d2932",
+              "doc_title": "Inline script metadata",
+              "section_path": "How to Teach This",
+              "rank": 5,
+              "score": 0.02129817444219067,
+              "relevant": false
+            },
+            {
+              "chunk_id": "3fb2b35878654bf3-0041",
+              "doc_id": "3fb2b35878654bf3",
+              "doc_title": "Removing dead batteries from the standard library",
+              "section_path": "Update history > Update 1",
+              "rank": 6,
+              "score": 0.01639344262295082,
+              "relevant": false
+            },
+            {
+              "chunk_id": "74f7628b9d5e0341-0029",
+              "doc_id": "74f7628b9d5e0341",
+              "doc_title": "Storing project metadata in pyproject.toml",
+              "section_path": "Rejected Ideas > Other table names > ``[package]``",
+              "rank": 7,
+              "score": 0.015873015873015872,
+              "relevant": false
+            },
+            {
+              "chunk_id": "cb84384cb5f17589-0019",
+              "doc_id": "cb84384cb5f17589",
+              "doc_title": "Data Classes",
+              "section_path": "Specification > Init-only variables",
+              "rank": 8,
+              "score": 0.015873015873015872,
+              "relevant": false
+            }
+          ],
+          "n_relevant_in_corpus": 0,
+          "labels_matched": true,
+          "metrics": {}
+        },
+        "answer": {
+          "query": "What is this RAG platform's production database password?",
+          "text": "The context does not cover this.",
+          "citations": [],
+          "abstained": true,
+          "model": "claude-sonnet-5",
+          "prompt_version": "answer_v1",
+          "usage": {
+            "input_tokens": 3591,
+            "output_tokens": 30
+          },
+          "invalid_citations": [],
+          "metadata": {
+            "repaired": false,
+            "n_context_chunks": 8
+          }
+        },
+        "checks": {
+          "abstained": true,
+          "n_citations": 0,
+          "n_invalid_citations": 0,
+          "citations_valid": true,
+          "answered_without_citations": false,
+          "correct_abstention": true,
+          "missed_abstention": false,
+          "unnecessary_abstention": false
+        },
+        "judges": null,
+        "error": null,
+        "metrics": {
+          "abstained": 1.0,
+          "correct_abstention": 1.0,
+          "missed_abstention": 0.0
+        }
+      }
+    }
+  ],
+  "human_review": "pending; blank batch only",
+  "agent_demonstrations": 4
+}

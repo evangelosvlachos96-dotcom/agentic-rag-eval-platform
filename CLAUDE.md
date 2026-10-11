@@ -140,8 +140,8 @@ No GNU make on Windows: run the `uv run ...` commands from the Makefile directly
 | M2 | Ingestion | pinned PEP corpus, .rst/.md/.txt loaders, structure-aware chunking, MinHash dedup, versioned datasets | done |
 | M3 | Retrieval | bge-small embeddings, numpy vector store, BM25, RRF hybrid search, cross-encoder reranking, YAML configs | done |
 | M4 | Generation | provider interface, versioned prompts, grounded answers with validated citations and abstention, disk cache | done |
-| M5 | Evaluation harness | eval item schema, taxonomy, candidates + review, retrieval metrics, checks, judges, bootstrap CIs, runner, compare | done (harness); 24-question owner-approved pilot v1 built; generation evaluation pending |
-| M6 | Agent | bounded search loop, query rewriting, trajectories, pass@k and pass^k | implemented and tested offline; real-provider evaluation pending |
+| M5 | Evaluation harness | eval item schema, taxonomy, candidates + review, retrieval metrics, checks, judges, bootstrap CIs, runner, compare | done; four live configurations evaluated on the 24-question owner-approved pilot |
+| M6 | Agent | bounded search loop, query rewriting, trajectories, pass@k and pass^k | implemented; four real-provider demonstrations saved; repeated-trial success study remains future work |
 | M7 | Data quality | failure signals, annotation export/import, kappa, judge-human agreement | implemented offline; actual human/judge calibration pending |
 | M8 | Infrastructure | bounded async batches, tracing, local FastAPI service, Docker | implemented and verified offline; not a public production deployment |
 | M9 | Experiments | chunking, retrieval-mode and reranking ablations | pilot runs and reports complete; broader held-out benchmark pending |

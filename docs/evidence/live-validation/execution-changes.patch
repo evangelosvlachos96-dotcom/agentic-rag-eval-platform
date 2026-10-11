@@ -1,0 +1,168 @@
+diff --git a/scripts/run_live_validation.py b/scripts/run_live_validation.py
+index 6f2f431..45ccd99 100644
+--- a/scripts/run_live_validation.py
++++ b/scripts/run_live_validation.py
+@@ -7,7 +7,9 @@ import asyncio
+ import json
+ import os
+ import shutil
++import time
+ from pathlib import Path
++from typing import TYPE_CHECKING
+ 
+ from ragplatform.agent.loop import run_agent
+ from ragplatform.agent.models import AgentConfig
+@@ -21,6 +23,9 @@ from ragplatform.llm.pricing import load_pricing
+ from ragplatform.pipelines.run_config import GenerationConfig, JudgeConfig, load_run_config
+ from ragplatform.retrieval.index import load_retriever
+ 
++if TYPE_CHECKING:
++    from ragplatform.llm.provider import CompletionRequest, CompletionResponse
++
+ ROOT = Path(__file__).resolve().parents[1]
+ SESSION = ROOT / "experiments/live-validation"
+ EVIDENCE = ROOT / "docs/evidence/live-validation"
+@@ -29,7 +34,7 @@ GENERATOR = "claude-sonnet-5"
+ JUDGE = "claude-haiku-4-5"
+ 
+ 
+-async def execute() -> None:
++async def execute(*, resume: bool = False) -> None:
+     settings = get_settings()
+     if not settings.has_anthropic_key or settings.anthropic_api_key is None:
+         raise SystemExit("ANTHROPIC_API_KEY is not configured. No paid requests made.")
+@@ -39,18 +44,34 @@ async def execute() -> None:
+     with lock.open("x", encoding="utf-8") as handle:
+         handle.write("Exclusive paid session; do not delete while a run is active.\n")
+     try:
+-        await run_session(settings.anthropic_api_key.get_secret_value())
++        await run_session(settings.anthropic_api_key.get_secret_value(), resume=resume)
+     except BaseException:
+         raise  # Keep the lock after an uncertain or interrupted session.
+     else:
+         lock.unlink()
+ 
+ 
+-async def run_session(key: str) -> None:
++async def run_session(key: str, *, resume: bool = False) -> None:
+     pricing = load_pricing(ROOT / "configs/pricing.yaml")
++
+     # Never allow hidden billable retry attempts in this bounded session.
+-    raw = AnthropicProvider(key, max_retries=0, timeout_seconds=90)
++    class PacedAnthropic(AnthropicProvider):
++        last_call = 0.0
++
++        async def complete(self, request: CompletionRequest) -> CompletionResponse:
++            await asyncio.sleep(max(0, 5 - (time.monotonic() - self.last_call)))
++            try:
++                return await super().complete(request)
++            finally:
++                self.last_call = time.monotonic()
++
++    raw = PacedAnthropic(key, max_retries=0, timeout_seconds=90)
+     guard = BudgetedProvider(raw, pricing, SESSION / "budget.json")
++    if resume:
++        guard.retain_failed_reservations(
++            "Prior process stopped; full failed-request allowance retained against the original "
++            "USD 3 limit. Failure cause unclassified; no zero-cost assumption or ledger reset."
++        )
+     provider = CachedProvider(guard, ROOT / "data/cache/live-validation")
+     items, version = load_eval_set(ROOT / "eval_sets", "v1")
+     pilot = [items[0], items[8], items[16], next(i for i in items if not i.answerable)]
+@@ -63,7 +84,17 @@ async def run_session(key: str) -> None:
+         provider.misses = 0
+         destination = EVIDENCE / phase
+         if destination.exists():
+-            raise RuntimeError(f"Evidence already exists for {phase}; inspect before resuming")
++            from ragplatform.evals.results import read_summary
++
++            previous = read_summary(destination)
++            if not resume:
++                raise RuntimeError(f"Evidence already exists for {phase}; inspect before resuming")
++            if previous.n_errors == 0:
++                print(f"Preserving completed phase {phase}")
++                continue
++            archive = EVIDENCE / "interrupted-attempts" / previous.run_id
++            archive.parent.mkdir(exist_ok=True)
++            destination.rename(archive)
+         config = load_run_config(ROOT / f"configs/{name}.yaml").model_copy(
+             update={
+                 "name": f"live_{phase}",
+@@ -136,6 +167,7 @@ async def run_session(key: str) -> None:
+ if __name__ == "__main__":
+     parser = argparse.ArgumentParser(description=__doc__)
+     parser.add_argument("--execute", action="store_true")
++    parser.add_argument("--resume-retaining-reservations", action="store_true")
+     args = parser.parse_args()
+     if not args.execute:
+         parser.exit(
+@@ -144,4 +176,4 @@ if __name__ == "__main__":
+         )
+     os.environ.setdefault("HF_HUB_OFFLINE", "1")
+     os.environ.setdefault("TRANSFORMERS_OFFLINE", "1")
+-    asyncio.run(execute())
++    asyncio.run(execute(resume=args.resume_retaining_reservations))
+diff --git a/src/ragplatform/llm/budget.py b/src/ragplatform/llm/budget.py
+index 5076db2..9c5d2ee 100644
+--- a/src/ragplatform/llm/budget.py
++++ b/src/ragplatform/llm/budget.py
+@@ -35,6 +35,9 @@ class BudgetRecord(BaseModel):
+     usage: TokenUsage | None = None
+     response_model: str | None = None
+     status: str = "reserved"
++    error_type: str | None = None
++    http_status: int | None = None
++    recovery_note: str | None = None
+ 
+ 
+ class BudgetLedger(BaseModel):
+@@ -68,7 +71,9 @@ class BudgetedProvider:
+             else BudgetLedger(limit_usd=3)
+         )
+         self._lock = asyncio.Lock()
+-        self._stopped = any(r.status != "completed" for r in self.ledger.records)
++        self._stopped = any(
++            r.status not in {"completed", "reserved_after_review"} for r in self.ledger.records
++        )
+ 
+     @property
+     def name(self) -> str:
+@@ -80,6 +85,24 @@ class BudgetedProvider:
+         temporary.write_text(self.ledger.model_dump_json(indent=2) + "\n", encoding="utf-8")
+         temporary.replace(self.path)
+ 
++    def retain_failed_reservations(self, note: str) -> None:
++        """Explicit operator recovery; never refund an unmetered failed request.
++
++        Only after confirming the prior process stopped. This is not an automatic
++        retry and must not be used after a reservation overrun.
++        """
++        if not note.strip() or any(
++            r.status not in {"completed", "unknown_usage", "reserved_after_review"}
++            for r in self.ledger.records
++        ):
++            raise BudgetStoppedError("Recovery requires a note and bounded, resolved dispatches")
++        for record in self.ledger.records:
++            if record.status == "unknown_usage":
++                record.status = "reserved_after_review"
++                record.recovery_note = note
++        self._save()
++        self._stopped = False
++
+     async def complete(self, request: CompletionRequest) -> CompletionResponse:
+         async with self._lock:
+             if self._stopped:
+@@ -113,9 +136,12 @@ class BudgetedProvider:
+             self._save()  # Persist the reservation BEFORE the billable request.
+             try:
+                 response = await self.provider.complete(request)
+-            except BaseException:
++            except BaseException as exc:
+                 self._stopped = True
+                 record.status = "unknown_usage"
++                record.error_type = type(exc).__name__
++                status = getattr(exc.__cause__, "status_code", None)
++                record.http_status = status if isinstance(status, int) else None
+                 self._save()
+                 raise
+             record.usage = response.usage

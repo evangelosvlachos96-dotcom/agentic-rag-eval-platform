@@ -1,10 +1,14 @@
 # Budgeted live validation
 
 On 2026-10-10 the owner authorized up to EUR 4 of Anthropic API usage for final
-validation. Execution is currently blocked because no `ANTHROPIC_API_KEY` is
-configured in the project process or Windows user/machine environment. No paid
-calls have been made by this workflow. Credentials must remain local and must
+validation. The owner restored `ANTHROPIC_API_KEY` locally and live API access
+was verified. Credentials remain local and must
 never be pasted into reports, screenshots or GitHub.
+
+The suite completed: four 24-question configurations and four agent demonstrations.
+See the [verified results](live-results.md), including the retained interrupted run
+and separate reported-cost and unknown-cost accounting. No further paid runs are
+needed for this release.
 
 ## Prepared protocol
 
@@ -27,14 +31,20 @@ endpoint supplies an input estimate; the guard reserves 120% of that count plus
 1,024 input tokens and the maximum output allowance. The reservation is written
 to disk before sending the request and reconciled with reported usage afterward.
 Unknown prices, insufficient funds, uncertain usage, interruption or an exceeded
-reservation stop further requests. SDK retries are disabled. Structured-output
+reservation stop automatic progress. SDK retries are disabled. Structured-output
 repair calls pass through the same guard. No caching or geographic billing
 modifiers are requested. Taxes, foreign exchange and account-level adjustments
 remain outside the token-usage estimate; this is not an invoice guarantee.
 
 The session lock prevents concurrent runs. A crash deliberately leaves that lock
-in place. Inspect the ledger and account usage before recovering a session; do
-not blindly delete the lock or reset the ledger. Existing evidence is never
+in place. Inspect the ledger before recovering a session; do not blindly delete
+the lock or reset the ledger. When account usage cannot resolve a failed request,
+an explicit operator recovery may retain its entire maximum allowance against
+the original budget. This cannot clear a reservation overrun. The stopped process
+must be confirmed before archiving its lock. The `--resume-retaining-reservations`
+option archives interrupted evidence, preserves successful phases, and adds a
+recovery note to each unmetered attempt. It never assumes that failure was free.
+Subsequent paid requests are spaced by five seconds. Existing evidence is never
 overwritten automatically. Previously completed responses can be reused from
 the dedicated real-provider cache without charging again.
 

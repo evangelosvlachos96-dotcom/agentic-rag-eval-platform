@@ -35,6 +35,9 @@ class BudgetRecord(BaseModel):
     usage: TokenUsage | None = None
     response_model: str | None = None
     status: str = "reserved"
+    error_type: str | None = None
+    http_status: int | None = None
+    recovery_note: str | None = None
 
 
 class BudgetLedger(BaseModel):
@@ -68,7 +71,9 @@ class BudgetedProvider:
             else BudgetLedger(limit_usd=3)
         )
         self._lock = asyncio.Lock()
-        self._stopped = any(r.status != "completed" for r in self.ledger.records)
+        self._stopped = any(
+            r.status not in {"completed", "reserved_after_review"} for r in self.ledger.records
+        )
 
     @property
     def name(self) -> str:
@@ -79,6 +84,24 @@ class BudgetedProvider:
         temporary = self.path.with_suffix(".tmp")
         temporary.write_text(self.ledger.model_dump_json(indent=2) + "\n", encoding="utf-8")
         temporary.replace(self.path)
+
+    def retain_failed_reservations(self, note: str) -> None:
+        """Explicit operator recovery; never refund an unmetered failed request.
+
+        Only after confirming the prior process stopped. This is not an automatic
+        retry and must not be used after a reservation overrun.
+        """
+        if not note.strip() or any(
+            r.status not in {"completed", "unknown_usage", "reserved_after_review"}
+            for r in self.ledger.records
+        ):
+            raise BudgetStoppedError("Recovery requires a note and bounded, resolved dispatches")
+        for record in self.ledger.records:
+            if record.status == "unknown_usage":
+                record.status = "reserved_after_review"
+                record.recovery_note = note
+        self._save()
+        self._stopped = False
 
     async def complete(self, request: CompletionRequest) -> CompletionResponse:
         async with self._lock:
@@ -113,9 +136,12 @@ class BudgetedProvider:
             self._save()  # Persist the reservation BEFORE the billable request.
             try:
                 response = await self.provider.complete(request)
-            except BaseException:
+            except BaseException as exc:
                 self._stopped = True
                 record.status = "unknown_usage"
+                record.error_type = type(exc).__name__
+                status = getattr(exc.__cause__, "status_code", None)
+                record.http_status = status if isinstance(status, int) else None
                 self._save()
                 raise
             record.usage = response.usage

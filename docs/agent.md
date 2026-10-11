@@ -31,4 +31,7 @@ It verifies integration, not model quality, autonomous reasoning or answer accur
 attempts. Both require n >= k and an externally assessed success count. No real-agent
 success rates are reported yet.
 
-Real-provider evaluation remains pending and must be explicitly budgeted before use.
+Four real-provider demonstrations were executed under the owner's shared budget:
+three two-step search-and-answer trajectories and one single-step abstention.
+See [live results](live-results.md) and `docs/evidence/live-validation/agents/`.
+These demonstrate execution and citation structure, not a measured pass@k success rate.

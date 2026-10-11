@@ -1,0 +1,300 @@
+{
+  "question": "Which PEP defines the field-annotation syntax used by data classes, and what limitation does it identify for type comments on uninitialized variables?",
+  "config": {
+    "max_steps": 5,
+    "max_output_tokens": 768,
+    "output_token_budget": 3072,
+    "max_context_chars": 24000,
+    "max_question_chars": 4000,
+    "max_chunks": 16,
+    "timeout_seconds": 60.0,
+    "prompt_version": "agent_v1"
+  },
+  "provider": "cached(budgeted(anthropic))",
+  "model": "claude-sonnet-5",
+  "dataset_version": "27b46e65f45d",
+  "placeholder": false,
+  "stop_reason": "answered",
+  "steps": [
+    {
+      "number": 1,
+      "request": "{\"question\": \"Which PEP defines the field-annotation syntax used by data classes, and what limitation does it identify for type comments on uninitialized variables?\", \"prior_queries\": [], \"evidence\": []}",
+      "raw_response": "{\"action\":\"search\",\"query\":\"PEP field annotation syntax data classes type comments uninitialized variables limitation\"}",
+      "action": {
+        "action": "search",
+        "query": "PEP field annotation syntax data classes type comments uninitialized variables limitation",
+        "answer": "",
+        "citations": []
+      },
+      "retrieved": [
+        {
+          "chunk": {
+            "id": "4e9bac3fbbd66adf-0004",
+            "document_id": "4e9bac3fbbd66adf",
+            "content": "Although type comments work well enough, the fact that they're\nexpressed through comments has some downsides:\n\n- Text editors often highlight comments differently from type annotations.\n\n- There's no way to annotate the type of an undefined variable; one needs to\n  initialize it to ``None`` (e.g. ``a = None # type: int``).\n\n- Variables annotated in a conditional branch are difficult to read::\n\n    if some_value:\n        my_var = function() # type: Logger\n    else:\n        my_var = another_function() # Why isn't there a type here?\n\n- Since type comments aren't actually part of the language, if a Python script\n  wants to parse them, it requires a custom parser instead of just using\n  ``ast``.\n\n- Type comments are used a lot in typeshed. Migrating typeshed to use\n  the variable annotation syntax instead of type comments would improve\n  readability of stubs.\n\n- In situations where normal comments and type comments are used together, it is\n  difficult to distinguish them::\n\n    path = None  # type: Optional[str]  # Path to module source\n\n- It's impossible to retrieve the annotations at runtime outside of\n  attempting to find the module's source code and parse it at runtime,\n  which is inelegant, to say the least.\n\nThe majority of these issues can be alleviated by making the syntax\na core part of the language. Moreover, having a dedicated annotation syntax\nfor class and instance variables (in addition to method annotations) will\npave the way to static duck-typing as a complement to nominal typing defined\nby :pep:`484`.",
+            "index": 4,
+            "metadata": {
+              "doc_title": "Syntax for Variable Annotations",
+              "section_path": "Rationale",
+              "char_start": 2314,
+              "char_end": 3852,
+              "token_count": 385,
+              "context_header": "Syntax for Variable Annotations > Rationale",
+              "source": "pep-0526.rst"
+            }
+          },
+          "score": 17.060427933680245,
+          "rank": 1,
+          "retriever": "bm25",
+          "stages": {
+            "bm25": {
+              "score": 17.060427933680245,
+              "rank": 1
+            }
+          }
+        },
+        {
+          "chunk": {
+            "id": "cb84384cb5f17589-0019",
+            "document_id": "cb84384cb5f17589",
+            "content": "The other place where ``dataclass`` inspects a type annotation is to\ndetermine if a field is an init-only variable.  It does this by seeing\nif the type of a field is of type ``dataclasses.InitVar``.  If a field\nis an ``InitVar``, it is considered a pseudo-field called an init-only\nfield.  As it is not a true field, it is not returned by the\nmodule-level ``fields()`` function.  Init-only fields are added as\nparameters to the generated ``__init__`` method, and are passed to\nthe optional ``__post_init__`` method.  They are not otherwise used\nby Data Classes.\n\nFor example, suppose a field will be initialized from a database, if a\nvalue is not provided when creating the class::\n\n  @dataclass\n  class C:\n      i: int\n      j: int = None\n      database: InitVar[DatabaseType] = None\n\n      def __post_init__(self, database):\n          if self.j is None and database is not None:\n              self.j = database.lookup('j')\n\n  c = C(10, database=my_database)\n\nIn this case, ``fields()`` will return ``Field`` objects for ``i`` and\n``j``, but not for ``database``.",
+            "index": 19,
+            "metadata": {
+              "doc_title": "Data Classes",
+              "section_path": "Specification > Init-only variables",
+              "char_start": 16650,
+              "char_end": 17714,
+              "token_count": 266,
+              "context_header": "Data Classes > Specification > Init-only variables",
+              "source": "pep-0557.rst"
+            }
+          },
+          "score": 16.877928917112605,
+          "rank": 2,
+          "retriever": "bm25",
+          "stages": {
+            "bm25": {
+              "score": 16.877928917112605,
+              "rank": 2
+            }
+          }
+        },
+        {
+          "chunk": {
+            "id": "cb84384cb5f17589-0018",
+            "document_id": "cb84384cb5f17589",
+            "content": "One place where ``dataclass`` actually inspects the type of a field is\nto determine if a field is a class variable as defined in :pep:`526`.  It\ndoes this by checking if the type of the field is ``typing.ClassVar``.\nIf a field is a ``ClassVar``, it is excluded from consideration as a\nfield and is ignored by the Data Class mechanisms. For more\ndiscussion, see [#]_.  Such ``ClassVar`` pseudo-fields are not\nreturned by the module-level ``fields()`` function.",
+            "index": 18,
+            "metadata": {
+              "doc_title": "Data Classes",
+              "section_path": "Specification > Class variables",
+              "char_start": 16148,
+              "char_end": 16607,
+              "token_count": 115,
+              "context_header": "Data Classes > Specification > Class variables",
+              "source": "pep-0557.rst"
+            }
+          },
+          "score": 16.377322174922885,
+          "rank": 3,
+          "retriever": "bm25",
+          "stages": {
+            "bm25": {
+              "score": 16.377322174922885,
+              "rank": 3
+            }
+          }
+        },
+        {
+          "chunk": {
+            "id": "4e9bac3fbbd66adf-0003",
+            "document_id": "4e9bac3fbbd66adf",
+            "content": ":pep:`484` introduced type hints, a.k.a. type annotations.  While its\nmain focus was function annotations, it also introduced the notion of\ntype comments to annotate variables::\n\n  # 'primes' is a list of integers\n  primes = []  # type: List[int]\n\n  # 'captain' is a string (Note: initial value is a problem)\n  captain = ...  # type: str\n\n  class Starship:\n      # 'stats' is a class variable\n      stats = {}  # type: Dict[str, int]\n\nThis PEP aims at adding syntax to Python for annotating the types of variables\n(including class variables and instance variables),\ninstead of expressing them through comments::\n\n  primes: List[int] = []\n\n  captain: str  # Note: no initial value!\n\n  class Starship:\n      stats: ClassVar[Dict[str, int]] = {}\n\n:pep:`484` explicitly states that type comments are intended to help with\ntype inference in complex cases, and this PEP does not change this\nintention.  However, since in practice type comments have also been\nadopted for class variables and instance variables, this PEP also\ndiscusses the use of type annotations for those variables.",
+            "index": 3,
+            "metadata": {
+              "doc_title": "Syntax for Variable Annotations",
+              "section_path": "Abstract",
+              "char_start": 1213,
+              "char_end": 2290,
+              "token_count": 270,
+              "context_header": "Syntax for Variable Annotations > Abstract",
+              "source": "pep-0526.rst"
+            }
+          },
+          "score": 15.50869134649668,
+          "rank": 4,
+          "retriever": "bm25",
+          "stages": {
+            "bm25": {
+              "score": 15.50869134649668,
+              "rank": 4
+            }
+          }
+        },
+        {
+          "chunk": {
+            "id": "4e9bac3fbbd66adf-0019",
+            "document_id": "4e9bac3fbbd66adf",
+            "content": "- **Should we introduce variable annotations at all?**\n  Variable annotations have *already* been around for almost two years\n  in the form of type comments, sanctioned by :pep:`484`.  They are\n  extensively used by third party type checkers (mypy, pytype,\n  PyCharm, etc.) and by projects using the type checkers. However, the\n  comment syntax has many downsides listed in Rationale. This PEP is\n  not about the need for type annotations, it is about what should be\n  the syntax for such annotations.\n\n- **Introduce a new keyword:**\n  The choice of a good keyword is hard,\n  e.g. it can't be ``var`` because that is way too common a variable name,\n  and it can't be ``local`` if we want to use it for class variables or\n  globals. Second, no matter what we choose, we'd still need\n  a ``__future__`` import.\n\n- **Use** ``def`` **as a keyword:**\n  The proposal would be::\n\n    def primes: List[int] = []\n    def captain: str\n\n  The problem with this is that ``def`` means \"define a function\" to\n  generations of Python programmers (and tools!), and using it also to\n  define variables does not increase clarity.  (Though this is of\n  course subjective.)\n\n- **Use function based syntax**:\n  It was proposed to annotate types of variables using\n  ``var = cast(annotation[, value])``. Although this syntax\n  alleviates some problems with type comments like absence of the annotation\n  in AST, it does not solve other problems such as readability\n  and it introduces possible runtime overhead.",
+            "index": 19,
+            "metadata": {
+              "doc_title": "Syntax for Variable Annotations",
+              "section_path": "Rejected/Postponed Proposals",
+              "char_start": 17505,
+              "char_end": 18994,
+              "token_count": 373,
+              "context_header": "Syntax for Variable Annotations > Rejected/Postponed Proposals",
+              "source": "pep-0526.rst"
+            }
+          },
+          "score": 14.842882608330289,
+          "rank": 5,
+          "retriever": "bm25",
+          "stages": {
+            "bm25": {
+              "score": 14.842882608330289,
+              "rank": 5
+            }
+          }
+        },
+        {
+          "chunk": {
+            "id": "4e9bac3fbbd66adf-0007",
+            "document_id": "4e9bac3fbbd66adf",
+            "content": "The types of locals and globals can be annotated as follows::\n\n  some_number: int           # variable without initial value\n  some_list: List[int] = []  # variable with initial value\n\nBeing able to omit the initial value allows for easier typing of variables\nassigned in conditional branches::\n\n  sane_world: bool\n  if 2+2 == 4:\n      sane_world = True\n  else:\n      sane_world = False\n\nNote that, although the syntax does allow tuple packing, it does *not* allow\none to annotate the types of variables when tuple unpacking is used::\n\n  # Tuple packing with variable annotation syntax\n  t: Tuple[int, ...] = (1, 2, 3)\n  # or\n  t: Tuple[int, ...] = 1, 2, 3  # This only works in Python 3.8+\n\n  # Tuple unpacking with variable annotation syntax\n  header: str\n  kind: int\n  body: Optional[List[str]]\n  header, kind, body = message\n\nOmitting the initial value leaves the variable uninitialized::\n\n  a: int\n  print(a)  # raises NameError\n\nHowever, annotating a local variable will cause the interpreter to always make\nit a local::\n\n  def f():\n      a: int\n      print(a)  # raises UnboundLocalError\n      # Commenting out the a: int makes it a NameError.\n\nas if the code were::\n\n  def f():\n      if False: a = 0\n      print(a)  # raises UnboundLocalError\n\nDuplicate type annotations will be ignored. However, static type\ncheckers may issue a warning for annotations of the same variable\nby a different type::\n\n  a: int\n  a: str  # Static type checker may or may not warn about this.\n\n.. _classvar:",
+            "index": 7,
+            "metadata": {
+              "doc_title": "Syntax for Variable Annotations",
+              "section_path": "Specification > Global and local variable annotations",
+              "char_start": 5636,
+              "char_end": 7129,
+              "token_count": 374,
+              "context_header": "Syntax for Variable Annotations > Specification > Global and local variable annotations",
+              "source": "pep-0526.rst"
+            }
+          },
+          "score": 14.24732686036693,
+          "rank": 6,
+          "retriever": "bm25",
+          "stages": {
+            "bm25": {
+              "score": 14.24732686036693,
+              "rank": 6
+            }
+          }
+        },
+        {
+          "chunk": {
+            "id": "cb84384cb5f17589-0007",
+            "document_id": "cb84384cb5f17589",
+            "content": "There have been numerous attempts to define classes which exist\nprimarily to store values which are accessible by attribute lookup.\nSome examples include:\n\n- collections.namedtuple in the standard library.\n\n- typing.NamedTuple in the standard library.\n\n- The popular attrs [#]_ project.\n\n- George Sakkis' recordType recipe [#]_, a mutable data type inspired\n  by collections.namedtuple.\n\n- Many example online recipes [#]_, packages [#]_, and questions [#]_.\n  David Beazley used a form of data classes as the motivating example\n  in a PyCon 2013 metaclass talk [#]_.\n\nSo, why is this PEP needed?\n\nWith the addition of :pep:`526`, Python has a concise way to specify the\ntype of class members.  This PEP leverages that syntax to provide a\nsimple, unobtrusive way to describe Data Classes.  With two exceptions,\nthe specified attribute type annotation is completely ignored by Data\nClasses.\n\nNo base classes or metaclasses are used by Data Classes.  Users of\nthese classes are free to use inheritance and metaclasses without any\ninterference from Data Classes.  The decorated classes are truly\n\"normal\" Python classes.  The Data Class decorator should not\ninterfere with any usage of the class.\n\nOne main design goal of Data Classes is to support static type\ncheckers.  The use of :pep:`526` syntax is one example of this, but so is\nthe design of the ``fields()`` function and the ``@dataclass``\ndecorator.  Due to their very dynamic nature, some of the libraries\nmentioned above are difficult to use with static type checkers.",
+            "index": 7,
+            "metadata": {
+              "doc_title": "Data Classes",
+              "section_path": "Rationale",
+              "char_start": 3784,
+              "char_end": 5310,
+              "token_count": 382,
+              "context_header": "Data Classes > Rationale",
+              "source": "pep-0557.rst"
+            }
+          },
+          "score": 13.65837626145712,
+          "rank": 7,
+          "retriever": "bm25",
+          "stages": {
+            "bm25": {
+              "score": 13.65837626145712,
+              "rank": 7
+            }
+          }
+        },
+        {
+          "chunk": {
+            "id": "d19a07254ec82051-0015",
+            "document_id": "d19a07254ec82051",
+            "content": "Most libraries that support dataclass-like semantics provide one or\nmore \"field specifier\" types that allow a class definition to provide\nadditional metadata about each field in the class. This metadata can\ndescribe, for example, default values, or indicate whether the field\nshould be included in the synthesized ``__init__`` method.\n\nField specifiers can be omitted in cases where additional metadata is\nnot required:\n\n.. code-block:: python\n\n  @dataclass\n  class Employee:\n      # Field with no specifier\n      name: str\n\n      # Field that uses field specifier class instance\n      age: Optional[int] = field(default=None, init=False)\n\n      # Field with type annotation and simple initializer to\n      # describe default value\n      is_paid_hourly: bool = True\n\n      # Not a field (but rather a class variable) because type\n      # annotation is not provided.\n      office_number = \"unassigned\"",
+            "index": 15,
+            "metadata": {
+              "doc_title": "Data Class Transforms",
+              "section_path": "Specification > Field specifiers",
+              "char_start": 13101,
+              "char_end": 14001,
+              "token_count": 225,
+              "context_header": "Data Class Transforms > Specification > Field specifiers",
+              "source": "pep-0681.rst"
+            }
+          },
+          "score": 13.55991881059696,
+          "rank": 8,
+          "retriever": "bm25",
+          "stages": {
+            "bm25": {
+              "score": 13.55991881059696,
+              "rank": 8
+            }
+          }
+        }
+      ],
+      "usage": {
+        "input_tokens": 326,
+        "output_tokens": 40
+      },
+      "error": null
+    },
+    {
+      "number": 2,
+      "request": "{\"question\": \"Which PEP defines the field-annotation syntax used by data classes, and what limitation does it identify for type comments on uninitialized variables?\", \"prior_queries\": [\"PEP field annotation syntax data classes type comments uninitialized variables limitation\"], \"evidence\": [{\"id\": \"4e9bac3fbbd66adf-0004\", \"text\": \"Although type comments work well enough, the fact that they're\\nexpressed through comments has some downsides:\\n\\n- Text editors often highlight comments differently from type annotations.\\n\\n- There's no way to annotate the type of an undefined variable; one needs to\\n  initialize it to ``None`` (e.g. ``a = None # type: int``).\\n\\n- Variables annotated in a conditional branch are difficult to read::\\n\\n    if some_value:\\n        my_var = function() # type: Logger\\n    else:\\n        my_var = another_function() # Why isn't there a type here?\\n\\n- Since type comments aren't actually part of the language, if a Python script\\n  wants to parse them, it requires a custom parser instead of just using\\n  ``ast``.\\n\\n- Type comments are used a lot in typeshed. Migrating typeshed to use\\n  the variable annotation syntax instead of type comments would improve\\n  readability of stubs.\\n\\n- In situations where normal comments and type comments are used together, it is\\n  difficult to distinguish them::\\n\\n    path = None  # type: Optional[str]  # Path to module source\\n\\n- It's impossible to retrieve the annotations at runtime outside of\\n  attempting to find the module's source code and parse it at runtime,\\n  which is inelegant, to say the least.\\n\\nThe majority of these issues can be alleviated by making the syntax\\na core part of the language. Moreover, having a dedicated annotation syntax\\nfor class and instance variables (in addition to method annotations) will\\npave the way to static duck-typing as a complement to nominal typing defined\\nby :pep:`484`.\"}, {\"id\": \"cb84384cb5f17589-0019\", \"text\": \"The other place where ``dataclass`` inspects a type annotation is to\\ndetermine if a field is an init-only variable.  It does this by seeing\\nif the type of a field is of type ``dataclasses.InitVar``.  If a field\\nis an ``InitVar``, it is considered a pseudo-field called an init-only\\nfield.  As it is not a true field, it is not returned by the\\nmodule-level ``fields()`` function.  Init-only fields are added as\\nparameters to the generated ``__init__`` method, and are passed to\\nthe optional ``__post_init__`` method.  They are not otherwise used\\nby Data Classes.\\n\\nFor example, suppose a field will be initialized from a database, if a\\nvalue is not provided when creating the class::\\n\\n  @dataclass\\n  class C:\\n      i: int\\n      j: int = None\\n      database: InitVar[DatabaseType] = None\\n\\n      def __post_init__(self, database):\\n          if self.j is None and database is not None:\\n              self.j = database.lookup('j')\\n\\n  c = C(10, database=my_database)\\n\\nIn this case, ``fields()`` will return ``Field`` objects for ``i`` and\\n``j``, but not for ``database``.\"}, {\"id\": \"cb84384cb5f17589-0018\", \"text\": \"One place where ``dataclass`` actually inspects the type of a field is\\nto determine if a field is a class variable as defined in :pep:`526`.  It\\ndoes this by checking if the type of the field is ``typing.ClassVar``.\\nIf a field is a ``ClassVar``, it is excluded from consideration as a\\nfield and is ignored by the Data Class mechanisms. For more\\ndiscussion, see [#]_.  Such ``ClassVar`` pseudo-fields are not\\nreturned by the module-level ``fields()`` function.\"}, {\"id\": \"4e9bac3fbbd66adf-0003\", \"text\": \":pep:`484` introduced type hints, a.k.a. type annotations.  While its\\nmain focus was function annotations, it also introduced the notion of\\ntype comments to annotate variables::\\n\\n  # 'primes' is a list of integers\\n  primes = []  # type: List[int]\\n\\n  # 'captain' is a string (Note: initial value is a problem)\\n  captain = ...  # type: str\\n\\n  class Starship:\\n      # 'stats' is a class variable\\n      stats = {}  # type: Dict[str, int]\\n\\nThis PEP aims at adding syntax to Python for annotating the types of variables\\n(including class variables and instance variables),\\ninstead of expressing them through comments::\\n\\n  primes: List[int] = []\\n\\n  captain: str  # Note: no initial value!\\n\\n  class Starship:\\n      stats: ClassVar[Dict[str, int]] = {}\\n\\n:pep:`484` explicitly states that type comments are intended to help with\\ntype inference in complex cases, and this PEP does not change this\\nintention.  However, since in practice type comments have also been\\nadopted for class variables and instance variables, this PEP also\\ndiscusses the use of type annotations for those variables.\"}, {\"id\": \"4e9bac3fbbd66adf-0019\", \"text\": \"- **Should we introduce variable annotations at all?**\\n  Variable annotations have *already* been around for almost two years\\n  in the form of type comments, sanctioned by :pep:`484`.  They are\\n  extensively used by third party type checkers (mypy, pytype,\\n  PyCharm, etc.) and by projects using the type checkers. However, the\\n  comment syntax has many downsides listed in Rationale. This PEP is\\n  not about the need for type annotations, it is about what should be\\n  the syntax for such annotations.\\n\\n- **Introduce a new keyword:**\\n  The choice of a good keyword is hard,\\n  e.g. it can't be ``var`` because that is way too common a variable name,\\n  and it can't be ``local`` if we want to use it for class variables or\\n  globals. Second, no matter what we choose, we'd still need\\n  a ``__future__`` import.\\n\\n- **Use** ``def`` **as a keyword:**\\n  The proposal would be::\\n\\n    def primes: List[int] = []\\n    def captain: str\\n\\n  The problem with this is that ``def`` means \\\"define a function\\\" to\\n  generations of Python programmers (and tools!), and using it also to\\n  define variables does not increase clarity.  (Though this is of\\n  course subjective.)\\n\\n- **Use function based syntax**:\\n  It was proposed to annotate types of variables using\\n  ``var = cast(annotation[, value])``. Although this syntax\\n  alleviates some problems with type comments like absence of the annotation\\n  in AST, it does not solve other problems such as readability\\n  and it introduces possible runtime overhead.\"}, {\"id\": \"4e9bac3fbbd66adf-0007\", \"text\": \"The types of locals and globals can be annotated as follows::\\n\\n  some_number: int           # variable without initial value\\n  some_list: List[int] = []  # variable with initial value\\n\\nBeing able to omit the initial value allows for easier typing of variables\\nassigned in conditional branches::\\n\\n  sane_world: bool\\n  if 2+2 == 4:\\n      sane_world = True\\n  else:\\n      sane_world = False\\n\\nNote that, although the syntax does allow tuple packing, it does *not* allow\\none to annotate the types of variables when tuple unpacking is used::\\n\\n  # Tuple packing with variable annotation syntax\\n  t: Tuple[int, ...] = (1, 2, 3)\\n  # or\\n  t: Tuple[int, ...] = 1, 2, 3  # This only works in Python 3.8+\\n\\n  # Tuple unpacking with variable annotation syntax\\n  header: str\\n  kind: int\\n  body: Optional[List[str]]\\n  header, kind, body = message\\n\\nOmitting the initial value leaves the variable uninitialized::\\n\\n  a: int\\n  print(a)  # raises NameError\\n\\nHowever, annotating a local variable will cause the interpreter to always make\\nit a local::\\n\\n  def f():\\n      a: int\\n      print(a)  # raises UnboundLocalError\\n      # Commenting out the a: int makes it a NameError.\\n\\nas if the code were::\\n\\n  def f():\\n      if False: a = 0\\n      print(a)  # raises UnboundLocalError\\n\\nDuplicate type annotations will be ignored. However, static type\\ncheckers may issue a warning for annotations of the same variable\\nby a different type::\\n\\n  a: int\\n  a: str  # Static type checker may or may not warn about this.\\n\\n.. _classvar:\"}, {\"id\": \"cb84384cb5f17589-0007\", \"text\": \"There have been numerous attempts to define classes which exist\\nprimarily to store values which are accessible by attribute lookup.\\nSome examples include:\\n\\n- collections.namedtuple in the standard library.\\n\\n- typing.NamedTuple in the standard library.\\n\\n- The popular attrs [#]_ project.\\n\\n- George Sakkis' recordType recipe [#]_, a mutable data type inspired\\n  by collections.namedtuple.\\n\\n- Many example online recipes [#]_, packages [#]_, and questions [#]_.\\n  David Beazley used a form of data classes as the motivating example\\n  in a PyCon 2013 metaclass talk [#]_.\\n\\nSo, why is this PEP needed?\\n\\nWith the addition of :pep:`526`, Python has a concise way to specify the\\ntype of class members.  This PEP leverages that syntax to provide a\\nsimple, unobtrusive way to describe Data Classes.  With two exceptions,\\nthe specified attribute type annotation is completely ignored by Data\\nClasses.\\n\\nNo base classes or metaclasses are used by Data Classes.  Users of\\nthese classes are free to use inheritance and metaclasses without any\\ninterference from Data Classes.  The decorated classes are truly\\n\\\"normal\\\" Python classes.  The Data Class decorator should not\\ninterfere with any usage of the class.\\n\\nOne main design goal of Data Classes is to support static type\\ncheckers.  The use of :pep:`526` syntax is one example of this, but so is\\nthe design of the ``fields()`` function and the ``@dataclass``\\ndecorator.  Due to their very dynamic nature, some of the libraries\\nmentioned above are difficult to use with static type checkers.\"}, {\"id\": \"d19a07254ec82051-0015\", \"text\": \"Most libraries that support dataclass-like semantics provide one or\\nmore \\\"field specifier\\\" types that allow a class definition to provide\\nadditional metadata about each field in the class. This metadata can\\ndescribe, for example, default values, or indicate whether the field\\nshould be included in the synthesized ``__init__`` method.\\n\\nField specifiers can be omitted in cases where additional metadata is\\nnot required:\\n\\n.. code-block:: python\\n\\n  @dataclass\\n  class Employee:\\n      # Field with no specifier\\n      name: str\\n\\n      # Field that uses field specifier class instance\\n      age: Optional[int] = field(default=None, init=False)\\n\\n      # Field with type annotation and simple initializer to\\n      # describe default value\\n      is_paid_hourly: bool = True\\n\\n      # Not a field (but rather a class variable) because type\\n      # annotation is not provided.\\n      office_number = \\\"unassigned\\\"\"}]}",
+      "raw_response": "{\"action\":\"answer\",\"answer\":\"PEP 526 defines the variable/field annotation syntax (e.g., `name: type` or `name: type = value`) used by data classes. It identifies that one limitation of the older type-comment approach (used before PEP 526) is that \\\"there's no way to annotate the type of an undefined variable; one needs to initialize it to None (e.g. a = None # type: int).\\\" PEP 526's new syntax fixes this by allowing a variable to be annotated without an initial value, e.g. `captain: str # Note: no initial value!`.\",\"citations\":[\"4e9bac3fbbd66adf-0004\",\"4e9bac3fbbd66adf-0003\",\"cb84384cb5f17589-0007\"]}",
+      "action": {
+        "action": "answer",
+        "query": "",
+        "answer": "PEP 526 defines the variable/field annotation syntax (e.g., `name: type` or `name: type = value`) used by data classes. It identifies that one limitation of the older type-comment approach (used before PEP 526) is that \"there's no way to annotate the type of an undefined variable; one needs to initialize it to None (e.g. a = None # type: int).\" PEP 526's new syntax fixes this by allowing a variable to be annotated without an initial value, e.g. `captain: str # Note: no initial value!`.",
+        "citations": [
+          "4e9bac3fbbd66adf-0004",
+          "4e9bac3fbbd66adf-0003",
+          "cb84384cb5f17589-0007"
+        ]
+      },
+      "retrieved": [],
+      "usage": {
+        "input_tokens": 4143,
+        "output_tokens": 239
+      },
+      "error": null
+    }
+  ],
+  "answer": {
+    "query": "Which PEP defines the field-annotation syntax used by data classes, and what limitation does it identify for type comments on uninitialized variables?",
+    "text": "PEP 526 defines the variable/field annotation syntax (e.g., `name: type` or `name: type = value`) used by data classes. It identifies that one limitation of the older type-comment approach (used before PEP 526) is that \"there's no way to annotate the type of an undefined variable; one needs to initialize it to None (e.g. a = None # type: int).\" PEP 526's new syntax fixes this by allowing a variable to be annotated without an initial value, e.g. `captain: str # Note: no initial value!`.",
+    "citations": [
+      {
+        "chunk_id": "4e9bac3fbbd66adf-0004",
+        "quote": null
+      },
+      {
+        "chunk_id": "4e9bac3fbbd66adf-0003",
+        "quote": null
+      },
+      {
+        "chunk_id": "cb84384cb5f17589-0007",
+        "quote": null
+      }
+    ],
+    "abstained": false,
+    "model": "claude-sonnet-5",
+    "prompt_version": "agent_v1",
+    "usage": {
+      "input_tokens": 4469,
+      "output_tokens": 279
+    },
+    "invalid_citations": [],
+    "metadata": {
+      "stop_reason": "answered"
+    }
+  },
+  "usage": {
+    "input_tokens": 4469,
+    "output_tokens": 279
+  }
+}

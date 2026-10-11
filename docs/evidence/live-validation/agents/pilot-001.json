@@ -1,0 +1,295 @@
+{
+  "question": "Does PEP 484 require Python to enforce type hints at runtime?",
+  "config": {
+    "max_steps": 5,
+    "max_output_tokens": 768,
+    "output_token_budget": 3072,
+    "max_context_chars": 24000,
+    "max_question_chars": 4000,
+    "max_chunks": 16,
+    "timeout_seconds": 60.0,
+    "prompt_version": "agent_v1"
+  },
+  "provider": "cached(budgeted(anthropic))",
+  "model": "claude-sonnet-5",
+  "dataset_version": "27b46e65f45d",
+  "placeholder": false,
+  "stop_reason": "answered",
+  "steps": [
+    {
+      "number": 1,
+      "request": "{\"question\": \"Does PEP 484 require Python to enforce type hints at runtime?\", \"prior_queries\": [], \"evidence\": []}",
+      "raw_response": "{\"action\":\"search\",\"query\":\"PEP 484 type hints enforcement runtime\"}",
+      "action": {
+        "action": "search",
+        "query": "PEP 484 type hints enforcement runtime",
+        "answer": "",
+        "citations": []
+      },
+      "retrieved": [
+        {
+          "chunk": {
+            "id": "a35c304214b4044a-0001",
+            "document_id": "a35c304214b4044a",
+            "content": "Type hints introduced in :pep:`484` can be used to specify type metadata\nfor static type checkers and other third party tools. However, :pep:`484`\nonly specifies the semantics of *nominal* subtyping. In this PEP we specify\nstatic and runtime semantics of protocol classes that will provide a support\nfor *structural* subtyping (static duck typing).\n\n\n.. _PEP 544 rationale:",
+            "index": 1,
+            "metadata": {
+              "doc_title": "Protocols: Structural subtyping (static duck typing)",
+              "section_path": "Abstract",
+              "char_start": 618,
+              "char_end": 991,
+              "token_count": 94,
+              "context_header": "Protocols: Structural subtyping (static duck typing) > Abstract",
+              "source": "pep-0544.rst"
+            }
+          },
+          "score": 13.606020963958645,
+          "rank": 1,
+          "retriever": "bm25",
+          "stages": {
+            "bm25": {
+              "score": 13.606020963958645,
+              "rank": 1
+            }
+          }
+        },
+        {
+          "chunk": {
+            "id": "d046a9a5c7967a12-0019",
+            "document_id": "d046a9a5c7967a12",
+            "content": "We considered having ``@typing.override`` enforce override safety at runtime,\nsimilarly to how ``@overrides.overrides``\n`does today <https://pypi.org/project/overrides/>`_.\n\nWe rejected this for four reasons:\n\n- For users of static type checking, it is not clear this brings any benefits.\n- There would be at least some performance overhead, leading to projects\n  importing slower with runtime enforcement. We estimate the\n  ``@overrides.overrides`` implementation takes around 100 microseconds, which\n  is fast but could still add up to a second or more of extra initialization\n  time in million-plus line codebases, which is exactly where we think\n  ``@typing.override`` will be most useful.\n- An implementation may have edge cases where it doesn’t work well (we heard\n  from a maintainer of one such closed-source library that this has been a\n  problem). We expect static enforcement to be simple and reliable.\n- The implementation approaches we know of are not simple. The decorator\n  executes before the class is finished evaluating, so the options we know of\n  are either to inspect the bytecode of the caller (as ``@overrides.overrides``\n  does) or to use a metaclass-based approach. Neither approach seems ideal.",
+            "index": 19,
+            "metadata": {
+              "doc_title": "Override Decorator for Static Typing",
+              "section_path": "Rejected Alternatives > Runtime enforcement",
+              "char_start": 14064,
+              "char_end": 15284,
+              "token_count": 305,
+              "context_header": "Override Decorator for Static Typing > Rejected Alternatives > Runtime enforcement",
+              "source": "pep-0698.rst"
+            }
+          },
+          "score": 11.689981112509802,
+          "rank": 2,
+          "retriever": "bm25",
+          "stages": {
+            "bm25": {
+              "score": 11.689981112509802,
+              "rank": 2
+            }
+          }
+        },
+        {
+          "chunk": {
+            "id": "ad23617867325d80-0013",
+            "document_id": "ad23617867325d80",
+            "content": "Static typing users use annotations to add type information\nto their code.  But they largely don't examine the annotations\nat runtime.  Instead, they use static type analysis tools\n(mypy, pytype) to examine their source tree and determine\nwhether or not their code is using types consistently.\nThis is almost certainly the most popular use case for\nannotations today.\n\nMany of the annotations use *type hints,* a la :pep:`484`\n(and many subsequent PEPs).  Type hints are passive objects,\nmere representation of type information; they don't do any actual work.\nType hints are often parameterized with other types or other type hints.\nSince they're agnostic about what these actual values are, type hints\nwork fine with ``ForwardRef`` proxy objects.\nUsers of static type hints discovered that extensive type hinting under\nstock semantics often created large-scale circular reference and circular\nimport problems that could be difficult to solve.  :pep:`563` was designed\nspecifically to solve this problem, and the solution worked great for\nthese users.  The difficulty of rendering stringized annotations into\nreal values largely didn't inconvenience these users because of how\ninfrequently they examine annotations at runtime.",
+            "index": 13,
+            "metadata": {
+              "doc_title": "Deferred Evaluation Of Annotations Using Descriptors",
+              "section_path": "Motivation > The Current State Of Annotation Use Cases > Static typing users",
+              "char_start": 14993,
+              "char_end": 16219,
+              "token_count": 307,
+              "context_header": "Deferred Evaluation Of Annotations Using Descriptors > Motivation > The Current State Of Annotation Use Cases > Static typing users",
+              "source": "pep-0649.rst"
+            }
+          },
+          "score": 11.403593067916864,
+          "rank": 3,
+          "retriever": "bm25",
+          "stages": {
+            "bm25": {
+              "score": 11.403593067916864,
+              "rank": 3
+            }
+          }
+        },
+        {
+          "chunk": {
+            "id": "00ed39463d0680a5-0001",
+            "document_id": "00ed39463d0680a5",
+            "content": "This PEP lays out the theory referenced by :pep:`484`.",
+            "index": 1,
+            "metadata": {
+              "doc_title": "The Theory of Type Hints",
+              "section_path": "Abstract",
+              "char_start": 269,
+              "char_end": 323,
+              "token_count": 14,
+              "context_header": "The Theory of Type Hints > Abstract",
+              "source": "pep-0483.rst"
+            }
+          },
+          "score": 11.372422997747936,
+          "rank": 4,
+          "retriever": "bm25",
+          "stages": {
+            "bm25": {
+              "score": 11.372422997747936,
+              "rank": 4
+            }
+          }
+        },
+        {
+          "chunk": {
+            "id": "a25e032f504686c8-0001",
+            "document_id": "a25e032f504686c8",
+            "content": ":pep:`3107` introduced syntax for function annotations, but the semantics\nwere deliberately left undefined.  There has now been enough 3rd party\nusage for static type analysis that the community would benefit from\na standard vocabulary and baseline tools within the standard library.\n\nThis PEP introduces a provisional module to provide these standard\ndefinitions and tools, along with some conventions for situations\nwhere annotations are not available.\n\nNote that this PEP still explicitly does NOT prevent other uses of\nannotations, nor does it require (or forbid) any particular processing\nof annotations, even when they conform to this specification.  It\nsimply enables better coordination, as :pep:`333` did for web frameworks.\n\nFor example, here is a simple function whose argument and return type\nare declared in the annotations::\n\n  def greeting(name: str) -> str:\n      return 'Hello ' + name\n\nWhile these annotations are available at runtime through the usual\n``__annotations__`` attribute, *no type checking happens at runtime*.\nInstead, the proposal assumes the existence of a separate off-line\ntype checker which users can run over their source code voluntarily.\nEssentially, such a type checker acts as a very powerful linter.\n(While it would of course be possible for individual users to employ\na similar checker at run time for Design By Contract enforcement or\nJIT optimization, those tools are not yet as mature.)",
+            "index": 1,
+            "metadata": {
+              "doc_title": "Type Hints",
+              "section_path": "Abstract",
+              "char_start": 481,
+              "char_end": 1913,
+              "token_count": 358,
+              "context_header": "Type Hints > Abstract",
+              "source": "pep-0484.rst"
+            }
+          },
+          "score": 10.314418950938393,
+          "rank": 5,
+          "retriever": "bm25",
+          "stages": {
+            "bm25": {
+              "score": 10.314418950938393,
+              "rank": 5
+            }
+          }
+        },
+        {
+          "chunk": {
+            "id": "00ed39463d0680a5-0003",
+            "document_id": "00ed39463d0680a5",
+            "content": "-  ``t1``, ``t2``, etc. and ``u1``, ``u2``, etc. are types. Sometimes we write\n   ``ti`` or ``tj`` to refer to \"any of ``t1``, ``t2``, etc.\"\n-  ``T``, ``U`` etc. are type variables (defined with ``TypeVar()``, see below).\n-  Objects, classes defined with a class statement, and instances are\n   denoted using standard :pep:`8` conventions.\n-  the symbol ``==`` applied to types in the context of this PEP means that\n   two expressions represent the same type.\n-  Note that :pep:`484` makes a distinction between types and classes\n   (a type is a concept for the type checker,\n   while a class is a runtime concept).  In this PEP we clarify\n   this distinction but avoid unnecessary strictness to allow more\n   flexibility in the implementation of type checkers.",
+            "index": 3,
+            "metadata": {
+              "doc_title": "The Theory of Type Hints",
+              "section_path": "Introduction > Notational conventions",
+              "char_start": 980,
+              "char_end": 1741,
+              "token_count": 191,
+              "context_header": "The Theory of Type Hints > Introduction > Notational conventions",
+              "source": "pep-0483.rst"
+            }
+          },
+          "score": 10.069104046684172,
+          "rank": 6,
+          "retriever": "bm25",
+          "stages": {
+            "bm25": {
+              "score": 10.069104046684172,
+              "rank": 6
+            }
+          }
+        },
+        {
+          "chunk": {
+            "id": "00ed39463d0680a5-0010",
+            "document_id": "00ed39463d0680a5",
+            "content": "In Python, classes are object factories defined by the ``class`` statement,\nand returned by the ``type(obj)`` built-in function. Class is a dynamic,\nruntime concept.\n\nType concept is described above, types appear in variable\nand function type annotations, can be constructed\nfrom building blocks described below, and are used by static type checkers.\n\nEvery class is a type as discussed above.\nBut it is tricky and error prone to implement a class that exactly represents\nsemantics of a given type, and it is not a goal of :pep:`484`.\n*The static types described in* :pep:`484` *should not be confused with\nthe runtime classes.* Examples:\n\n- ``int`` is a class and a type.\n- ``UserID`` is a class and a type.\n- ``Union[str, int]`` is a type but not a proper class::\n\n      class MyUnion(Union[str, int]): ...  # raises TypeError\n\n      Union[str, int]()  # raises TypeError\n\nTyping interface is implemented with classes, i.e., at runtime it is possible\nto evaluate, e.g., ``Generic[T].__bases__``. But to emphasize the distinction\nbetween classes and types the following general rules apply:\n\n-  No types defined below (i.e. ``Any``, ``Union``, etc.) can be instantiated,\n   an attempt to do so will raise ``TypeError``.\n   (But non-abstract subclasses of ``Generic`` can be.)\n-  No types defined below can be subclassed, except for ``Generic`` and\n   classes derived from it.\n-  All of these will raise ``TypeError`` if they appear\n   in ``isinstance`` or ``issubclass`` (except for unparameterized generics).",
+            "index": 10,
+            "metadata": {
+              "doc_title": "The Theory of Type Hints",
+              "section_path": "Summary of gradual typing > Types vs. Classes",
+              "char_start": 8911,
+              "char_end": 10421,
+              "token_count": 378,
+              "context_header": "The Theory of Type Hints > Summary of gradual typing > Types vs. Classes",
+              "source": "pep-0483.rst"
+            }
+          },
+          "score": 9.942805374335537,
+          "rank": 7,
+          "retriever": "bm25",
+          "stages": {
+            "bm25": {
+              "score": 9.942805374335537,
+              "rank": 7
+            }
+          }
+        },
+        {
+          "chunk": {
+            "id": "d046a9a5c7967a12-0012",
+            "document_id": "d046a9a5c7967a12",
+            "content": "We believe that ``@override`` is most useful if checkers also allow developers\nto opt into a strict mode where methods that override a parent class are\nrequired to use the decorator. Strict enforcement should be opt-in for backward\ncompatibility.",
+            "index": 12,
+            "metadata": {
+              "doc_title": "Override Decorator for Static Typing",
+              "section_path": "Strict Enforcement Per-Project",
+              "char_start": 8521,
+              "char_end": 8767,
+              "token_count": 62,
+              "context_header": "Override Decorator for Static Typing > Strict Enforcement Per-Project",
+              "source": "pep-0698.rst"
+            }
+          },
+          "score": 9.894523822806692,
+          "rank": 8,
+          "retriever": "bm25",
+          "stages": {
+            "bm25": {
+              "score": 9.894523822806692,
+              "rank": 8
+            }
+          }
+        }
+      ],
+      "usage": {
+        "input_tokens": 305,
+        "output_tokens": 30
+      },
+      "error": null
+    },
+    {
+      "number": 2,
+      "request": "{\"question\": \"Does PEP 484 require Python to enforce type hints at runtime?\", \"prior_queries\": [\"PEP 484 type hints enforcement runtime\"], \"evidence\": [{\"id\": \"a35c304214b4044a-0001\", \"text\": \"Type hints introduced in :pep:`484` can be used to specify type metadata\\nfor static type checkers and other third party tools. However, :pep:`484`\\nonly specifies the semantics of *nominal* subtyping. In this PEP we specify\\nstatic and runtime semantics of protocol classes that will provide a support\\nfor *structural* subtyping (static duck typing).\\n\\n\\n.. _PEP 544 rationale:\"}, {\"id\": \"d046a9a5c7967a12-0019\", \"text\": \"We considered having ``@typing.override`` enforce override safety at runtime,\\nsimilarly to how ``@overrides.overrides``\\n`does today <https://pypi.org/project/overrides/>`_.\\n\\nWe rejected this for four reasons:\\n\\n- For users of static type checking, it is not clear this brings any benefits.\\n- There would be at least some performance overhead, leading to projects\\n  importing slower with runtime enforcement. We estimate the\\n  ``@overrides.overrides`` implementation takes around 100 microseconds, which\\n  is fast but could still add up to a second or more of extra initialization\\n  time in million-plus line codebases, which is exactly where we think\\n  ``@typing.override`` will be most useful.\\n- An implementation may have edge cases where it doesn\\u2019t work well (we heard\\n  from a maintainer of one such closed-source library that this has been a\\n  problem). We expect static enforcement to be simple and reliable.\\n- The implementation approaches we know of are not simple. The decorator\\n  executes before the class is finished evaluating, so the options we know of\\n  are either to inspect the bytecode of the caller (as ``@overrides.overrides``\\n  does) or to use a metaclass-based approach. Neither approach seems ideal.\"}, {\"id\": \"ad23617867325d80-0013\", \"text\": \"Static typing users use annotations to add type information\\nto their code.  But they largely don't examine the annotations\\nat runtime.  Instead, they use static type analysis tools\\n(mypy, pytype) to examine their source tree and determine\\nwhether or not their code is using types consistently.\\nThis is almost certainly the most popular use case for\\nannotations today.\\n\\nMany of the annotations use *type hints,* a la :pep:`484`\\n(and many subsequent PEPs).  Type hints are passive objects,\\nmere representation of type information; they don't do any actual work.\\nType hints are often parameterized with other types or other type hints.\\nSince they're agnostic about what these actual values are, type hints\\nwork fine with ``ForwardRef`` proxy objects.\\nUsers of static type hints discovered that extensive type hinting under\\nstock semantics often created large-scale circular reference and circular\\nimport problems that could be difficult to solve.  :pep:`563` was designed\\nspecifically to solve this problem, and the solution worked great for\\nthese users.  The difficulty of rendering stringized annotations into\\nreal values largely didn't inconvenience these users because of how\\ninfrequently they examine annotations at runtime.\"}, {\"id\": \"00ed39463d0680a5-0001\", \"text\": \"This PEP lays out the theory referenced by :pep:`484`.\"}, {\"id\": \"a25e032f504686c8-0001\", \"text\": \":pep:`3107` introduced syntax for function annotations, but the semantics\\nwere deliberately left undefined.  There has now been enough 3rd party\\nusage for static type analysis that the community would benefit from\\na standard vocabulary and baseline tools within the standard library.\\n\\nThis PEP introduces a provisional module to provide these standard\\ndefinitions and tools, along with some conventions for situations\\nwhere annotations are not available.\\n\\nNote that this PEP still explicitly does NOT prevent other uses of\\nannotations, nor does it require (or forbid) any particular processing\\nof annotations, even when they conform to this specification.  It\\nsimply enables better coordination, as :pep:`333` did for web frameworks.\\n\\nFor example, here is a simple function whose argument and return type\\nare declared in the annotations::\\n\\n  def greeting(name: str) -> str:\\n      return 'Hello ' + name\\n\\nWhile these annotations are available at runtime through the usual\\n``__annotations__`` attribute, *no type checking happens at runtime*.\\nInstead, the proposal assumes the existence of a separate off-line\\ntype checker which users can run over their source code voluntarily.\\nEssentially, such a type checker acts as a very powerful linter.\\n(While it would of course be possible for individual users to employ\\na similar checker at run time for Design By Contract enforcement or\\nJIT optimization, those tools are not yet as mature.)\"}, {\"id\": \"00ed39463d0680a5-0003\", \"text\": \"-  ``t1``, ``t2``, etc. and ``u1``, ``u2``, etc. are types. Sometimes we write\\n   ``ti`` or ``tj`` to refer to \\\"any of ``t1``, ``t2``, etc.\\\"\\n-  ``T``, ``U`` etc. are type variables (defined with ``TypeVar()``, see below).\\n-  Objects, classes defined with a class statement, and instances are\\n   denoted using standard :pep:`8` conventions.\\n-  the symbol ``==`` applied to types in the context of this PEP means that\\n   two expressions represent the same type.\\n-  Note that :pep:`484` makes a distinction between types and classes\\n   (a type is a concept for the type checker,\\n   while a class is a runtime concept).  In this PEP we clarify\\n   this distinction but avoid unnecessary strictness to allow more\\n   flexibility in the implementation of type checkers.\"}, {\"id\": \"00ed39463d0680a5-0010\", \"text\": \"In Python, classes are object factories defined by the ``class`` statement,\\nand returned by the ``type(obj)`` built-in function. Class is a dynamic,\\nruntime concept.\\n\\nType concept is described above, types appear in variable\\nand function type annotations, can be constructed\\nfrom building blocks described below, and are used by static type checkers.\\n\\nEvery class is a type as discussed above.\\nBut it is tricky and error prone to implement a class that exactly represents\\nsemantics of a given type, and it is not a goal of :pep:`484`.\\n*The static types described in* :pep:`484` *should not be confused with\\nthe runtime classes.* Examples:\\n\\n- ``int`` is a class and a type.\\n- ``UserID`` is a class and a type.\\n- ``Union[str, int]`` is a type but not a proper class::\\n\\n      class MyUnion(Union[str, int]): ...  # raises TypeError\\n\\n      Union[str, int]()  # raises TypeError\\n\\nTyping interface is implemented with classes, i.e., at runtime it is possible\\nto evaluate, e.g., ``Generic[T].__bases__``. But to emphasize the distinction\\nbetween classes and types the following general rules apply:\\n\\n-  No types defined below (i.e. ``Any``, ``Union``, etc.) can be instantiated,\\n   an attempt to do so will raise ``TypeError``.\\n   (But non-abstract subclasses of ``Generic`` can be.)\\n-  No types defined below can be subclassed, except for ``Generic`` and\\n   classes derived from it.\\n-  All of these will raise ``TypeError`` if they appear\\n   in ``isinstance`` or ``issubclass`` (except for unparameterized generics).\"}, {\"id\": \"d046a9a5c7967a12-0012\", \"text\": \"We believe that ``@override`` is most useful if checkers also allow developers\\nto opt into a strict mode where methods that override a parent class are\\nrequired to use the decorator. Strict enforcement should be opt-in for backward\\ncompatibility.\"}]}",
+      "raw_response": "{\"action\":\"answer\",\"answer\":\"No. PEP 484 (and the related PEP 3107/typing proposal) specifies type hints only for static type checkers and other third-party tools; they are passive annotations that do not trigger any runtime type checking. As stated in the evidence, \\\"no type checking happens at runtime\\\" under this model—type hints are meant to be analyzed by separate off-line static type checkers, not enforced by the Python interpreter itself.\",\"citations\":[\"a25e032f504686c8-0001\",\"ad23617867325d80-0013\"]}",
+      "action": {
+        "action": "answer",
+        "query": "",
+        "answer": "No. PEP 484 (and the related PEP 3107/typing proposal) specifies type hints only for static type checkers and other third-party tools; they are passive annotations that do not trigger any runtime type checking. As stated in the evidence, \"no type checking happens at runtime\" under this model—type hints are meant to be analyzed by separate off-line static type checkers, not enforced by the Python interpreter itself.",
+        "citations": [
+          "a25e032f504686c8-0001",
+          "ad23617867325d80-0013"
+        ]
+      },
+      "retrieved": [],
+      "usage": {
+        "input_tokens": 2962,
+        "output_tokens": 179
+      },
+      "error": null
+    }
+  ],
+  "answer": {
+    "query": "Does PEP 484 require Python to enforce type hints at runtime?",
+    "text": "No. PEP 484 (and the related PEP 3107/typing proposal) specifies type hints only for static type checkers and other third-party tools; they are passive annotations that do not trigger any runtime type checking. As stated in the evidence, \"no type checking happens at runtime\" under this model—type hints are meant to be analyzed by separate off-line static type checkers, not enforced by the Python interpreter itself.",
+    "citations": [
+      {
+        "chunk_id": "a25e032f504686c8-0001",
+        "quote": null
+      },
+      {
+        "chunk_id": "ad23617867325d80-0013",
+        "quote": null
+      }
+    ],
+    "abstained": false,
+    "model": "claude-sonnet-5",
+    "prompt_version": "agent_v1",
+    "usage": {
+      "input_tokens": 3267,
+      "output_tokens": 209
+    },
+    "invalid_citations": [],
+    "metadata": {
+      "stop_reason": "answered"
+    }
+  },
+  "usage": {
+    "input_tokens": 3267,
+    "output_tokens": 209
+  }
+}

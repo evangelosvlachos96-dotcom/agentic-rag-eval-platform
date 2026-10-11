@@ -4,12 +4,19 @@ A production-style retrieval-augmented generation (RAG) system for technical doc
 
 The platform combines structure-aware ingestion, hybrid BM25 and vector retrieval with reranking, grounded generation with citations, and an evaluation harness that measures retrieval and generation separately with confidence intervals. It uses 56 Python Enhancement Proposals (PEPs) as its corpus: public, well structured, and full of exact identifiers that stress keyword and semantic search in different ways.
 
-Milestones M1–M9 are implemented for a local showcase: retrieval has real pilot results, and the agent, annotation workflow and service have offline verification. Paid answer/agent evaluation and human–judge calibration remain pending; no real-model answer-quality claim is made.
+Milestones M1–M9 are implemented for a local showcase. Live validation now covers all 24 reviewed questions across four retrieval configurations, plus four real agent demonstrations. The results are automated-judge measurements on a small pilot; independent human calibration and a held-out benchmark remain future work.
 
 [Explore the results page](https://evangelosvlachos96-dotcom.github.io/agentic-rag-eval-platform/)
-or read the [budgeted live-validation plan](docs/live-validation.md).
+or read the [live results and limitations](docs/live-results.md).
 
-![Measured results showcase](docs/images/results-desktop.png)
+![Real API validation results](docs/images/live-validation.png)
+
+BM25 and hybrid each scored 95% judged correctness on the 20 answerable questions;
+vector scored 85% and hybrid with reranking 90%. All four configurations abstained
+on all four unanswerable questions. Reported token cost was **USD 1.4200**, plus
+**USD 0.0120 reserved** for an unmetered failed request. The interrupted attempt,
+successful runs, usage ledger and agent trajectories are preserved in the
+[live evidence archive](docs/evidence/live-validation/).
 
 ---
 

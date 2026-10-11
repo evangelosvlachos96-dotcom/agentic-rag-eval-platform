@@ -1,0 +1,24 @@
+{
+  "name": "live_bm25_only",
+  "retrieval": {
+    "mode": "bm25",
+    "candidate_k": 50,
+    "rerank": false,
+    "final_k": 8,
+    "rrf_k": 60,
+    "embedding_model": null,
+    "reranker_model": null
+  },
+  "generation": {
+    "prompt_version": "answer_v1",
+    "model": "claude-sonnet-5",
+    "max_tokens": 1536
+  },
+  "judge": {
+    "model": "claude-haiku-4-5",
+    "faithfulness_prompt": "judge_faithfulness_v1",
+    "correctness_prompt": "judge_correctness_v1",
+    "relevance_prompt": "judge_relevance_v1",
+    "max_tokens": 1536
+  }
+}

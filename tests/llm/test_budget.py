@@ -112,3 +112,36 @@ async def test_underestimated_reservation_stops_next_request(tmp_path: Path) -> 
         await guard.complete(request())
     assert fake.calls == 1
     assert guard.ledger.records[0].status == "reservation_exceeded"
+
+
+@pytest.mark.asyncio
+async def test_reviewed_failure_keeps_full_cost_when_resumed(tmp_path: Path) -> None:
+    fake, guard = setup(tmp_path)
+    fake.fail = True
+    with pytest.raises(LLMError):
+        await guard.complete(request())
+    reserved = guard.ledger.committed_usd
+    guard.retain_failed_reservations("Prior process stopped; retain full allowance")
+    assert guard.ledger.committed_usd == reserved
+    assert guard.ledger.records[0].actual_usd is None
+    loaded = BudgetedProvider(fake, guard.pricing, guard.path)
+    fake.fail = False
+    await loaded.complete(request())
+    assert loaded.ledger.committed_usd > reserved
+
+
+def test_review_does_not_clear_overruns(tmp_path: Path) -> None:
+    _, guard = setup(tmp_path)
+    from ragplatform.llm.budget import BudgetRecord
+
+    guard.ledger.records.append(
+        BudgetRecord(
+            model="test",
+            purpose="test",
+            reserved_usd=0.01,
+            actual_usd=0.02,
+            status="reservation_exceeded",
+        )
+    )
+    with pytest.raises(BudgetStoppedError):
+        guard.retain_failed_reservations("Cannot clear an overrun")

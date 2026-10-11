@@ -7,6 +7,7 @@ Thin wrappers around library code so that all logic stays tested.
 
 - `run_live_validation.py`: budgeted paid suite; without `--execute`, prints the plan only.
 - `build_results_page.py`: generates `docs/index.html` from saved evidence, with no API calls.
+- `summarize_live_validation.py`: verifies saved live artifacts and writes metrics, paired comparisons, hashes and a blank human-review packet; no API calls.
 - `render_results_page.cjs`: Playwright desktop/mobile screenshots and local link/layout checks.
 
 Other commands are exposed through the `rag` CLI (`uv run rag --help`).

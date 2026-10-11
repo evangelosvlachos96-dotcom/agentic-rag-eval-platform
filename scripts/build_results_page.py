@@ -21,7 +21,9 @@ def build() -> None:
     rows = []
     bars = []
     for name, label in NAMES.items():
-        run = json.loads((DOCS / f"evidence/pilot-baselines/{name}/summary.json").read_text())
+        run = json.loads(
+            (DOCS / f"evidence/pilot-baselines/{name}/summary.json").read_text(encoding="utf-8")
+        )
         m = run["metrics"]
         hit = m["hit@8"]["mean"] * 100
         rows.append(
@@ -38,10 +40,12 @@ def build() -> None:
     for name, label in NAMES.items():
         path = live / name / "summary.json"
         if path.exists():
-            run = json.loads(path.read_text())
+            run = json.loads(path.read_text(encoding="utf-8"))
             if run["retrieval_only"] or "fake" in (run["llm_provider"] or ""):
                 raise ValueError("Live report refuses placeholder or retrieval-only evidence")
             correctness = run["metrics"].get("correctness")
+            faithfulness = run["metrics"].get("faithfulness")
+            abstention = run["metrics"].get("correct_abstention")
             score = (
                 f"{correctness['mean']:.0%} (n={correctness['n']})"
                 if correctness
@@ -49,38 +53,56 @@ def build() -> None:
             )
             live_rows.append(
                 f'<tr><th scope="row">{label}</th><td>{score}</td>'
+                f"<td>{correctness['ci_lower']:.0%} to {correctness['ci_upper']:.0%}</td>"
+                f"<td>{faithfulness['mean']:.1%} (n={faithfulness['n']})</td>"
+                f"<td>{abstention['mean']:.0%} (n={abstention['n']})</td>"
                 f'<td>{run["n_errors"]}</td><td><a href="evidence/live-validation/'
                 f'{name}/report.md">Full evidence ↗</a></td></tr>'
             )
     completed = (live / "completion.json").exists()
-    live_status = "Live suite executed" if completed else "Live validation pending"
+    live_status = (
+        "Live suite executed"
+        if completed
+        else ("Live validation in progress" if live_rows else "Live validation pending")
+    )
     live_html = (
         '<div class="table-wrap"><table><thead><tr><th>Configuration</th>'
-        "<th>LLM-judged correctness</th><th>Errors</th><th>Source</th></tr></thead><tbody>"
+        "<th>Judged correctness</th><th>95% CI</th><th>Faithfulness</th>"
+        "<th>Correct abstention</th><th>Errors</th><th>Source</th></tr></thead><tbody>"
         + "".join(live_rows)
         + "</tbody></table></div>"
         if live_rows
-        else "<p>The owner has approved a budgeted API run. No live answer-quality results "
-        "are available yet: the local Anthropic credential is not configured.</p>"
+        else "<p>No completed full live evaluation is available yet. "
+        "This section updates only from saved API-run evidence.</p>"
     )
     spend = "No live requests recorded."
     if (live / "budget.json").exists():
-        ledger = json.loads((live / "budget.json").read_text())
+        ledger = json.loads((live / "budget.json").read_text(encoding="utf-8"))
         actual = sum(r["actual_usd"] or 0 for r in ledger["records"])
         unknown = sum(r["actual_usd"] is None for r in ledger["records"])
+        reserved = sum(r["reserved_usd"] for r in ledger["records"] if r["actual_usd"] is None)
         spend = (
-            f"Recorded API usage estimate: ${actual:.4f}; {unknown} calls with unknown cost. "
+            f"{len(ledger['records'])} API completion attempts. Recorded usage estimate: "
+            f"${actual:.4f}, plus ${reserved:.4f} reserved for {unknown} unmetered failures. "
             'See the <a href="evidence/live-validation/budget.json">usage ledger</a>.'
         )
+        if unknown:
+            spend += (
+                " The interrupted run is preserved in the "
+                f'<a href="{REPO}/tree/main/docs/evidence/live-validation/interrupted-attempts">'
+                "failure archive</a>; its unknown cost was never reset to zero."
+            )
     agents = []
     for path in sorted((live / "agents").glob("*.json")):
-        trajectory = json.loads(path.read_text())
+        trajectory = json.loads(path.read_text(encoding="utf-8"))
         if trajectory["placeholder"]:
             raise ValueError("Live agent evidence cannot be a placeholder")
         agents.append(
-            f"<li>{escape(trajectory['question'])} — "
+            f"<li><details><summary>{escape(trajectory['question'])}</summary>"
+            f"<p>{escape(trajectory['answer']['text'])}</p>"
             f'<a href="evidence/live-validation/agents/{path.name}">'
-            f"{escape(trajectory['stop_reason'])} · {len(trajectory['steps'])} steps ↗</a></li>"
+            f"{escape(trajectory['stop_reason'])} · {len(trajectory['steps'])} steps ↗</a>"
+            "</details></li>"
         )
     agent_html = (
         "<ul>" + "".join(agents) + "</ul>"
@@ -90,6 +112,33 @@ def build() -> None:
             "Live trajectories are pending; no agent success rate is claimed.</p>"
         )
     )
+    example_html = ""
+    analysis_path = live / "analysis.json"
+    if analysis_path.exists():
+        analysis = json.loads(analysis_path.read_text(encoding="utf-8"))
+        cards = []
+        for example in analysis["examples"]:
+            result = example["result"]
+            verdicts = ((result.get("judges") or {}).get("faithfulness") or {}).get("claims", [])
+            concerns = [v for v in verdicts if not v["supported"]]
+            concern_html = "".join(
+                f'<p class="small">Judge grounding concern: {escape(v["claim"])} '
+                f"— {escape(v['reasoning'])}</p>"
+                for v in concerns[:2]
+            )
+            cards.append(
+                f"<details><summary>{escape(example['selection'].title())}: "
+                f"{escape(result['question'])}</summary><p>"
+                f'{escape(result["answer"]["text"])}</p><p class="small">Reference: '
+                f"{escape(result['reference_answer'])}</p>{concern_html}</details>"
+            )
+        example_html = (
+            '<section><div class="eyebrow">Live answer notebook / Hybrid</div>'
+            "<h2>Read the outputs behind the scores.</h2>"
+            + "".join(cards)
+            + f'<p><a href="{REPO}/blob/main/docs/live-results.md">'
+            "Full analysis, paired comparisons &amp; limitations ↗</a></p></section>"
+        )
     css = """
     :root{--ink:#202c2c;--muted:#526260;--paper:#f4f2e9;--line:#cdd3c8;--accent:#bd4c28}
     *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);
@@ -126,6 +175,7 @@ def build() -> None:
     display:block;border:1px solid var(--line)}figure{margin:0}
     figcaption{font-size:13px;margin-top:10px}
     footer{border-top:1px solid var(--line);padding:30px 0 55px;font-size:13px;color:var(--muted)}
+    details{padding:15px 0;border-bottom:1px solid var(--line)}summary{cursor:pointer}
     @media(max-width:720px){.wrap{padding:0 20px}header{padding-top:45px}nav div{gap:12px}
     .grid,.gallery{grid-template-columns:1fr;gap:25px}.facts{grid-template-columns:1fr 1fr}
     .fact:nth-child(3){padding-left:0}.fact:nth-child(2){border:0}.bar-row{grid-template-columns:
@@ -166,12 +216,17 @@ def build() -> None:
     seed 0; no multiple-comparison correction.</div></section>
     <section id="validation" class="panel"><div class="eyebrow">02 / Live validation</div>
     <h2>Real responses. Visible accounting.</h2><span class="status">{live_status}</span>
+    <p class="small">Generator: Claude Sonnet 5. Judges: Claude Haiku 4.5.
+    One generation per question/configuration; no tuning against these outcomes.</p>
     {live_html}<p class="small">{spend}</p><p class="small">A shared US$3 dispatch ceiling,
     buffered input counts, maximum output reservations, and zero automatic SDK retries
     protect the approved allowance. Billing adjustments are not an invoice guarantee.</p>
     <p class="small">Automated judges are not human ground truth. Correctness denominators
     are shown explicitly; errors and missing judgments must be read alongside the score.
+    Answerable-question abstentions count as incorrect; faithfulness excludes abstentions.
+    An all-success bootstrap interval does not prove perfect accuracy beyond this small sample.
     Human-judge calibration and a held-out benchmark remain outstanding.</p></section>
+    {example_html}
     <section><div class="grid"><div><div class="eyebrow">03 / Controlled ablations</div>
     <h2>Smaller chunks trade<br>coverage for rank.</h2><p>250-token chunks raised BM25 Hit@1
     from 25% to 40%, while Hit@8 fell from 70% to 60%. All paired MRR intervals included
